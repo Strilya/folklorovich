@@ -243,14 +243,18 @@ class ContentGenerator:
             logger.info(f"Generated audio: {audio_path}")
 
             # Step 4: Render video
-            logger.info("Step 4/4: Rendering final video...")
+            logger.info("Step 4/4: Rendering final video with Russian subtitles and watermark...")
             video_filename = f"{date_str}_{folklore_name.replace(' ', '_')}.mp4"
             video_path = self.output_dir / 'videos' / video_filename
+
+            # Get story text for Russian subtitles
+            story_text = folklore_entry.get('story_full', '')
 
             render_success = render_video(
                 image_path=collage_path,
                 audio_path=audio_path,
-                output_path=video_path
+                output_path=video_path,
+                subtitle_text=story_text  # Add Russian subtitles
             )
 
             if not render_success:

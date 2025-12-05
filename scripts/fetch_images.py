@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
 """
-Folklorovich - Unsplash Image Fetcher
-Downloads high-resolution images from Unsplash API based on visual tags.
+Folklorovich - Multi-Source Image Fetcher with Russian Cultural Filtering
+Downloads high-resolution images from Unsplash, Pexels, and Pixabay APIs
+with strict Russian cultural validation.
 
 Features:
-- Rate limiting (50 requests/hour on free tier)
+- Multi-source: Unsplash + Pexels + Pixabay
+- Strict Russian cultural filtering
+- Cyrillic keyword support
+- Metadata validation
 - Automatic retry with exponential backoff
-- Image caching to avoid redundant downloads
-- Multiple search queries for variety
+- Image caching
 
 Author: Folklorovich Project
 Date: 2025-12-05
@@ -18,23 +21,86 @@ import time
 import logging
 import requests
 from pathlib import Path
-from typing import List, Optional
+from typing import List, Optional, Dict, Any
 from datetime import datetime
 
 # Configure logging
 logger = logging.getLogger('ImageFetcher')
 
+# Russian cultural keywords for strict filtering
+RUSSIAN_KEYWORDS = [
+    'Russia', 'Russian', 'Россия', 'русский',
+    'Siberia', 'Сибирь', 'Ural', 'Урал',
+    'Moscow', 'Москва', 'Golden Ring',
+    'Orthodox', 'православный', 'церковь',
+    'birch forest', 'берёза', 'берёзовый лес',
+    'wooden architecture', 'изба', 'деревянная архитектура',
+    'Volga', 'Волга', 'St Petersburg', 'Санкт-Петербург',
+    'Kremlin', 'Кремль', 'onion dome', 'луковичный купол',
+    'matryoshka', 'матрёшка', 'samovar', 'самовар',
+    'Khokhloma', 'хохлома', 'Gzhel', 'гжель', 'Palekh', 'палех'
+]
 
-class UnsplashImageFetcher:
-    """Fetches images from Unsplash API."""
+# Forbidden content indicators
+FORBIDDEN_KEYWORDS = [
+    'spain', 'spanish', 'casa', 'mediterranean',
+    'polish', 'poland', 'polska',
+    'italy', 'italian', 'italian architecture',
+    'france', 'french', 'paris',
+    'latin america', 'south america',
+    'asia', 'asian', 'china', 'japan',
+    'africa', 'african'
+]
 
-    def __init__(self, access_key: Optional[str] = None):
+
+class ImageValidator:
+    """Validates images for Russian cultural authenticity."""
+
+    @staticmethod
+    def validate_russian_content(metadata: Dict[str, Any]) -> bool:
         """
-        Initialize Unsplash API client.
+        Validate that image contains Russian cultural content.
 
         Args:
-            access_key: Unsplash API access key (from .env)
+            metadata: Image metadata (description, tags, location, etc.)
+
+        Returns:
+            True if valid Russian content, False otherwise
         """
+        # Extract searchable text from metadata
+        searchable_text = ' '.join([
+            str(metadata.get('description', '')),
+            str(metadata.get('alt_description', '')),
+            ' '.join(metadata.get('tags', [])),
+            str(metadata.get('location', '')),
+            str(metadata.get('user', {}).get('name', ''))
+        ]).lower()
+
+        # Check for forbidden content first
+        for keyword in FORBIDDEN_KEYWORDS:
+            if keyword.lower() in searchable_text:
+                logger.warning(f"Rejected: Forbidden keyword '{keyword}' found in metadata")
+                return False
+
+        # Check for Russian keywords
+        found_russian = False
+        for keyword in RUSSIAN_KEYWORDS:
+            if keyword.lower() in searchable_text:
+                found_russian = True
+                logger.info(f"✓ Russian keyword '{keyword}' found in metadata")
+                break
+
+        if not found_russian:
+            logger.warning("Rejected: No Russian cultural keywords found in metadata")
+
+        return found_russian
+
+
+class UnsplashImageFetcher:
+    """Fetches images from Unsplash API with Russian cultural filtering."""
+
+    def __init__(self, access_key: Optional[str] = None):
+        """Initialize Unsplash API client."""
         self.access_key = access_key or os.getenv('UNSPLASH_ACCESS_KEY')
         if not self.access_key:
             raise ValueError("UNSPLASH_ACCESS_KEY not found in environment")
@@ -46,28 +112,36 @@ class UnsplashImageFetcher:
             'Accept-Version': 'v1'
         })
 
+        self.validator = ImageValidator()
         self.max_retries = int(os.getenv('MAX_RETRIES', 3))
         self.retry_delay = int(os.getenv('RETRY_DELAY_SECONDS', 5))
 
         logger.info("Unsplash image fetcher initialized")
 
-    def search_photos(self, query: str, per_page: int = 5) -> List[dict]:
+    def build_russian_query(self, tags: List[str]) -> str:
         """
-        Search for photos on Unsplash.
+        Build search query with mandatory Russian context.
 
         Args:
-            query: Search query string
-            per_page: Number of results to return (max 30)
+            tags: Base visual tags
 
         Returns:
-            List of photo metadata dicts
+            Enhanced search query with Russian keywords
         """
+        # Always include Russian context
+        base_tags = ' '.join(tags[:2])  # Use first 2 tags
+        russian_context = 'Russia Russian Orthodox wooden architecture birch'
+
+        return f"{base_tags} {russian_context}"
+
+    def search_photos(self, query: str, per_page: int = 10) -> List[dict]:
+        """Search for photos on Unsplash with validation."""
         url = f"{self.api_base}/search/photos"
         params = {
             'query': query,
             'per_page': min(per_page, 30),
-            'orientation': 'portrait',  # Better for vertical video format
-            'content_filter': 'high'  # Family-friendly content
+            'orientation': 'portrait',
+            'content_filter': 'high'
         }
 
         for attempt in range(self.max_retries):
@@ -75,11 +149,10 @@ class UnsplashImageFetcher:
                 logger.info(f"Searching Unsplash for: '{query}' (attempt {attempt + 1})")
                 response = self.session.get(url, params=params, timeout=10)
 
-                # Handle rate limiting
                 if response.status_code == 429:
                     retry_after = int(response.headers.get('X-RateLimit-Reset', 3600))
                     logger.warning(f"Rate limit hit. Retry after {retry_after}s")
-                    time.sleep(min(retry_after, 60))  # Wait up to 60 seconds
+                    time.sleep(min(retry_after, 60))
                     continue
 
                 response.raise_for_status()
@@ -88,45 +161,45 @@ class UnsplashImageFetcher:
                 results = data.get('results', [])
                 logger.info(f"Found {len(results)} images for query '{query}'")
 
-                return results
+                # Validate Russian content
+                validated = []
+                for photo in results:
+                    metadata = {
+                        'description': photo.get('description', ''),
+                        'alt_description': photo.get('alt_description', ''),
+                        'tags': [tag.get('title', '') for tag in photo.get('tags', [])],
+                        'location': photo.get('location', {}).get('name', ''),
+                        'user': photo.get('user', {})
+                    }
+
+                    if self.validator.validate_russian_content(metadata):
+                        validated.append(photo)
+
+                logger.info(f"Validated {len(validated)}/{len(results)} images as Russian content")
+                return validated
 
             except requests.exceptions.RequestException as e:
                 logger.error(f"Request failed: {e}")
                 if attempt < self.max_retries - 1:
-                    delay = self.retry_delay * (2 ** attempt)  # Exponential backoff
+                    delay = self.retry_delay * (2 ** attempt)
                     logger.info(f"Retrying in {delay} seconds...")
                     time.sleep(delay)
-                else:
-                    logger.error("Max retries reached")
-                    return []
 
         return []
 
     def download_image(self, photo_url: str, output_path: Path) -> bool:
-        """
-        Download an image from URL to local file.
-
-        Args:
-            photo_url: Image URL (use 'regular' or 'full' size)
-            output_path: Local file path to save image
-
-        Returns:
-            True if successful, False otherwise
-        """
+        """Download an image from URL to local file."""
         try:
-            # Create parent directory if needed
             output_path.parent.mkdir(parents=True, exist_ok=True)
 
             logger.info(f"Downloading image to {output_path.name}...")
             response = requests.get(photo_url, timeout=30, stream=True)
             response.raise_for_status()
 
-            # Save image
             with open(output_path, 'wb') as f:
                 for chunk in response.iter_content(chunk_size=8192):
                     f.write(chunk)
 
-            # Verify file was written
             if output_path.exists() and output_path.stat().st_size > 0:
                 logger.info(f"✓ Downloaded {output_path.name} ({output_path.stat().st_size // 1024} KB)")
                 return True
@@ -141,107 +214,284 @@ class UnsplashImageFetcher:
             logger.error(f"File write error: {e}")
             return False
 
-    def fetch_images_for_tags(self, tags: List[str], output_dir: Path,
-                              count: int = 6) -> List[Path]:
-        """
-        Fetch multiple images based on a list of visual tags.
 
-        Strategy:
-        - Combine tags into search queries
-        - Download diverse images
-        - Cache in output directory
+class PexelsImageFetcher:
+    """Fetches images from Pexels API with Russian cultural filtering."""
 
-        Args:
-            tags: List of visual search tags
-            output_dir: Directory to save images
-            count: Number of images to fetch
+    def __init__(self, api_key: Optional[str] = None):
+        """Initialize Pexels API client."""
+        self.api_key = api_key or os.getenv('PEXELS_API_KEY')
+        if not self.api_key:
+            raise ValueError("PEXELS_API_KEY not found in environment")
 
-        Returns:
-            List of paths to downloaded images
-        """
-        output_dir.mkdir(parents=True, exist_ok=True)
-        downloaded_paths = []
+        self.api_base = "https://api.pexels.com/v1"
+        self.session = requests.Session()
+        self.session.headers.update({
+            'Authorization': self.api_key
+        })
 
-        # Create search query by combining tags
-        # Try different combinations for variety
-        queries = [
-            ' '.join(tags[:3]),  # First 3 tags
-            ' '.join(tags[2:5]) if len(tags) >= 5 else ' '.join(tags),  # Middle tags
-            tags[0] if tags else 'mystical',  # Fallback to first tag
-        ]
+        self.validator = ImageValidator()
+        self.max_retries = 3
 
-        images_needed = count
-        images_per_query = (images_needed // len(queries)) + 1
+        logger.info("Pexels image fetcher initialized")
 
-        for query in queries:
-            if len(downloaded_paths) >= count:
-                break
+    def search_photos(self, query: str, per_page: int = 10) -> List[dict]:
+        """Search for photos on Pexels with validation."""
+        url = f"{self.api_base}/search"
+        params = {
+            'query': query,
+            'per_page': min(per_page, 80),
+            'orientation': 'portrait'
+        }
 
-            # Search for photos
-            photos = self.search_photos(query, per_page=images_per_query)
+        try:
+            logger.info(f"Searching Pexels for: '{query}'")
+            response = self.session.get(url, params=params, timeout=10)
+            response.raise_for_status()
+            data = response.json()
 
-            if not photos:
-                logger.warning(f"No photos found for query '{query}'")
-                continue
+            photos = data.get('photos', [])
+            logger.info(f"Found {len(photos)} images on Pexels")
 
-            # Download photos
-            for idx, photo in enumerate(photos):
-                if len(downloaded_paths) >= count:
-                    break
+            # Validate Russian content
+            validated = []
+            for photo in photos:
+                metadata = {
+                    'description': photo.get('alt', ''),
+                    'alt_description': photo.get('alt', ''),
+                    'tags': [],
+                    'location': '',
+                    'user': {'name': photo.get('photographer', '')}
+                }
 
-                # Get high-quality image URL
-                image_url = photo['urls'].get('regular') or photo['urls'].get('full')
-                if not image_url:
-                    continue
+                if self.validator.validate_russian_content(metadata):
+                    validated.append(photo)
 
-                # Generate filename
-                photo_id = photo['id']
-                filename = f"unsplash_{photo_id}.jpg"
-                output_path = output_dir / filename
+            logger.info(f"Validated {len(validated)}/{len(photos)} Pexels images")
+            return validated
 
-                # Skip if already downloaded (caching)
-                if output_path.exists():
-                    logger.info(f"Image already cached: {filename}")
-                    downloaded_paths.append(output_path)
-                    continue
+        except requests.exceptions.RequestException as e:
+            logger.error(f"Pexels request failed: {e}")
+            return []
 
-                # Download
-                if self.download_image(image_url, output_path):
-                    downloaded_paths.append(output_path)
+    def download_image(self, photo_url: str, output_path: Path) -> bool:
+        """Download an image from Pexels."""
+        try:
+            output_path.parent.mkdir(parents=True, exist_ok=True)
 
-                    # Respect rate limits: wait between downloads
-                    time.sleep(2)  # 2 seconds between downloads
+            logger.info(f"Downloading Pexels image to {output_path.name}...")
+            response = requests.get(photo_url, timeout=30, stream=True)
+            response.raise_for_status()
 
-            # Wait between different queries
-            if len(downloaded_paths) < count:
-                time.sleep(5)
+            with open(output_path, 'wb') as f:
+                for chunk in response.iter_content(chunk_size=8192):
+                    f.write(chunk)
 
-        logger.info(f"Downloaded {len(downloaded_paths)}/{count} images")
-        return downloaded_paths
+            if output_path.exists() and output_path.stat().st_size > 0:
+                logger.info(f"✓ Downloaded {output_path.name} ({output_path.stat().st_size // 1024} KB)")
+                return True
+
+            return False
+
+        except Exception as e:
+            logger.error(f"Pexels download failed: {e}")
+            return False
+
+
+class PixabayImageFetcher:
+    """Fetches images from Pixabay API with Russian cultural filtering."""
+
+    def __init__(self, api_key: Optional[str] = None):
+        """Initialize Pixabay API client."""
+        self.api_key = api_key or os.getenv('PIXABAY_API_KEY')
+        if not self.api_key:
+            raise ValueError("PIXABAY_API_KEY not found in environment")
+
+        self.api_base = "https://pixabay.com/api/"
+        self.validator = ImageValidator()
+        self.max_retries = 3
+
+        logger.info("Pixabay image fetcher initialized")
+
+    def search_photos(self, query: str, per_page: int = 10) -> List[dict]:
+        """Search for photos on Pixabay with validation."""
+        params = {
+            'key': self.api_key,
+            'q': query,
+            'per_page': min(per_page, 200),
+            'image_type': 'photo',
+            'orientation': 'vertical'
+        }
+
+        try:
+            logger.info(f"Searching Pixabay for: '{query}'")
+            response = requests.get(self.api_base, params=params, timeout=10)
+            response.raise_for_status()
+            data = response.json()
+
+            hits = data.get('hits', [])
+            logger.info(f"Found {len(hits)} images on Pixabay")
+
+            # Validate Russian content
+            validated = []
+            for hit in hits:
+                metadata = {
+                    'description': hit.get('tags', ''),
+                    'alt_description': hit.get('tags', ''),
+                    'tags': hit.get('tags', '').split(', '),
+                    'location': '',
+                    'user': {'name': hit.get('user', '')}
+                }
+
+                if self.validator.validate_russian_content(metadata):
+                    validated.append(hit)
+
+            logger.info(f"Validated {len(validated)}/{len(hits)} Pixabay images")
+            return validated
+
+        except requests.exceptions.RequestException as e:
+            logger.error(f"Pixabay request failed: {e}")
+            return []
+
+    def download_image(self, photo_url: str, output_path: Path) -> bool:
+        """Download an image from Pixabay."""
+        try:
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+
+            logger.info(f"Downloading Pixabay image to {output_path.name}...")
+            response = requests.get(photo_url, timeout=30, stream=True)
+            response.raise_for_status()
+
+            with open(output_path, 'wb') as f:
+                for chunk in response.iter_content(chunk_size=8192):
+                    f.write(chunk)
+
+            if output_path.exists() and output_path.stat().st_size > 0:
+                logger.info(f"✓ Downloaded {output_path.name} ({output_path.stat().st_size // 1024} KB)")
+                return True
+
+            return False
+
+        except Exception as e:
+            logger.error(f"Pixabay download failed: {e}")
+            return False
 
 
 def fetch_images_for_folklore(visual_tags: List[str], output_dir: Path,
-                              count: int = 6) -> List[Path]:
+                              count: int = 10) -> List[Path]:
     """
-    Convenience function to fetch images for a folklore entry.
+    Fetch images from multiple sources with Russian cultural validation.
+
+    Strategy:
+    - 4 images from Unsplash
+    - 4 images from Pexels
+    - 2 images from Pixabay
+    - Mix and randomize order
 
     Args:
         visual_tags: List of visual search tags from folklore entry
         output_dir: Directory to save images
-        count: Number of images to fetch
+        count: Total number of images to fetch (default 10)
 
     Returns:
         List of paths to downloaded images
     """
+    import random
+
+    output_dir.mkdir(parents=True, exist_ok=True)
+    downloaded_paths = []
+
+    # Build Russian-specific query
+    base_query = ' '.join(visual_tags[:2])
+    russian_query = f"{base_query} Russia Russian Orthodox birch wooden architecture"
+
+    # Also try Cyrillic search
+    cyrillic_query = f"{base_query} Россия православный изба берёза"
+
+    # Initialize fetchers (handle missing API keys gracefully)
+    fetchers = []
+
     try:
-        fetcher = UnsplashImageFetcher()
-        return fetcher.fetch_images_for_tags(visual_tags, output_dir, count)
-    except ValueError as e:
-        logger.error(f"Configuration error: {e}")
+        unsplash = UnsplashImageFetcher()
+        fetchers.append(('unsplash', unsplash, 4))
+    except ValueError:
+        logger.warning("Unsplash API key not found, skipping")
+
+    try:
+        pexels = PexelsImageFetcher()
+        fetchers.append(('pexels', pexels, 4))
+    except ValueError:
+        logger.warning("Pexels API key not found, skipping")
+
+    try:
+        pixabay = PixabayImageFetcher()
+        fetchers.append(('pixabay', pixabay, 2))
+    except ValueError:
+        logger.warning("Pixabay API key not found, skipping")
+
+    if not fetchers:
+        logger.error("No API keys configured. Cannot fetch images.")
         return []
-    except Exception as e:
-        logger.error(f"Unexpected error: {e}", exc_info=True)
-        return []
+
+    # Fetch from each source
+    for source_name, fetcher, target_count in fetchers:
+        logger.info(f"\n{'='*60}")
+        logger.info(f"Fetching {target_count} images from {source_name.upper()}")
+        logger.info(f"{'='*60}")
+
+        # Try Russian query first, then Cyrillic
+        photos = fetcher.search_photos(russian_query, per_page=target_count * 2)
+
+        if len(photos) < target_count and source_name == 'unsplash':
+            logger.info("Trying Cyrillic query for more results...")
+            cyrillic_photos = fetcher.search_photos(cyrillic_query, per_page=target_count)
+            photos.extend(cyrillic_photos)
+
+        # Download images
+        for idx, photo in enumerate(photos[:target_count]):
+            if len(downloaded_paths) >= count:
+                break
+
+            # Get image URL based on source
+            if source_name == 'unsplash':
+                image_url = photo['urls'].get('regular') or photo['urls'].get('full')
+                photo_id = photo['id']
+            elif source_name == 'pexels':
+                image_url = photo['src'].get('large') or photo['src'].get('original')
+                photo_id = photo['id']
+            elif source_name == 'pixabay':
+                image_url = photo.get('largeImageURL') or photo.get('webformatURL')
+                photo_id = photo['id']
+            else:
+                continue
+
+            if not image_url:
+                continue
+
+            # Generate filename
+            timestamp = int(time.time())
+            filename = f"{source_name}_{photo_id}_{timestamp}.jpg"
+            output_path = output_dir / filename
+
+            # Skip if already exists
+            if output_path.exists():
+                logger.info(f"Image already cached: {filename}")
+                downloaded_paths.append(output_path)
+                continue
+
+            # Download
+            if fetcher.download_image(image_url, output_path):
+                downloaded_paths.append(output_path)
+                time.sleep(1)  # Rate limiting
+
+    # Shuffle to mix sources
+    random.shuffle(downloaded_paths)
+
+    logger.info(f"\n{'='*60}")
+    logger.info(f"✓ Downloaded {len(downloaded_paths)}/{count} total images")
+    logger.info(f"{'='*60}\n")
+
+    return downloaded_paths[:count]
 
 
 def main():
@@ -257,8 +507,7 @@ def main():
     query = sys.argv[1]
     output_dir = Path(__file__).parent.parent / 'output' / 'images' / 'test'
 
-    fetcher = UnsplashImageFetcher()
-    images = fetcher.fetch_images_for_tags([query], output_dir, count=3)
+    images = fetch_images_for_folklore([query], output_dir, count=10)
 
     print(f"\nDownloaded {len(images)} images:")
     for img_path in images:

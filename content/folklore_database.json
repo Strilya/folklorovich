@@ -280,7 +280,7 @@
       "id": "031",
       "name": "Whistling Indoors",
       "category": "superstitions",
-      "story_full": "Never whistle inside a Russian home, or you'll whistle away all your money. The sound calls to the wind spirits who'll blow your prosperity out the windows and carry it to the four corners of the earth. Grandmothers still scold children who forget, remembering when a single whistled note before a card game cost their family the harvest money. It's not just tradition—it's a warning written in generations of empty pockets and hungry winters.",
+      "story_full": "Never whistle inside a Russian home—you'll whistle away all your money. The sound calls wind spirits who blow your prosperity out the windows to the four corners of the earth. Grandmothers still scold children who forget, remembering when a single whistled note cost the harvest money. It's not just tradition—it's a warning written in empty pockets and hungry winters.",
       "visual_tags": ["russian home interior", "empty pockets poverty", "traditional kitchen scene", "domestic warning atmosphere", "household superstition mood", "coins scattered floor"],
       "voice_tone": "cautionary_stern",
       "theme": "warm_traditional"
@@ -289,7 +289,7 @@
       "id": "032",
       "name": "Spilled Salt",
       "category": "superstitions",
-      "story_full": "Salt was once worth more than gold, and spilling it meant a fight was coming. The crystals scatter like words you can't take back, each grain a harsh word waiting to be spoken. When salt spills, throw a pinch over your left shoulder to blind the devil watching there, hoping to stoke anger into violence. The stain on the table reminds you that some mistakes invite conflict, and the only way to prevent it is immediate action before the curse takes hold.",
+      "story_full": "Salt was once worth more than gold, and spilling it means a fight is coming. The crystals scatter like words you can't take back, each grain a harsh word waiting to be spoken. Throw a pinch over your left shoulder to blind the devil watching there, hoping to stoke anger. Act immediately before the curse takes hold, or watch relationships crumble.",
       "visual_tags": ["spilled salt crystals", "table closeup scattered salt", "kitchen accident scene", "white crystals dark wood", "superstitious gesture hand", "domestic mishap moment"],
       "voice_tone": "urgent_warning",
       "theme": "warm_traditional"
@@ -298,7 +298,7 @@
       "id": "033",
       "name": "Black Cat Crossing",
       "category": "superstitions",
-      "story_full": "A black cat crossing your path is the devil's familiar testing your resolve. Stop walking, turn around three times, and spit over your left shoulder, or the day's fortune turns against you. The cat sees into the spirit world, and when it crosses from left to right, it's pulling bad luck behind it like a shadow. Sailors would rather delay a voyage than let a black cat board their ship. Better to be late than to let those green eyes curse your journey.",
+      "story_full": "A black cat crossing your path is the devil's familiar testing your resolve. Stop, turn around three times, and spit over your left shoulder, or the day's fortune turns against you. The cat sees into the spirit world—when it crosses left to right, it pulls bad luck like a shadow. Sailors delay voyages rather than let one aboard. Better late than cursed.",
       "visual_tags": ["black cat crossing path", "ominous cat silhouette", "dark cat green eyes", "street cat shadow", "superstitious cat encounter", "mysterious feline night"],
       "voice_tone": "ominous_whisper",
       "theme": "dark_mystical"
@@ -307,7 +307,7 @@
       "id": "034",
       "name": "Empty Vessels",
       "category": "superstitions",
-      "story_full": "Never place an empty bottle or bucket on the table, or you invite poverty to dine with you. Empty containers are hungry mouths waiting to be filled, and they'll devour your wealth if given the chance. This belief runs so deep that even in the poorest homes, you'll see bottles placed on the floor, never the table. Fill what you can, hide what you cannot, but never let emptiness take a seat at your family's heart. The void sees all and wants more.",
+      "story_full": "Never place an empty bottle or bucket on the table—you invite poverty to dine with you. Empty containers are hungry mouths waiting to devour your wealth. Even in the poorest homes, bottles stay on the floor, never the table. Fill what you can, hide what you cannot, but never let emptiness take a seat at your family's heart. The void wants everything.",
       "visual_tags": ["empty bottles table", "bare table poverty", "vacant containers close-up", "kitchen table simple", "sparse setting domestic", "minimalist tabletop scene"],
       "voice_tone": "solemn_advice",
       "theme": "warm_traditional"
@@ -316,7 +316,7 @@
       "id": "035",
       "name": "Broken Mirrors",
       "category": "superstitions",
-      "story_full": "A mirror is a doorway to the soul, and breaking one shatters your fate into pieces. Seven years of misfortune for each broken glass, as your reflection was a part of you that's now scattered and sharp. The shards must be wrapped in black cloth and buried at a crossroads at midnight to bind the curse. Never look into a broken mirror, or you'll see your future as fragmented as the glass. Some doors should never be opened, and some reflections should never be disturbed.",
+      "story_full": "A mirror is a doorway to the soul—breaking one shatters your fate into pieces. Seven years of misfortune follow, as your reflection scatters sharp and broken. Wrap the shards in black cloth and bury them at a crossroads at midnight. Never look into a broken mirror, or you'll see your future as fragmented as the glass. Some doors should never open.",
       "visual_tags": ["shattered mirror fragments", "broken glass close-up", "cracked mirror reflection", "fractured glass pieces", "mirror shards dangerous", "broken reflection distorted"],
       "voice_tone": "fearful_grave",
       "theme": "dark_mystical"
@@ -325,7 +325,7 @@
       "id": "036",
       "name": "Corner Seating",
       "category": "superstitions",
-      "story_full": "An unmarried person who sits at the corner of the table will wait seven years before they find a spouse. The corner is a place of division, splitting your romantic fortune in two. Young people are pulled away from corners at family gatherings, sometimes physically relocated to safer seats. It's not just superstition when you've watched your cousin sit at the corner and remain single year after year. Sometimes the old warnings hold weight, and sometimes that weight is measured in lonely winters.",
+      "story_full": "Sit at the corner of the table unmarried, and you'll wait seven years for a spouse. The corner splits your romantic fortune in two. Young people are pulled away from corners at family gatherings, physically relocated to safer seats. It's not just superstition when you've watched cousins sit there and remain single year after year. The old warnings hold weight measured in lonely winters.",
       "visual_tags": ["table corner close-up", "family dinner gathering", "traditional table setting", "corner seat perspective", "dining table angle", "domestic table scene"],
       "voice_tone": "concerned_warning",
       "theme": "warm_traditional"
@@ -334,7 +334,7 @@
       "id": "037",
       "name": "Returning Home",
       "category": "superstitions",
-      "story_full": "Once you've left your home, returning for something forgotten brings terrible luck. The threshold remembers your departure, and crossing it twice confuses your fate. If you must go back, look into a mirror before leaving again—it resets your journey and shows the spirits you're starting fresh. Soldiers especially fear this omen, knowing that a forgotten wallet might cost more than money. Better to manage without it than to disturb the path already chosen.",
+      "story_full": "Once you've left home, returning for something forgotten brings terrible luck. The threshold remembers your departure—crossing it twice confuses your fate. If you must go back, look into a mirror before leaving again to reset your journey. Soldiers especially fear this omen, knowing a forgotten wallet might cost more than money. Better to manage without than disturb the path already chosen.",
       "visual_tags": ["doorway threshold view", "russian home entrance", "mirror reflection entrance", "door opening homeward", "threshold crossing moment", "domestic doorway scene"],
       "voice_tone": "anxious_urgent",
       "theme": "warm_traditional"
@@ -343,7 +343,7 @@
       "id": "038",
       "name": "Threshold Handshake",
       "category": "superstitions",
-      "story_full": "The threshold is a boundary between worlds, neither inside nor outside, a place where spirits gather. Shaking hands or passing objects across it invites conflict between you and the other person. Step fully inside or fully outside before greeting, or the house spirits will sow discord in whatever business you conduct. Deals made across thresholds always end badly. Friendships strain. Even lovers quarrel when they ignore this ancient rule. The threshold remembers every violation, keeping score until the debt is paid.",
+      "story_full": "The threshold is neither inside nor outside—a boundary where spirits dwell. Never shake hands or pass objects across it, or house spirits will sow discord between you. Step fully inside or outside first. Deals made across thresholds always fail. Friendships fracture. Lovers quarrel. The threshold keeps score of every violation, and the debt is paid in broken trust and bitter arguments.",
       "visual_tags": ["handshake doorway close-up", "threshold wood detail", "door frame transition", "hands meeting entrance", "boundary gesture moment", "doorway interaction scene"],
       "voice_tone": "firm_instructive",
       "theme": "warm_traditional"
@@ -352,7 +352,7 @@
       "id": "039",
       "name": "Bird at Window",
       "category": "superstitions",
-      "story_full": "When a bird taps at your window, death is sending a messenger. Birds fly between this world and the next, and when one tries to enter your home, a soul is preparing to leave. If the bird is black, death comes for an elder. If white, a child. If it returns three nights in a row, there's no preventing what's coming. Some cover their mirrors and stop all clocks when the bird appears, trying to confuse death's timing. But death always knows when its work is due.",
+      "story_full": "When a bird taps your window, death sends a messenger. Birds fly between this world and the next—when one tries to enter, a soul prepares to leave. Black bird means an elder dies. White means a child. Three nights in a row, there's no preventing it. Some cover mirrors and stop clocks, trying to confuse death's timing. But death always knows when its work is due.",
       "visual_tags": ["bird tapping window", "ominous bird silhouette glass", "window bird shadow", "dark bird warning", "mysterious bird visitor", "death omen bird"],
       "voice_tone": "grave_foreboding",
       "theme": "dark_mystical"
@@ -361,7 +361,7 @@
       "id": "040",
       "name": "Howling Dogs",
       "category": "superstitions",
-      "story_full": "A dog howling at night sees death approaching. Their eyes perceive what humans cannot—the shadow figures that come to collect souls. When a dog howls toward a specific house, someone there will die within three days. When it howls at the moon, death wanders the village seeking whom it may claim. Never punish a dog for this warning; they're sharing what their ancient senses detect. Instead, light a candle and pray the shadow passes by your door.",
+      "story_full": "A dog howling at night sees death approaching. Their eyes perceive shadow figures that collect souls. When a dog howls toward a specific house, someone dies within three days. When it howls at the moon, death wanders seeking victims. Never punish a dog for this warning—they're sharing what ancient senses detect. Instead, light a candle and pray the shadow passes your door.",
       "visual_tags": ["dog howling night", "hound silhouette moonlight", "canine warning pose", "dark dog portrait ominous", "night dog shadow", "watchful dog twilight"],
       "voice_tone": "mournful_warning",
       "theme": "dark_mystical"
@@ -370,7 +370,7 @@
       "id": "041",
       "name": "Itchy Hands",
       "category": "superstitions",
-      "story_full": "When your left hand itches, money is coming to you. When your right hand itches, money will leave. The old ones say to scratch the itch against wood to seal the fortune, against metal to multiply it, but never against stone or it turns to loss. Some people kiss their itching left palm three times, calling the coins closer. Whether it works or not, the itch makes you think about money, and sometimes thinking about it is the first step to finding it.",
+      "story_full": "When your left hand itches, money is coming. When your right itches, money leaves. Scratch against wood to seal the fortune, against metal to multiply it, never against stone or it turns to loss. Some kiss their itching left palm three times, calling coins closer. The itch makes you think about money, and sometimes thinking about it is the first step to finding it.",
       "visual_tags": ["hands close-up gesture", "palm reading atmosphere", "coins hands exchange", "traditional hand signs", "fortune telling hands", "money palm scene"],
       "voice_tone": "excited_hopeful",
       "theme": "warm_traditional"
@@ -379,7 +379,7 @@
       "id": "042",
       "name": "Sit Before Journey",
       "category": "superstitions",
-      "story_full": "Before leaving on a journey, all travelers must sit in silence for a moment. It calms the house spirits, ensures nothing is forgotten, and allows fate to settle around your departure. Those who rush out the door anger the domovoi and invite accidents on the road. Even in modern times, Russians sit before trips, taking a breath that could save their lives. The pause between one place and another is sacred, a moment when the spirits adjust their protection to follow you into the unknown.",
+      "story_full": "Before leaving on a journey, sit in silence for a moment. It calms house spirits, ensures nothing's forgotten, and lets fate settle around your departure. Rushing out angers the domovoi and invites accidents. Even today, Russians sit before trips, taking a breath that could save their lives. The pause between places is sacred—when spirits adjust their protection to follow you into the unknown.",
       "visual_tags": ["travelers sitting quietly", "journey preparation scene", "family gathered doorway", "contemplative departure moment", "russian travel tradition", "suitcase doorway pause"],
       "voice_tone": "calm_respectful",
       "theme": "warm_traditional"
@@ -388,7 +388,7 @@
       "id": "043",
       "name": "Early Birthday Wishes",
       "category": "superstitions",
-      "story_full": "Wish someone happy birthday even an hour early, and you curse them with bad luck. Time must be respected—celebrations held too soon steal joy from the actual day. The belief is so strong that even phone calls are timed to the minute, with callers waiting until midnight strikes. To celebrate before the moment is to tempt fate, suggesting the person might not survive to see their actual birthday. Patience protects, and those who wait honor both the person and the fragile nature of life itself.",
+      "story_full": "Wish someone happy birthday even an hour early, and you curse them with bad luck. Celebrations held too soon steal joy from the actual day. Phone calls are timed to the minute—callers wait until midnight strikes. To celebrate early tempts fate, suggesting they might not survive to see their actual birthday. Patience protects. Those who wait honor both the person and life's fragile nature.",
       "visual_tags": ["birthday celebration scene", "cake candles moment", "clock midnight close-up", "celebration waiting mood", "festive anticipation atmosphere", "party timing scene"],
       "voice_tone": "patient_careful",
       "theme": "warm_traditional"
@@ -397,7 +397,7 @@
       "id": "044",
       "name": "Shoes on Table",
       "category": "superstitions",
-      "story_full": "Place shoes on a table, and you place death in the home. Shoes belong to the earth, to the outside world, to the realm of dirt and spirits. Elevating them to where you eat is an insult to the house and an invitation to the grave. The superstition comes from old times when the dead were measured for coffins on tables, their shoes placed beside them. The table remembers this association, and shoes upon it echo the presence of corpses. Keep them on the floor where they belong, or risk eternal rest coming too soon.",
+      "story_full": "Place shoes on a table, and you place death in the home. Shoes belong to earth, to dirt and spirits—elevating them where you eat insults the house and invites the grave. The dead were once measured for coffins on tables, shoes beside them. The table remembers. Shoes upon it echo corpses. Keep them on the floor where they belong, or risk eternal rest coming too soon.",
       "visual_tags": ["shoes table warning", "old boots table top", "death omen household", "footwear misplaced curse", "table shoes superstition", "ominous domestic scene"],
       "voice_tone": "horrified_stern",
       "theme": "dark_mystical"
@@ -406,7 +406,7 @@
       "id": "045",
       "name": "Gift Knives",
       "category": "superstitions",
-      "story_full": "A knife given as a gift cuts the relationship between giver and receiver. The sharp edge slices through friendship, family bonds, and love, leaving only coldness. To break the curse, the receiver must give a coin in return, even a kopek, transforming the gift into a purchase. Without payment, every knife carries the prophecy of its own nature—eventual cutting, eventual pain, eventual separation. The blade is both warning and weapon, reminding us that some gifts carry too many edges.",
+      "story_full": "A knife given as a gift cuts the relationship between giver and receiver. The sharp edge slices through friendship, family bonds, and love, leaving only coldness. To break the curse, give a coin in return—even a kopek—transforming the gift into a purchase. Without payment, every knife carries its prophecy: eventual cutting, eventual pain, eventual separation. Some gifts carry too many edges.",
       "visual_tags": ["knife blade close-up", "gift exchange hands", "silver blade warning", "sharp edge detail", "cutting instrument danger", "knife friendship curse"],
       "voice_tone": "sharp_warning",
       "theme": "dark_mystical"
@@ -415,7 +415,7 @@
       "id": "046",
       "name": "Maslenitsa",
       "category": "rituals_traditions",
-      "story_full": "For seven days before Lent, Russia celebrates Maslenitsa, burning winter away with bonfires and blini. Each pancake represents the sun, golden and round, coaxing spring from the frozen earth. On the final day, a straw effigy of Lady Maslenitsa is paraded through town then burned, taking winter's cold with her. The ashes are scattered over fields to bless the coming crops. It's a time of feasting before fasting, of warmth before spring's uncertainty. Light the fire, stack the pancakes high, and bid winter a proper farewell.",
+      "story_full": "For seven days before Lent, Russia celebrates Maslenitsa, burning winter away with bonfires and blini. Each pancake represents the sun, coaxing spring from frozen earth. On the final day, a straw effigy is paraded then burned, taking winter's cold with her. Ashes scatter over fields to bless coming crops. Feast before fasting. Light the fire, stack pancakes high, and bid winter farewell.",
       "visual_tags": ["traditional russian pancakes", "burning straw effigy", "winter festival bonfire", "festive celebration crowd", "golden blini stack", "spring welcoming ritual"],
       "voice_tone": "festive_joyful",
       "theme": "warm_traditional"
@@ -424,7 +424,7 @@
       "id": "047",
       "name": "Ivan Kupala",
       "category": "rituals_traditions",
-      "story_full": "On the shortest night of the year, anything can happen. Ivan Kupala is a night of fire and water, when young people leap over flames to purify their souls and float flower crowns down rivers to divine their romantic futures. Deep in the forest blooms the fern flower, which opens only once a year at midnight, granting the finder the power to see hidden treasures. But the forest is also full of trickster spirits on this night, leading seekers astray. Most return empty-handed and wet. A few never return at all.",
+      "story_full": "On the shortest night, anything can happen. Ivan Kupala is fire and water—young people leap over flames to purify souls and float flower crowns down rivers. Deep in the forest, the fern flower blooms only at midnight, granting power to see hidden treasures. But trickster spirits lead seekers astray. Most return empty-handed and wet. A few never return at all.",
       "visual_tags": ["midsummer bonfire leap", "flower crown river", "forest night mystical", "fern forest floor", "summer solstice celebration", "magical forest night"],
       "voice_tone": "mystical_excited",
       "theme": "warm_traditional"
@@ -433,7 +433,7 @@
       "id": "048",
       "name": "New Year Tree",
       "category": "rituals_traditions",
-      "story_full": "On New Year's Eve, Father Frost and his granddaughter Snegurochka visit homes, placing gifts beneath the tree for children who recite poems. The tree itself must stay up until Old New Year on January 14th, bridging the gap between calendars. At midnight, make a wish as the clock strikes twelve, write it on paper, burn it, drop the ashes in champagne, and drink it down before the final chime. It's chaos and magic combined, a moment when time stutters and wishes slip through the cracks into reality.",
+      "story_full": "On New Year's Eve, Father Frost and Snegurochka visit homes, placing gifts beneath the tree for children who recite poems. The tree stays up until Old New Year on January 14th, bridging calendars. At midnight, make a wish, write it on paper, burn it, drop the ashes in champagne, and drink before the final chime. Chaos and magic combined—when time stutters and wishes slip into reality.",
       "visual_tags": ["decorated christmas tree", "father frost costume", "midnight celebration champagne", "new year decorations", "festive family gathering", "winter holiday magic"],
       "voice_tone": "magical_celebratory",
       "theme": "cold_winter"
@@ -442,7 +442,7 @@
       "id": "049",
       "name": "Wedding Karavai",
       "category": "rituals_traditions",
-      "story_full": "At every wedding stands the karavai, a towering round loaf decorated with dough birds and wheat. The bride and groom must each take a bite without using their hands—whoever gets the larger piece will rule the household. Then the bread is broken and distributed to all guests, sharing the couple's fortune. Baking it requires seven married women singing traditional songs, their happiness baked into the dough. Drop the karavai before the ceremony, and the marriage is cursed. Handle it with reverence, and sweetness follows.",
+      "story_full": "At every wedding stands the karavai, a towering round loaf decorated with dough birds and wheat. Bride and groom each bite without hands—whoever gets the larger piece rules the household. The bread is broken and distributed, sharing the couple's fortune. Baking requires seven married women singing traditional songs, happiness baked into dough. Drop it before the ceremony, and the marriage is cursed. Handle with reverence, and sweetness follows.",
       "visual_tags": ["traditional wedding bread", "ornate bread decoration", "russian wedding ceremony", "decorated karavai loaf", "festive wedding table", "ceremonial bread ritual"],
       "voice_tone": "warm_ceremonial",
       "theme": "warm_traditional"
@@ -451,7 +451,7 @@
       "id": "050",
       "name": "Epiphany Plunge",
       "category": "rituals_traditions",
-      "story_full": "On Epiphany, January 19th, Russians cut holes in frozen rivers and plunge into water blessed by priests. Three dunks wash away all sins of the past year, emerging reborn and cleansed. The shock of ice water is said to cure illness and strengthen the soul. Old babushkas and young men alike brave the cold, wrapped in nothing but faith and a towel. Drink the blessed water, swim through the cross-shaped hole, and feel winter's grip transform from enemy to purifier.",
+      "story_full": "On Epiphany, January 19th, Russians cut holes in frozen rivers and plunge into water blessed by priests. Three dunks wash away all sins, emerging reborn and cleansed. Ice water cures illness and strengthens the soul. Old babushkas and young men alike brave the cold, wrapped in faith and a towel. Swim through the cross-shaped hole, and feel winter's grip transform from enemy to purifier.",
       "visual_tags": ["ice hole frozen river", "winter baptism plunge", "orthodox cross ice", "frozen lake ceremony", "winter religious ritual", "ice swimming tradition"],
       "voice_tone": "reverent_intense",
       "theme": "cold_winter"

@@ -1,20 +1,12 @@
 name: Daily Folklore Content Generation
 
 on:
-  # Run daily at 9:00 AM UTC
+  # Run daily at 8:00 AM EST (1:00 PM UTC)
   schedule:
-    - cron: '0 9 * * *'
+    - cron: '0 13 * * *'
 
   # Allow manual triggering from GitHub UI
   workflow_dispatch:
-
-  # Trigger on push to main (for testing)
-  push:
-    branches:
-      - main
-    paths:
-      - 'content/**'
-      - 'scripts/**'
 
 jobs:
   generate_content:
@@ -52,7 +44,9 @@ jobs:
       - name: Create .env file
         run: |
           echo "UNSPLASH_ACCESS_KEY=${{ secrets.UNSPLASH_ACCESS_KEY }}" > .env
-          echo "CLAUDE_API_KEY=${{ secrets.CLAUDE_API_KEY }}" >> .env
+          echo "PEXELS_API_KEY=${{ secrets.PEXELS_API_KEY }}" >> .env
+          echo "PIXABAY_API_KEY=${{ secrets.PIXABAY_API_KEY }}" >> .env
+          echo "ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }}" >> .env
           echo "LOG_LEVEL=INFO" >> .env
 
       - name: Generate daily content
