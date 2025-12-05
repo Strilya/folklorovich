@@ -214,7 +214,7 @@ class ContentGenerator:
             success = create_collage(
                 image_paths=image_paths,
                 output_path=collage_path,
-                title=folklore_entry['name_russian'],
+                title=folklore_entry['name'],
                 subtitle=folklore_entry.get('moral', ''),
                 layout_name=None  # Will select random layout
             )
