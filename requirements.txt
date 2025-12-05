@@ -1,0 +1,37 @@
+# Folklorovich Dependencies
+# Install with: pip install -r requirements.txt
+
+# Image Processing
+Pillow>=10.0.0           # Image manipulation and collage creation
+numpy>=1.24.0            # Array operations for image processing
+
+# HTTP Requests
+requests>=2.31.0         # Unsplash API calls
+urllib3>=2.0.0           # HTTP client
+
+# Text-to-Speech
+edge-tts>=6.1.0          # Free Microsoft Edge TTS service
+
+# Video Processing
+opencv-python>=4.8.0     # Video frame manipulation (cv2)
+
+# Environment Variables
+python-dotenv>=1.0.0     # Load .env configuration
+
+# AI/LLM (Optional - for future content expansion)
+anthropic>=0.7.0         # Claude API client
+
+# Date/Time
+python-dateutil>=2.8.2   # Date parsing and manipulation
+
+# JSON Schema Validation
+jsonschema>=4.20.0       # Validate folklore_database.json structure
+
+# Logging
+coloredlogs>=15.0.1      # Colored console logs
+
+# Progress Bars
+tqdm>=4.66.0             # Progress indicators for long operations
+
+# System
+psutil>=5.9.0            # System resource monitoring

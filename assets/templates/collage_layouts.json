@@ -1,0 +1,403 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "canvas_width": 1080,
+    "canvas_height": 1920,
+    "description": "Collage layout templates for Folklorovich Instagram Reels"
+  },
+  "templates": [
+    {
+      "name": "grid_4",
+      "description": "Classic 2x2 grid with equal quadrants",
+      "image_count": 4,
+      "difficulty": "simple",
+      "best_for": ["balanced_content", "multiple_subjects"],
+      "regions": [
+        {
+          "id": 1,
+          "x": 0,
+          "y": 0,
+          "width": 540,
+          "height": 960,
+          "description": "Top-left quadrant"
+        },
+        {
+          "id": 2,
+          "x": 540,
+          "y": 0,
+          "width": 540,
+          "height": 960,
+          "description": "Top-right quadrant"
+        },
+        {
+          "id": 3,
+          "x": 0,
+          "y": 960,
+          "width": 540,
+          "height": 960,
+          "description": "Bottom-left quadrant"
+        },
+        {
+          "id": 4,
+          "x": 540,
+          "y": 960,
+          "width": 540,
+          "height": 960,
+          "description": "Bottom-right quadrant"
+        }
+      ]
+    },
+    {
+      "name": "diagonal_split",
+      "description": "Diagonal division creating dynamic tension",
+      "image_count": 2,
+      "difficulty": "simple",
+      "best_for": ["contrast", "duality", "before_after"],
+      "regions": [
+        {
+          "id": 1,
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 960,
+          "description": "Top half - main image"
+        },
+        {
+          "id": 2,
+          "x": 0,
+          "y": 960,
+          "width": 1080,
+          "height": 960,
+          "description": "Bottom half - supporting image"
+        }
+      ]
+    },
+    {
+      "name": "vintage_frame",
+      "description": "Central hero image with decorative border images",
+      "image_count": 5,
+      "difficulty": "medium",
+      "best_for": ["focus_on_main_subject", "traditional_aesthetic"],
+      "regions": [
+        {
+          "id": 1,
+          "x": 120,
+          "y": 360,
+          "width": 840,
+          "height": 1200,
+          "description": "Central hero image",
+          "z_index": 2
+        },
+        {
+          "id": 2,
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 300,
+          "description": "Top border",
+          "z_index": 1,
+          "overlay": true
+        },
+        {
+          "id": 3,
+          "x": 0,
+          "y": 1620,
+          "width": 1080,
+          "height": 300,
+          "description": "Bottom border",
+          "z_index": 1,
+          "overlay": true
+        },
+        {
+          "id": 4,
+          "x": 0,
+          "y": 300,
+          "width": 100,
+          "height": 1320,
+          "description": "Left border",
+          "z_index": 1,
+          "overlay": true
+        },
+        {
+          "id": 5,
+          "x": 980,
+          "y": 300,
+          "width": 100,
+          "height": 1320,
+          "description": "Right border",
+          "z_index": 1,
+          "overlay": true
+        }
+      ]
+    },
+    {
+      "name": "minimalist_3",
+      "description": "Large hero image with two accent images",
+      "image_count": 3,
+      "difficulty": "simple",
+      "best_for": ["storytelling", "hierarchy", "focus"],
+      "regions": [
+        {
+          "id": 1,
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1280,
+          "description": "Large hero image (top 2/3)"
+        },
+        {
+          "id": 2,
+          "x": 0,
+          "y": 1280,
+          "width": 540,
+          "height": 640,
+          "description": "Bottom-left accent"
+        },
+        {
+          "id": 3,
+          "x": 540,
+          "y": 1280,
+          "width": 540,
+          "height": 640,
+          "description": "Bottom-right accent"
+        }
+      ]
+    },
+    {
+      "name": "ornate_border",
+      "description": "Traditional Russian ornamental frame style",
+      "image_count": 6,
+      "difficulty": "complex",
+      "best_for": ["folklore", "traditional", "decorative"],
+      "regions": [
+        {
+          "id": 1,
+          "x": 90,
+          "y": 480,
+          "width": 900,
+          "height": 960,
+          "description": "Central image with ornate frame",
+          "border": {
+            "width": 10,
+            "color": "#8B4513",
+            "style": "ornate"
+          }
+        },
+        {
+          "id": 2,
+          "x": 180,
+          "y": 60,
+          "width": 720,
+          "height": 360,
+          "description": "Top decorative panel"
+        },
+        {
+          "id": 3,
+          "x": 180,
+          "y": 1500,
+          "width": 720,
+          "height": 360,
+          "description": "Bottom decorative panel"
+        },
+        {
+          "id": 4,
+          "x": 0,
+          "y": 0,
+          "width": 150,
+          "height": 150,
+          "description": "Top-left corner ornament"
+        },
+        {
+          "id": 5,
+          "x": 930,
+          "y": 0,
+          "width": 150,
+          "height": 150,
+          "description": "Top-right corner ornament"
+        },
+        {
+          "id": 6,
+          "x": 0,
+          "y": 1770,
+          "width": 150,
+          "height": 150,
+          "description": "Bottom-left corner ornament"
+        }
+      ]
+    },
+    {
+      "name": "vertical_story",
+      "description": "Three vertically stacked images for narrative flow",
+      "image_count": 3,
+      "difficulty": "simple",
+      "best_for": ["narrative", "timeline", "progression"],
+      "regions": [
+        {
+          "id": 1,
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 640,
+          "description": "Top - beginning"
+        },
+        {
+          "id": 2,
+          "x": 0,
+          "y": 640,
+          "width": 1080,
+          "height": 640,
+          "description": "Middle - development"
+        },
+        {
+          "id": 3,
+          "x": 0,
+          "y": 1280,
+          "width": 1080,
+          "height": 640,
+          "description": "Bottom - conclusion"
+        }
+      ]
+    },
+    {
+      "name": "horizontal_panorama",
+      "description": "Wide landscape composition split into panels",
+      "image_count": 6,
+      "difficulty": "medium",
+      "best_for": ["landscapes", "atmospheric", "scene_setting"],
+      "regions": [
+        {
+          "id": 1,
+          "x": 0,
+          "y": 0,
+          "width": 540,
+          "height": 640,
+          "description": "Top-left"
+        },
+        {
+          "id": 2,
+          "x": 540,
+          "y": 0,
+          "width": 540,
+          "height": 640,
+          "description": "Top-right"
+        },
+        {
+          "id": 3,
+          "x": 0,
+          "y": 640,
+          "width": 540,
+          "height": 640,
+          "description": "Middle-left"
+        },
+        {
+          "id": 4,
+          "x": 540,
+          "y": 640,
+          "width": 540,
+          "height": 640,
+          "description": "Middle-right"
+        },
+        {
+          "id": 5,
+          "x": 0,
+          "y": 1280,
+          "width": 540,
+          "height": 640,
+          "description": "Bottom-left"
+        },
+        {
+          "id": 6,
+          "x": 540,
+          "y": 1280,
+          "width": 540,
+          "height": 640,
+          "description": "Bottom-right"
+        }
+      ]
+    },
+    {
+      "name": "mystical_overlay",
+      "description": "Layered semi-transparent images for ethereal effect",
+      "image_count": 4,
+      "difficulty": "complex",
+      "best_for": ["mysterious", "spiritual", "dreamlike"],
+      "regions": [
+        {
+          "id": 1,
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 1920,
+          "description": "Base layer - full canvas",
+          "opacity": 1.0
+        },
+        {
+          "id": 2,
+          "x": 120,
+          "y": 240,
+          "width": 840,
+          "height": 1440,
+          "description": "Middle layer - slightly inset",
+          "opacity": 0.7,
+          "blend_mode": "overlay"
+        },
+        {
+          "id": 3,
+          "x": 240,
+          "y": 480,
+          "width": 600,
+          "height": 960,
+          "description": "Accent layer - centered",
+          "opacity": 0.5,
+          "blend_mode": "soft_light"
+        },
+        {
+          "id": 4,
+          "x": 0,
+          "y": 0,
+          "width": 1080,
+          "height": 300,
+          "description": "Top vignette",
+          "opacity": 0.3,
+          "overlay": true
+        }
+      ]
+    }
+  ],
+  "text_overlay_zones": {
+    "title_zone": {
+      "x": 0,
+      "y": 60,
+      "width": 1080,
+      "height": 200,
+      "alignment": "center",
+      "font_size_range": [60, 80],
+      "recommended_font": "Philosopher-Regular.ttf"
+    },
+    "subtitle_zone": {
+      "x": 100,
+      "y": 1720,
+      "width": 880,
+      "height": 140,
+      "alignment": "center",
+      "font_size_range": [32, 44],
+      "recommended_font": "Roboto-Regular.ttf"
+    },
+    "watermark_zone": {
+      "x": 860,
+      "y": 1840,
+      "width": 200,
+      "height": 60,
+      "alignment": "right",
+      "font_size_range": [20, 24],
+      "recommended_font": "Roboto-Regular.ttf"
+    }
+  },
+  "usage_guidelines": {
+    "selection_strategy": "Random selection ensures variety. Can weight by category if needed.",
+    "image_requirements": "All source images should be high resolution (min 1920px on longest side).",
+    "text_contrast": "Always add semi-transparent overlays behind text for readability.",
+    "performance": "Templates with fewer regions render faster. Complex templates may take 5-10s longer.",
+    "customization": "Feel free to add more templates or modify existing ones."
+  }
+}
