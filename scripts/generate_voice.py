@@ -54,6 +54,43 @@ VOICE_PROFILES = {
         'rate': '-5%',
         'pitch': '-15Hz',
         'description': 'Formal, serious male voice'
+    },
+    # New voice tones for superstitions
+    'ominous': {
+        'voice': 'ru-RU-DmitryNeural',
+        'rate': '-5%',
+        'pitch': '-15Hz',
+        'description': 'Dark, foreboding male voice'
+    },
+    'cautionary': {
+        'voice': 'ru-RU-SvetlanaNeural',
+        'rate': '-5%',
+        'pitch': '-5Hz',
+        'description': 'Warning, careful female voice'
+    },
+    'stern': {
+        'voice': 'ru-RU-DmitryNeural',
+        'rate': '+0%',
+        'pitch': '-10Hz',
+        'description': 'Strict, firm male voice'
+    },
+    'warm_storyteller': {
+        'voice': 'ru-RU-SvetlanaNeural',
+        'rate': '+0%',
+        'pitch': '+0Hz',
+        'description': 'Warm, engaging female storyteller'
+    },
+    'wise_elder': {
+        'voice': 'ru-RU-DmitryNeural',
+        'rate': '-10%',
+        'pitch': '-10Hz',
+        'description': 'Slow, wise elder male voice'
+    },
+    'protective': {
+        'voice': 'ru-RU-SvetlanaNeural',
+        'rate': '-5%',
+        'pitch': '+0Hz',
+        'description': 'Caring, protective female voice'
     }
 }
 

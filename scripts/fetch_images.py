@@ -146,15 +146,16 @@ class UnsplashImageFetcher:
         """
         Fetch multiple images based on a list of visual tags.
 
-        Strategy:
-        - Combine tags into search queries
-        - Download diverse images
-        - Cache in output directory
+        IMPROVED STRATEGY for folklore concepts:
+        - Use conceptual keywords, not literal translations
+        - Try multiple search strategies for variety
+        - Expand tags with related atmospheric terms
+        - Cache downloaded images
 
         Args:
             tags: List of visual search tags
             output_dir: Directory to save images
-            count: Number of images to fetch
+            count: Number of images to fetch (dynamic based on audio duration)
 
         Returns:
             List of paths to downloaded images
@@ -162,27 +163,49 @@ class UnsplashImageFetcher:
         output_dir.mkdir(parents=True, exist_ok=True)
         downloaded_paths = []
 
-        # Create search query by combining tags
-        # Try different combinations for variety
-        queries = [
-            ' '.join(tags[:3]),  # First 3 tags
-            ' '.join(tags[2:5]) if len(tags) >= 5 else ' '.join(tags),  # Middle tags
-            tags[0] if tags else 'mystical',  # Fallback to first tag
-        ]
+        # Create diverse search queries for better variety
+        # Strategy: Use individual tags + combinations + atmospheric modifiers
+        queries = []
 
-        images_needed = count
-        images_per_query = (images_needed // len(queries)) + 1
+        # Individual high-value tags (most specific)
+        for tag in tags[:3]:  # Use first 3 tags individually
+            if tag:
+                queries.append(tag)
 
-        for query in queries:
+        # Combinations for context
+        if len(tags) >= 3:
+            queries.append(' '.join(tags[:2]))  # First 2 combined
+
+        if len(tags) >= 4:
+            queries.append(' '.join(tags[2:4]))  # Next 2 combined
+
+        # Add atmospheric/mood tags for folklore aesthetic
+        if tags:
+            atmospheric_modifiers = ['mystical', 'ancient', 'traditional', 'folklore', 'atmospheric']
+            # Combine first tag with atmospheric modifier
+            queries.append(f"{tags[0]} {atmospheric_modifiers[0]}")
+
+        # Fallback generic query
+        if not queries:
+            queries = ['mystical folklore', 'traditional culture', 'ancient']
+
+        logger.info(f"Using {len(queries)} search queries for {count} images")
+
+        # Calculate images per query (distribute evenly)
+        images_per_query = max(1, (count // len(queries)) + 1)
+
+        for query_idx, query in enumerate(queries):
             if len(downloaded_paths) >= count:
                 break
 
             # Search for photos
-            photos = self.search_photos(query, per_page=images_per_query)
+            photos = self.search_photos(query, per_page=min(images_per_query + 2, 10))
 
             if not photos:
                 logger.warning(f"No photos found for query '{query}'")
                 continue
+
+            logger.info(f"Query {query_idx + 1}/{len(queries)}: '{query}' - {len(photos)} results")
 
             # Download photos
             for idx, photo in enumerate(photos):
@@ -209,14 +232,19 @@ class UnsplashImageFetcher:
                 if self.download_image(image_url, output_path):
                     downloaded_paths.append(output_path)
 
-                    # Respect rate limits: wait between downloads
-                    time.sleep(2)  # 2 seconds between downloads
+                    # Respect rate limits: brief wait between downloads
+                    time.sleep(1.5)  # 1.5 seconds between downloads
 
-            # Wait between different queries
-            if len(downloaded_paths) < count:
-                time.sleep(5)
+            # Brief wait between different queries to respect rate limits
+            if len(downloaded_paths) < count and query_idx < len(queries) - 1:
+                time.sleep(3)
 
-        logger.info(f"Downloaded {len(downloaded_paths)}/{count} images")
+        logger.info(f"Successfully fetched {len(downloaded_paths)}/{count} images")
+
+        # If we didn't get enough images, log warning
+        if len(downloaded_paths) < count:
+            logger.warning(f"Could only fetch {len(downloaded_paths)} out of {count} requested images")
+
         return downloaded_paths
 
 

@@ -4,7 +4,15 @@
       "Bash(curl:*)",
       "Bash(tree:*)",
       "Bash(chmod:*)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Bash([ -f .env ])",
+      "Bash(tee:*)",
+      "Bash(brew install:*)",
+      "Bash(export PATH=\"/opt/homebrew/bin:$PATH\")",
+      "Bash(export PATH=\"/opt/homebrew/bin:/usr/bin:$PATH\")",
+      "Bash(/opt/homebrew/bin/ffprobe:*)",
+      "Bash(/bin/ls:*)",
+      "Bash(/usr/bin/wc:*)"
     ],
     "deny": [],
     "ask": []

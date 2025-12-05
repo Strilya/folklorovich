@@ -1,56 +1,62 @@
 # Folklorovich 🪆
 
-An automated Russian folklore content system that generates daily 30-second Instagram reels using 100% free-tier services.
+An automated Russian folklore content system that generates daily 25-30 second Instagram reels using 100% free-tier services.
 
 ## 📖 Project Overview
 
-Folklorovich creates engaging short-form video content about Russian folklore, spirits, creatures, superstitions, rituals, and heroes. Inspired by the successful "The17Project" (angel numbers content), this system automates the entire content creation pipeline from script generation to final video rendering.
+Folklorovich creates engaging short-form video content about authentic Russian superstitions with culturally appropriate visuals. This system automates the entire content creation pipeline from script generation to final video rendering.
 
-**Key Features:**
-- 75 unique Russian folklore pieces (75-day rotation cycle)
-- 4K image collages from Unsplash API
+**Version 2.0 - Quality Over Quantity:**
+- **20 elite Russian superstitions** (carefully curated, high-quality content)
+- Each story: **80-100 words** (reads naturally in 25-30 seconds)
+- **Russian cultural authenticity**: Visual keywords focus on wooden houses, Orthodox churches, birch forests, folk art
+- **Dynamic slideshow videos** with 2-second image changes
+- Smooth crossfade transitions (0.5s)
+- Images fetched from Unsplash API (dynamic count based on audio duration)
 - Natural Russian voice narration via Edge TTS
-- 8 distinct visual templates
+- Text overlays with superstition titles
 - Fully automated daily content generation
 - **$0/month operating cost** (all free-tier services)
 
 ## 🎯 Goals
 
-1. **Educational**: Preserve and share Russian folklore with modern audiences
+1. **Educational**: Preserve and share authentic Russian superstitions with modern audiences
 2. **Automated**: Generate daily content without manual intervention
 3. **Free**: Use only free-tier services (no budget required)
-4. **Quality**: Produce Instagram-ready 1080x1920 vertical videos
-5. **Scalable**: Easy to expand with more folklore entries
+4. **Quality**: Produce Instagram-ready 1080x1920 vertical videos with culturally authentic imagery
+5. **Authentic**: Focus on Russian cultural visuals (not generic stock photos)
 
 ## 🏗️ Architecture
+
+**NEW SLIDESHOW WORKFLOW:**
 
 ```mermaid
 graph TD
     A[Daily Trigger: GitHub Actions] --> B[Select Next Folklore Entry]
-    B --> C[Fetch Images from Unsplash]
-    C --> D[Create 4K Image Collage]
-    D --> E[Generate TTS Audio]
-    E --> F[Render Final Video]
-    F --> G[Save to output/videos/]
-    G --> H[Manual Instagram Upload]
+    B --> C[Generate TTS Audio FIRST]
+    C --> D[Get Audio Duration]
+    D --> E[Calculate Image Count: ceil duration / 2]
+    E --> F[Fetch N Images from Unsplash]
+    F --> G[Render Slideshow Video]
+    G --> H[Save to output/videos/]
+    H --> I[Manual Instagram Upload]
 
-    I[folklore_database.json] --> B
-    J[metadata.json] --> B
-    B --> J
-
-    K[collage_layouts.json] --> D
-    L[Cyrillic Fonts] --> D
+    J[folklore_database.json] --> B
+    K[metadata.json] --> B
+    B --> K
 
     style A fill:#e1f5ff
-    style H fill:#ffe1e1
-    style F fill:#e1ffe1
+    style C fill:#ffe1e1
+    style G fill:#e1ffe1
 ```
+
+**Key Change:** Audio is generated FIRST to determine how many images are needed (1 image per 2 seconds).
 
 ### Content Rotation Algorithm
 
 ```mermaid
 graph LR
-    A[Check metadata.json] --> B{All 75 used?}
+    A[Check metadata.json] --> B{All 20 used?}
     B -->|Yes| C[Reset cycle, shuffle order]
     B -->|No| D[Get next unused entry]
     C --> D
@@ -58,25 +64,28 @@ graph LR
     E --> F[Generate content]
 ```
 
-### Error Handling Flow
+**20-Day Cycle**: After all 20 superstitions are used, the cycle resets with a shuffled order for variety.
 
-```mermaid
-graph TD
-    A[Start Generation] --> B{Unsplash API Success?}
-    B -->|No| C[Retry 3x with backoff]
-    C -->|Fail| D[Use cached images]
-    B -->|Yes| E{Collage Created?}
-    E -->|No| F[Log error, skip day]
-    E -->|Yes| G{TTS Generated?}
-    G -->|No| H[Retry with fallback voice]
-    G -->|Yes| I{Video Rendered?}
-    I -->|No| J[Log error, save artifacts]
-    I -->|Yes| K[Success!]
+### Slideshow Video Pipeline
 
-    style K fill:#90EE90
-    style F fill:#FFB6C1
-    style J fill:#FFB6C1
-```
+**Step 1: Generate Audio**
+- TTS narration created with Russian voice
+- Duration measured (e.g., 26.4 seconds)
+
+**Step 2: Calculate Image Count**
+- Formula: `num_images = ceil(audio_duration / 2.0)`
+- Example: 26.4s audio → 14 images needed
+
+**Step 3: Fetch Images**
+- Dynamically fetch exact number needed
+- Multiple search strategies for variety
+- Atmospheric keywords for folklore aesthetic
+
+**Step 4: Render Slideshow**
+- Each image displays for 2 seconds
+- 0.5s crossfade between transitions
+- Text overlay with folklore title
+- Output matches audio duration exactly
 
 ## 💰 Free-Tier Cost Breakdown
 
@@ -155,9 +164,9 @@ CLAUDE_API_KEY=your_claude_api_key_here  # Optional, for future use
 3. Create a new application
 4. Copy the "Access Key"
 
-### 6. Populate Folklore Database
+### 6. Verify Folklore Database
 
-Edit `content/folklore_database.json` and add your 75 folklore entries following the schema (see below).
+The database is pre-populated with 20 elite Russian superstitions. Review `content/folklore_database.json` to see the entries.
 
 ### 7. Test Local Generation
 
@@ -215,46 +224,64 @@ folklorovich/
         └── daily_generation.yml  # GitHub Actions automation
 ```
 
-## 📋 Folklore Database Schema
+## 📋 Superstition Database Schema
 
-Each entry in `content/folklore_database.json`:
+Each entry in `content/folklore_database.json` (20 superstitions total):
 
 ```json
 {
   "folklore": [
     {
       "id": "001",
-      "name": "Domovoi",
-      "type": "house_spirit",
+      "name": "Black Cat Crossing Path",
+      "type": "superstition",
       "region": "All Russia",
-      "story_short": "The house spirit who lives behind the stove and protects families who respect him.",
-      "story_full": "В каждом русском доме живёт домовой — хранитель очага и семейного благополучия. Он живёт за печкой, следит за порядком и помогает хозяевам. Но если его разозлить, может напустить беды. Чтобы задобрить домового, оставляйте ему молоко и хлеб на ночь.",
-      "story_full_en": "In every Russian home lives a domovoi - guardian of the hearth and family wellbeing. He lives behind the stove, watches over order, and helps the household. But if angered, he can bring troubles. To appease the domovoi, leave him milk and bread at night.",
-      "moral": "Respect your home and it will protect you",
-      "keywords": ["spirit", "house", "fireplace", "guardian", "protection"],
-      "visual_tags": ["cozy_interior", "fireplace", "old_wooden_house", "mystical", "warm_light"],
-      "voice_tone": "warm_grandfather",
+      "story_short": "A black cat's path brings misfortune unless countered with ritual.",
+      "story_full": "When a black cat crosses your path from left to right, it pulls misfortune behind it like an invisible shadow. The cat sees spirits humans cannot, and its crossing marks your way with bad luck. Stop immediately. Turn around three times. Spit over your left shoulder to blind the devil watching there. Sailors would cancel voyages if a black cat boarded their ship. Better to wait than tempt fate. The ritual seems simple, but those who ignore it remember their mistake when the day turns dark.",
+      "moral": "Respect old warnings and perform protective rituals to ward off bad luck.",
+      "keywords": [
+        "black cat", "Russian village", "wooden house", "birch forest",
+        "folk art illustration", "traditional Russian painting", "fairy tale style", "Bilibin art"
+      ],
+      "visual_tags": [
+        "black cat Russian folk art birch forest",
+        "traditional wooden Russian house cat",
+        "folklore illustration black cat village",
+        "Russian fairy tale art style cat",
+        "Palekh painting black cat nature",
+        "Orthodox church village wooden cat",
+        "traditional Russian interior cat samovar",
+        "Bilibin style illustration mysterious cat"
+      ],
+      "voice_tone": "ominous",
       "duration_target": 28,
-      "category": "household_spirit"
+      "category": "superstition"
     }
   ]
 }
 ```
 
 **Field Descriptions:**
-- `id`: Unique 3-digit identifier (001-075)
-- `name`: Folklore entity name (transliterated)
-- `type`: Classification (spirit/creature/hero/ritual/superstition)
-- `region`: Geographic origin
-- `story_short`: 2-3 sentence hook for English audiences
-- `story_full`: Complete 30-second narration script in Russian
-- `story_full_en`: English translation for reference
-- `moral`: Key takeaway/lesson
-- `keywords`: SEO/hashtag keywords
-- `visual_tags`: Unsplash search terms for image fetching
-- `voice_tone`: TTS voice profile to use
-- `duration_target`: Target duration in seconds (±2s tolerance)
-- `category`: Grouping for analytics
+- `id`: Unique 3-digit identifier (001-020)
+- `name`: Superstition name in English
+- `type`: Always "superstition"
+- `region`: Geographic origin (All Russia)
+- `story_short`: 1-2 sentence summary
+- `story_full`: **80-100 word narration** (reads naturally in 25-30 seconds)
+- `moral`: Key lesson or takeaway
+- `keywords`: **Russian cultural keywords** for authentic imagery
+- `visual_tags`: **8-12 search phrases** combining Russian cultural elements (wooden houses, Orthodox churches, folk art, birch forests, traditional crafts)
+- `voice_tone`: TTS voice profile (ominous, cautionary, stern, warm_storyteller, wise_elder, protective)
+- `duration_target`: Target duration in seconds (25-30s range)
+- `category`: Always "superstition"
+
+**Visual Keyword Strategy:**
+- ✅ GOOD: "Russian Orthodox church wooden interior traditional"
+- ✅ GOOD: "birch forest folk art Bilibin style illustration"
+- ✅ GOOD: "traditional Russian izba samovar embroidered textile"
+- ❌ BAD: "construction worker" (too literal, not cultural)
+- ❌ BAD: "modern office table" (not Russian authentic)
+- ❌ BAD: "generic landscape" (no cultural context)
 
 ## 🎨 Visual Templates
 
@@ -277,8 +304,17 @@ Each template includes:
 
 ## 🎙️ Voice Profiles
 
-Edge TTS voice options for different folklore types:
+Edge TTS voice options for different superstition tones:
 
+**Primary Voices:**
+- `ominous`: `ru-RU-DmitryNeural` (dark, foreboding male voice)
+- `cautionary`: `ru-RU-SvetlanaNeural` (warning, careful female voice)
+- `stern`: `ru-RU-DmitryNeural` (strict, firm male voice)
+- `warm_storyteller`: `ru-RU-SvetlanaNeural` (warm, engaging female storyteller)
+- `wise_elder`: `ru-RU-DmitryNeural` (slow, wise elder male voice)
+- `protective`: `ru-RU-SvetlanaNeural` (caring, protective female voice)
+
+**Legacy Voices (for future expansion):**
 - `warm_grandfather`: `ru-RU-DmitryNeural` (friendly, storytelling)
 - `mysterious_elder`: `ru-RU-SvetlanaNeural` (slow, enigmatic)
 - `energetic_youth`: `ru-RU-DariyaNeural` (upbeat, modern)
@@ -289,7 +325,7 @@ Edge TTS voice options for different folklore types:
 1. **9:00 AM UTC**: GitHub Actions triggers
 2. **Content Selection**:
    - Check `metadata.json` for next unused entry
-   - If all 75 used, reset cycle with shuffled order
+   - If all 20 used, reset cycle with shuffled order
 3. **Image Fetching**:
    - Query Unsplash API with `visual_tags`
    - Download 4-8 images per template requirements

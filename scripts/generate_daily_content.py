@@ -9,14 +9,15 @@ Usage:
 This script:
 1. Loads environment variables and configuration
 2. Selects the next folklore entry from the database
-3. Fetches images from Unsplash
-4. Creates a 4K image collage
-5. Generates Russian TTS narration
-6. Renders final video with FFmpeg
+3. Generates Russian TTS narration (FIRST)
+4. Calculates required image count based on audio duration (2s per image)
+5. Fetches images from Unsplash dynamically
+6. Renders slideshow video with crossfade transitions
 7. Updates metadata tracking
 
 Author: Folklorovich Project
 Date: 2025-12-05
+Updated: Slideshow rendering with dynamic image count
 """
 
 import os
@@ -38,9 +39,9 @@ load_dotenv(PROJECT_ROOT / '.env')
 
 # Import other pipeline scripts
 from scripts.fetch_images import fetch_images_for_folklore
-from scripts.create_collage import create_collage
-from scripts.generate_voice import generate_tts_audio
-from scripts.render_video import render_video
+from scripts.generate_voice import generate_tts_audio, TTSGenerator
+from scripts.render_video import render_slideshow_video
+import math
 
 # Configure logging
 logging.basicConfig(
@@ -169,11 +170,12 @@ class ContentGenerator:
         """
         Generate complete video content for a folklore entry.
 
-        Pipeline:
-        1. Fetch images from Unsplash
-        2. Create collage
-        3. Generate TTS audio
-        4. Render video with FFmpeg
+        NEW PIPELINE (Slideshow):
+        1. Generate TTS audio FIRST
+        2. Get audio duration
+        3. Calculate image count: ceil(audio_duration / 2) - one image per 2 seconds
+        4. Fetch images from Unsplash (dynamic count)
+        5. Render slideshow video with crossfade transitions
 
         Args:
             folklore_entry: Folklore database entry
@@ -193,40 +195,8 @@ class ContentGenerator:
 
             logger.info(f"Starting generation for {folklore_name} (ID: {folklore_id})")
 
-            # Step 1: Fetch images
-            logger.info("Step 1/4: Fetching images from Unsplash...")
-            image_paths = fetch_images_for_folklore(
-                visual_tags=folklore_entry['visual_tags'],
-                output_dir=output_subdir,
-                count=6  # Fetch 6 images for variety
-            )
-
-            if not image_paths:
-                logger.error("Failed to fetch images")
-                return None
-
-            logger.info(f"Fetched {len(image_paths)} images")
-
-            # Step 2: Create collage
-            logger.info("Step 2/4: Creating image collage...")
-            collage_path = self.output_dir / 'images' / f"{date_str}_{folklore_id}_collage.png"
-
-            success = create_collage(
-                image_paths=image_paths,
-                output_path=collage_path,
-                title=folklore_entry['name'],
-                subtitle=folklore_entry.get('moral', ''),
-                layout_name=None  # Will select random layout
-            )
-
-            if not success:
-                logger.error("Failed to create collage")
-                return None
-
-            logger.info(f"Created collage: {collage_path}")
-
-            # Step 3: Generate TTS audio
-            logger.info("Step 3/4: Generating TTS audio...")
+            # Step 1: Generate TTS audio FIRST
+            logger.info("Step 1/3: Generating TTS audio...")
             audio_path = self.output_dir / 'audio' / f"{date_str}_{folklore_id}.mp3"
 
             audio_success = generate_tts_audio(
@@ -242,19 +212,53 @@ class ContentGenerator:
 
             logger.info(f"Generated audio: {audio_path}")
 
-            # Step 4: Render video
-            logger.info("Step 4/4: Rendering final video...")
+            # Get actual audio duration
+            tts_gen = TTSGenerator()
+            audio_duration = tts_gen.get_audio_duration(audio_path)
+
+            if not audio_duration:
+                logger.error("Could not determine audio duration")
+                return None
+
+            logger.info(f"Audio duration: {audio_duration:.2f} seconds")
+
+            # Step 2: Calculate required image count (one image per 2 seconds)
+            # Use ceiling to ensure we have enough images for the full duration
+            num_images = math.ceil(audio_duration / 2.0)
+            logger.info(f"Calculated image count: {num_images} images (for {audio_duration:.2f}s audio)")
+
+            # Step 3: Fetch images dynamically based on calculated count
+            logger.info(f"Step 2/3: Fetching {num_images} images from Unsplash...")
+            image_paths = fetch_images_for_folklore(
+                visual_tags=folklore_entry['visual_tags'],
+                output_dir=output_subdir,
+                count=num_images
+            )
+
+            if not image_paths or len(image_paths) < num_images:
+                logger.warning(f"Only fetched {len(image_paths)}/{num_images} images")
+                if len(image_paths) == 0:
+                    logger.error("Failed to fetch any images")
+                    return None
+                # Continue with whatever images we got
+
+            logger.info(f"Fetched {len(image_paths)} images")
+
+            # Step 4: Render slideshow video
+            logger.info("Step 3/3: Rendering slideshow video...")
             video_filename = f"{date_str}_{folklore_name.replace(' ', '_')}.mp4"
             video_path = self.output_dir / 'videos' / video_filename
 
-            render_success = render_video(
-                image_path=collage_path,
+            render_success = render_slideshow_video(
+                image_paths=image_paths,
                 audio_path=audio_path,
-                output_path=video_path
+                output_path=video_path,
+                title_text=folklore_entry['name'],
+                audio_duration=audio_duration
             )
 
             if not render_success:
-                logger.error("Failed to render video")
+                logger.error("Failed to render slideshow video")
                 return None
 
             # Success! Update statistics
