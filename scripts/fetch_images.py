@@ -25,6 +25,40 @@ from datetime import datetime
 logger = logging.getLogger('ImageFetcher')
 
 
+def enhance_keywords_with_russian_culture(base_keywords: List[str]) -> str:
+    """
+    Add Russian cultural context to search keywords.
+
+    This ensures images reflect authentic Russian cultural atmosphere
+    (Orthodox churches, wooden houses, birch forests, traditional villages).
+
+    Args:
+        base_keywords: List of base search keywords
+
+    Returns:
+        Enhanced search query with Russian cultural markers
+    """
+    import random
+
+    russian_markers = [
+        "Russia Russian",
+        "Orthodox church wooden house",
+        "birch forest traditional",
+        "folk art village",
+        "izba samovar icon"
+    ]
+
+    # Pick 2-3 random markers for variety
+    selected_markers = random.sample(russian_markers, k=min(2, len(russian_markers)))
+
+    # Combine base keywords with Russian cultural markers
+    query = " ".join(base_keywords) + " " + " ".join(selected_markers)
+
+    logger.info(f"Enhanced query with Russian cultural markers: '{query}'")
+
+    return query
+
+
 class UnsplashImageFetcher:
     """Fetches images from Unsplash API."""
 
@@ -162,13 +196,16 @@ class UnsplashImageFetcher:
         output_dir.mkdir(parents=True, exist_ok=True)
         downloaded_paths = []
 
-        # Create search query by combining tags
+        # Create search query by combining tags with Russian cultural markers
         # Try different combinations for variety
-        queries = [
-            ' '.join(tags[:3]),  # First 3 tags
-            ' '.join(tags[2:5]) if len(tags) >= 5 else ' '.join(tags),  # Middle tags
-            tags[0] if tags else 'mystical',  # Fallback to first tag
+        base_queries = [
+            tags[:3],  # First 3 tags
+            tags[2:5] if len(tags) >= 5 else tags,  # Middle tags
+            [tags[0]] if tags else ['mystical'],  # Fallback to first tag
         ]
+
+        # Enhance all queries with Russian cultural context
+        queries = [enhance_keywords_with_russian_culture(q) for q in base_queries]
 
         images_needed = count
         images_per_query = (images_needed // len(queries)) + 1

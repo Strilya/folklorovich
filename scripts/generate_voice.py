@@ -176,49 +176,23 @@ class TTSGenerator:
     def adjust_speed_for_duration(self, text: str, target_duration: float,
                                   voice_config: dict, tolerance: float = 2.0) -> dict:
         """
-        Adjust voice speed to match target duration.
-
-        This is a simplified approach - for production, you'd generate
-        test audio and iteratively adjust.
+        DISABLED: Previously adjusted voice speed to match target duration.
+        Now returns natural speech rate to avoid chipmunk voice.
 
         Args:
             text: Text to synthesize
-            target_duration: Target duration in seconds
+            target_duration: Target duration in seconds (IGNORED)
             voice_config: Base voice configuration
-            tolerance: Acceptable duration difference in seconds
+            tolerance: Acceptable duration difference in seconds (IGNORED)
 
         Returns:
-            Adjusted voice configuration
+            Voice configuration with natural (+0%) speech rate
         """
-        # Estimate speech rate (rough approximation)
-        # Average Russian speech: ~4-5 characters per second
-        estimated_duration = len(text) / 4.5
-
-        if abs(estimated_duration - target_duration) <= tolerance:
-            # Already close enough
-            return voice_config
-
-        # Calculate speed adjustment
-        speed_multiplier = estimated_duration / target_duration
-
-        # Convert to percentage (Edge TTS format)
-        # +50% means 1.5x speed, -50% means 0.5x speed
-        if speed_multiplier > 1:
-            # Need to speed up
-            rate_adjustment = int((speed_multiplier - 1) * 100)
-            rate_adjustment = min(rate_adjustment, 100)  # Max +100%
-            new_rate = f"+{rate_adjustment}%"
-        else:
-            # Need to slow down
-            rate_adjustment = int((1 - speed_multiplier) * 100)
-            rate_adjustment = min(rate_adjustment, 50)  # Max -50%
-            new_rate = f"-{rate_adjustment}%"
-
+        # Use natural speech rate - no manipulation
         adjusted_config = voice_config.copy()
-        adjusted_config['rate'] = new_rate
+        adjusted_config['rate'] = '+0%'
 
-        logger.info(f"Adjusted speech rate to {new_rate} "
-                   f"(estimated: {estimated_duration:.1f}s, target: {target_duration}s)")
+        logger.info(f"Using natural speech rate (+0%) - no speed manipulation")
 
         return adjusted_config
 

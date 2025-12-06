@@ -1,685 +1,145 @@
 {
   "metadata": {
-    "total_entries": 75,
-    "target_entries": 75,
+    "total_entries": 15,
+    "target_entries": 15,
     "last_updated": "2025-12-05",
     "schema_version": "1.0"
   },
   "folklore": [
     {
       "id": "001",
-      "name": "Domovoi",
-      "category": "household_spirits",
-      "story_full": "In every Russian home, there lives an unseen guardian. The Domovoi, a bearded old man no taller than a cat, watches over the household from the shadows. He protects those who keep their homes clean and punishes the lazy with mysterious noises at night. Leave him a bowl of milk by the stove, and he'll ensure your family prospers. But anger him, and dishes will shatter in the dark.",
-      "visual_tags": ["old wooden house interior", "russian izba cottage", "mystical shadows candlelight", "ancient bearded spirit", "traditional russian stove", "rustic kitchen darkness"],
-      "voice_tone": "warm_mysterious",
-      "theme": "warm_traditional"
-    },
-    {
-      "id": "002",
-      "name": "Kikimora",
-      "category": "household_spirits",
-      "story_full": "From the marshlands comes the Kikimora, a twisted crone who sneaks into unkempt homes. She appears as a small hunched woman with chicken legs, tangling your hair as you sleep and souring your milk. You'll know she's near when spinning wheels turn on their own and wet footprints trail across your floor. Keep your house tidy, or wake to find her yellow eyes watching from the corner at midnight.",
-      "visual_tags": ["dark swamp mist", "abandoned russian house", "eerie moonlight window", "twisted roots shadows", "haunted interior cobwebs", "mysterious figure darkness"],
-      "voice_tone": "eerie_whisper",
-      "theme": "dark_mystical"
-    },
-    {
-      "id": "003",
-      "name": "Bannik",
-      "category": "household_spirits",
-      "story_full": "Never enter a Russian bathhouse after midnight, for that is when the Bannik claims it as his domain. This ancient spirit appears as a filthy old man covered in leaves, guarding the sacred steam. He can tell your future or grant you health, but disturb him during his hours and he'll scald you with boiling water. Leave him soap and a birch branch after your third steam, and he might just let you glimpse tomorrow.",
-      "visual_tags": ["traditional russian banya", "steam mist interior", "wooden sauna darkness", "mystical hot coals", "ancient bathhouse night", "supernatural steam light"],
-      "voice_tone": "deep_ancient",
-      "theme": "dark_mystical"
-    },
-    {
-      "id": "004",
-      "name": "Ovinnik",
-      "category": "household_spirits",
-      "story_full": "In the threshing barn lives the black-furred Ovinnik, a spirit with eyes like burning coals. Farmers feared him more than they feared winter, for one careless spark and he'd burn the harvest to ash. On the eve of the New Year, the bravest would ask him their fortune. Touch his hand at midnight—if it's warm, prosperity awaits. If it's cold, prepare for hardship. Few dared to ask twice.",
-      "visual_tags": ["old russian barn interior", "hay stacks shadows", "glowing ember eyes", "wooden barn darkness", "harvest moon night", "mysterious fire light"],
-      "voice_tone": "ominous_deep",
-      "theme": "dark_mystical"
-    },
-    {
-      "id": "005",
-      "name": "Dvorovoi",
-      "category": "household_spirits",
-      "story_full": "Beyond your doorstep rules the Dvorovoi, master of the courtyard and stable. He appears as a small bearded peasant who judges your livestock with a critical eye. Horses he favors will grow strong and glossy. Those he dislikes will sicken and panic in their stalls. To earn his blessing, bury bread and salt beneath your threshold on the night of a new moon, and never speak ill of your animals where he can hear.",
-      "visual_tags": ["russian farmyard dusk", "old wooden stable", "horses in moonlight", "rural courtyard night", "peasant homestead twilight", "mystical barn yard"],
-      "voice_tone": "stern_wise",
-      "theme": "warm_traditional"
-    },
-    {
-      "id": "006",
-      "name": "Polevik",
-      "category": "household_spirits",
-      "story_full": "When wheat fields ripple with no wind, the Polevik walks among the stalks. This grass-covered spirit appears only at noon and midnight, taking the shape of whatever grows in his domain. He leads lost travelers in circles until they collapse from exhaustion. But harvest workers who leave him a crust of bread and spill vodka on the earth will find their scythes stay sharp and their backs stay strong until the last sheaf is cut.",
-      "visual_tags": ["golden wheat field", "mysterious figure in crops", "rural farmland sunset", "endless grain fields", "harvest season landscape", "shadowy field twilight"],
-      "voice_tone": "whispering_wind",
-      "theme": "warm_traditional"
-    },
-    {
-      "id": "007",
-      "name": "Odarusha",
-      "category": "household_spirits",
-      "story_full": "In the flour mill lives Odarusha, a white-dusted woman who watches over the grain. She appears only to those who work honestly, rewarding them with fine flour that makes bread rise like clouds. But millers who cheat their customers will wake to find stones ground into their wheat and their millstones cracked in half. Listen for her humming with the grinding wheels—if it stops suddenly, flee before she reveals her face of flour and fury.",
-      "visual_tags": ["old windmill interior", "flour dust sunbeams", "ancient grain mill", "wooden millstone close-up", "rustic mill machinery", "mystical flour dust"],
-      "voice_tone": "gentle_warning",
-      "theme": "warm_traditional"
-    },
-    {
-      "id": "008",
-      "name": "Kladovik",
-      "category": "household_spirits",
-      "story_full": "Buried treasure calls forth the Kladovik, a spirit cursed to guard what he cannot spend. He appears as a blue flame flickering over hidden gold, leading greedy souls into bogs and ravines. Only the pure of heart can claim his hoard, but the test is deadly—he'll offer you a choice of three paths in the dark. Choose wrong, and you'll wander lost until dawn finds your body frozen. Choose right, and the earth itself will open to reveal riches beyond measure.",
-      "visual_tags": ["mysterious blue flame night", "ancient treasure chest", "dark forest floor", "buried gold glow", "eerie lantern light woods", "mystical underground chamber"],
-      "voice_tone": "sinister_tempting",
-      "theme": "dark_mystical"
-    },
-    {
-      "id": "009",
-      "name": "Anchutka",
-      "category": "household_spirits",
-      "story_full": "Never speak his name aloud, or Anchutka will hear you. This small devil with pig snout and webbed feet lurks in stables and swamps, waiting to be summoned by careless tongues. He tangles horses' manes into impossible knots and drowns drunken travelers in shallow puddles. The only way to banish him is to spit three times over your left shoulder and say a prayer backward. But once he knows your voice, he'll always find you in the dark.",
-      "visual_tags": ["murky swamp water", "dark stable shadows", "demonic red eyes darkness", "twisted tree roots", "ominous marsh fog", "haunted barnyard night"],
-      "voice_tone": "malevolent_hiss",
-      "theme": "dark_mystical"
-    },
-    {
-      "id": "010",
-      "name": "Zhazhda",
-      "category": "household_spirits",
-      "story_full": "In the dry summer months, Zhazhda emerges from the dust. She's a withered hag who makes travelers mad with thirst, even as they stand beside a stream. Her victims drink and drink but find no relief, their bellies swelling until they burst. To protect yourself, carry a silver coin in your mouth when traveling far from home. The taste of metal will break her spell, but only if you recognize her deception before the third drink.",
-      "visual_tags": ["dry cracked earth", "desert heat waves", "abandoned well", "dusty rural landscape", "mirage shimmer", "parched wilderness"],
-      "voice_tone": "raspy_desperate",
-      "theme": "dark_mystical"
-    },
-    {
-      "id": "011",
-      "name": "Shishok",
-      "category": "household_spirits",
-      "story_full": "Deep in the pine forests dwells Shishok, a cheerful spirit no bigger than a pinecone. He appears to lost children, leading them to berry patches and mushroom circles, always leaving them near a path home. But adults who enter his woods with axes and greed will find every tree looks the same, every path leads back to where they started. The forest remembers those who take more than they need, and Shishok ensures they leave empty-handed and humbled.",
-      "visual_tags": ["dense pine forest", "pinecones forest floor", "mystical woodland light", "russian taiga trees", "enchanted forest path", "magical mushroom ring"],
-      "voice_tone": "playful_mysterious",
-      "theme": "warm_traditional"
-    },
-    {
-      "id": "012",
-      "name": "Poludnitsa",
-      "category": "household_spirits",
-      "story_full": "When the sun reaches its peak in summer, Poludnitsa walks the wheat fields. She appears as a beautiful woman in white, asking riddles of farmers who dare to work through noon. Answer correctly, and she'll pass you by. Answer wrong, and she'll strike you with heatstroke or twist your neck until it breaks. The wise rest in shade when the sun is highest, for no harvest is worth gambling with the lady of noon.",
-      "visual_tags": ["bright noon sunlight field", "woman white dress wheat", "intense summer heat", "golden harvest midday", "blinding sun glare landscape", "heat shimmer farmland"],
-      "voice_tone": "beautiful_deadly",
-      "theme": "dark_mystical"
-    },
-    {
-      "id": "013",
-      "name": "Likho",
-      "category": "household_spirits",
-      "story_full": "Likho has only one eye, but with it she sees everyone's deepest fears. This gaunt horror stalks those who boast of their good fortune, bringing ruin to the proud. She'll appear at your door as a beggar woman, asking for bread. Turn her away, and your luck turns with her. Welcome her in, and she'll eat everything you own, then eat you. The only escape is to burn out her remaining eye while she sleeps—if you can survive her waking rage.",
-      "visual_tags": ["one-eyed crone darkness", "misfortune tattered figure", "haunting single eye", "desolate village night", "ominous beggar silhouette", "cursed doorway shadows"],
-      "voice_tone": "cackling_malice",
-      "theme": "dark_mystical"
-    },
-    {
-      "id": "014",
-      "name": "Pchyelnik",
-      "category": "household_spirits",
-      "story_full": "Where bees make their honey, Pchyelnik stands guard. This ancient spirit appears as a man covered in living bees, humming with their collective voice. He teaches beekeepers the secrets of the hive and punishes thieves with thousand stings that never heal. To gain his favor, leave the first honey of spring untouched in the hive, speaking your gratitude to the swarm. Do this, and your bees will thrive when all others perish in the harsh winter.",
-      "visual_tags": ["honeycomb close-up", "bee swarm golden light", "traditional beehive wood", "honey dripping amber", "apiary summer meadow", "mystical bee keeper"],
-      "voice_tone": "buzzing_harmony",
-      "theme": "warm_traditional"
-    },
-    {
-      "id": "015",
-      "name": "Zlydni",
-      "category": "household_spirits",
-      "story_full": "The Zlydni are invisible parasites that cling to the shoulders of the lazy and unlucky. They whisper excuses in your ears and make your hands clumsy, ensuring every venture fails. You'll know they've found you when coins slip through your fingers and bread goes moldy overnight. To banish them, you must work from dawn to dusk for seven days straight without complaint, breaking their hold through pure determination. But they never go far—they wait for your next moment of weakness.",
-      "visual_tags": ["empty pockets darkness", "poor peasant dwelling", "sparse interior shadows", "tattered clothing close-up", "desolate poverty scene", "shadowy parasitic figures"],
-      "voice_tone": "insidious_whisper",
-      "theme": "dark_mystical"
-    },
-    {
-      "id": "016",
-      "name": "Baba Yaga",
-      "category": "mythical_creatures",
-      "story_full": "Deep in the forest stands a hut on chicken legs, and within lives Baba Yaga, oldest of witches. She flies through the night in her mortar, steering with her pestle, sweeping away her tracks with a broom of birch. She devours the rude and tests the brave with impossible tasks. But those who show her respect and cleverness might earn her aid—a magical gift or the answer to an impossible question. Her teeth are iron, her fence is bones, and her eyes see through every lie.",
-      "visual_tags": ["wooden hut chicken legs", "ancient witch mortar pestle", "dark forest twilight", "bone fence skulls", "mystical cottage woods", "eerie hut lantern glow"],
-      "voice_tone": "ancient_powerful",
-      "theme": "dark_mystical"
-    },
-    {
-      "id": "017",
-      "name": "Firebird",
-      "category": "mythical_creatures",
-      "story_full": "In the deepest night, a golden light streaks across the sky. The Firebird, whose feathers shine like the sun and whose eyes hold the wisdom of ages, brings both blessing and curse. One feather can light a palace or burn it to ash. One egg contains enough magic to grant any wish, but the price is always higher than you expect. Princes have spent their lives hunting her, only to learn that some treasures are meant to remain free, wild, and untouched.",
-      "visual_tags": ["golden phoenix bird", "magical glowing feathers", "night sky shooting star", "magnificent bird flight", "radiant plumage close-up", "mystical forest night bird"],
-      "voice_tone": "majestic_wonder",
-      "theme": "warm_traditional"
-    },
-    {
-      "id": "018",
-      "name": "Zmey Gorynych",
-      "category": "mythical_creatures",
-      "story_full": "From the mountains comes Zmey Gorynych, a massive dragon with three heads that breathe fire, ice, and poison. He guards the Kalinov Bridge between the world of the living and the dead, demanding tribute from all who cross. One head speaks truth, one lies, and one says nothing at all—heroes must guess which is which. Slay him, and two more heads grow back. The only way to defeat him is to strike all three at once, a feat accomplished by only the bravest warriors.",
-      "visual_tags": ["three headed dragon", "massive serpent scales", "fire breathing creature", "mountain cave lair", "ancient stone bridge", "epic dragon battle"],
-      "voice_tone": "thunderous_menacing",
-      "theme": "dark_mystical"
-    },
-    {
-      "id": "019",
-      "name": "Leshy",
-      "category": "mythical_creatures",
-      "story_full": "Ruler of all woodland beasts, the Leshy appears as a tall old man with bark for skin and moss for hair. He can shrink to hide beneath a mushroom or grow taller than the oldest pine. He leads disrespectful travelers in circles until they die of exhaustion, but guides the lost child safely home. To pass through his forest, bow to the trees and walk backwards three steps while saying his name. Leave him tobacco at the forest edge, and he might just let you find the path you seek.",
-      "visual_tags": ["ancient forest guardian", "tree bark skin texture", "moss covered being", "towering forest creature", "mystical woodland spirit", "enchanted birch forest"],
-      "voice_tone": "deep_forest_echo",
-      "theme": "dark_mystical"
-    },
-    {
-      "id": "020",
-      "name": "Rusalka",
-      "category": "mythical_creatures",
-      "story_full": "In moonlit rivers and lakes dwell the Rusalki, beautiful maidens who died before their wedding day. With long green hair and voices like silver bells, they lure men into the water with promises of love. Their embrace is cold death, dragging you down to their underwater realm. But during Rusalka Week in early summer, they emerge to dance in meadows. Join their circle, and you'll dance until your heart bursts. Pass by in silence, and you might see true beauty before it fades with the dawn.",
-      "visual_tags": ["ethereal woman water", "moonlit river surface", "flowing green hair", "submerged maiden pale", "misty lake night", "underwater spirit scene"],
-      "voice_tone": "haunting_melodic",
-      "theme": "dark_mystical"
-    },
-    {
-      "id": "021",
-      "name": "Vodyanoy",
-      "category": "mythical_creatures",
-      "story_full": "At the bottom of every river sits Vodyanoy on his throne of skulls, an old naked man with green beard and frog-like eyes. He drowns fishermen who don't pay him tribute and breaks the dams of mills that grind on holy days. But offer him a pinch of tobacco, a crust of bread, or a cup of vodka, and he'll fill your nets with fish and keep your children safe from the current. Never swim at noon or midnight—those are his hunting hours, and he always claims his due.",
-      "visual_tags": ["underwater creature elderly", "green beard water demon", "submerged throne skulls", "murky river bottom", "aquatic spirit eyes", "dark lake depths"],
-      "voice_tone": "gurgling_menace",
-      "theme": "dark_mystical"
-    },
-    {
-      "id": "022",
-      "name": "Gamayun",
-      "category": "mythical_creatures",
-      "story_full": "From beyond the eastern edge of the world flies Gamayun, a bird with the face of a beautiful woman. She knows all secrets of past and future, singing prophecies in a voice that makes the brave weep and the wicked flee. But her knowledge comes at a price—each answer ages you by a year, and some truths are too terrible to bear. The wise ask only what they must know, then cover their ears as she sings the fate of the world in a language older than time.",
-      "visual_tags": ["mythical bird woman face", "prophetic creature wings", "ancient wisdom portrait", "mystical bird perched", "ethereal feathered being", "magical messenger bird"],
-      "voice_tone": "ethereal_knowing",
-      "theme": "warm_traditional"
-    },
-    {
-      "id": "023",
-      "name": "Alkonost",
-      "category": "mythical_creatures",
-      "story_full": "Sister to Gamayun, the Alkonost sings of paradise lost and joy forgotten. Her voice is so beautiful that those who hear it forget everything else—their names, their homes, their loved ones. Sailors who catch her song steer their ships onto rocks, smiling as they drown. But once a year, on the morning of the Apple Feast, her song brings only peace and healing. If you can resist her call on the other three hundred sixty-four days, you might survive to hear her blessing.",
-      "visual_tags": ["sorrowful bird maiden", "singing bird creature", "melancholic feathered spirit", "dawn bird silhouette", "apple tree blossoms", "graceful bird flight"],
-      "voice_tone": "melancholic_beautiful",
-      "theme": "dark_mystical"
-    },
-    {
-      "id": "024",
-      "name": "Sirin",
-      "category": "mythical_creatures",
-      "story_full": "The third sister, Sirin, sings only of happiness so perfect it cannot exist in this world. Her voice fills listeners with such joy that they abandon everything to follow her, dying of thirst and hunger with smiles on their faces. She means no harm—her nature is pure bliss, and she cannot understand why mortals are too fragile to bear eternal joy. The saints say she nests in the tree of paradise, singing praises until the end of days. Pray you never hear her call.",
-      "visual_tags": ["joyful bird woman", "radiant feathered creature", "paradise bird perched", "golden sunlight bird", "blissful winged spirit", "celestial bird scene"],
-      "voice_tone": "ecstatic_hypnotic",
-      "theme": "warm_traditional"
-    },
-    {
-      "id": "025",
-      "name": "Koschei the Deathless",
-      "category": "mythical_creatures",
-      "story_full": "Koschei cannot die, for he has hidden his death far from his body. It lies in a needle, in an egg, in a duck, in a hare, in a chest, buried on an island no map can find. This skeletal sorcerer steals beautiful women and hoards gold that turns to dust in sunlight. He rides his flying horse across battlefields, collecting the souls of the fallen. But find his death and break the needle, and this ancient evil crumbles to dust, freeing all he has imprisoned across the centuries.",
-      "visual_tags": ["skeletal immortal warrior", "dark sorcerer throne", "ancient wizard bones", "deathless evil portrait", "cursed treasure hoard", "immortal villain lair"],
-      "voice_tone": "cold_immortal",
-      "theme": "dark_mystical"
-    },
-    {
-      "id": "026",
-      "name": "The Gray Wolf",
-      "category": "mythical_creatures",
-      "story_full": "When a hero's horse falls in battle, the Gray Wolf appears from the forest. This massive beast speaks with a human voice, offering to carry the warrior in exchange for a promise. He runs faster than the wind and leaps over mountains, loyal beyond death to those who treat him with honor. But betray your word to the Gray Wolf, and he'll hunt you to the ends of the earth. His howl announces doom, and his bite marks you forever as an oathbreaker.",
-      "visual_tags": ["massive gray wolf", "mystical wolf eyes", "wolf running speed blur", "majestic wolf portrait", "loyal wolf companion", "fierce wolf moonlight"],
-      "voice_tone": "noble_fierce",
-      "theme": "warm_traditional"
-    },
-    {
-      "id": "027",
-      "name": "The Golden Fish",
-      "category": "mythical_creatures",
-      "story_full": "From the depths of the ocean comes a fish of pure gold, caught only by the desperate and pure of heart. She speaks with a woman's voice, offering three wishes in exchange for her freedom. But greed turns wishes into curses—the more you ask for, the more you lose. The wise ask for nothing but her release, earning a friend who might aid you when all else fails. The greedy return to worse poverty than before, having learned that some prices are paid in souls.",
-      "visual_tags": ["golden fish underwater", "magical fish scales gleaming", "ocean depths golden light", "mystical fish portrait", "shimmering golden creature", "enchanted sea treasure"],
-      "voice_tone": "gentle_wise",
-      "theme": "warm_traditional"
-    },
-    {
-      "id": "028",
-      "name": "Nightingale the Robber",
-      "category": "mythical_creatures",
-      "story_full": "In the dark forest roosts Nightingale the Robber, but he is no bird. This demon whistles a note so powerful it kills men instantly and strips leaves from trees for miles. For thirty years he blocked the road to Kiev, and mountains of bones mark his territory. Only the hero Ilya Muromets could withstand his whistle, shooting him from his perch and dragging him to the prince in chains. But some say he was never truly killed, and travelers still vanish on that forest road when the wind carries a familiar tune.",
-      "visual_tags": ["demonic robber silhouette", "dark forest road", "menacing figure trees", "ancient oak tree massive", "highway robber villain", "forest ambush scene"],
-      "voice_tone": "whistling_deadly",
-      "theme": "dark_mystical"
-    },
-    {
-      "id": "029",
-      "name": "Snegurochka",
-      "category": "mythical_creatures",
-      "story_full": "From winter's first snow, an old couple shaped a daughter. She came to life, beautiful and pale, with a heart of ice that could never know warmth. She sang like a blizzard and danced like falling snowflakes, bringing joy to all who saw her. But when spring came and she leaped over the ritual fire with other girls, she melted into mist, leaving only a wet spot on the grass. Some say she returns each year, forever young, forever melting, forever yearning for a warmth she cannot survive.",
-      "visual_tags": ["pale maiden snow white", "winter girl portrait", "frost maiden beauty", "snowy forest maiden", "ethereal winter spirit", "melting snow woman"],
-      "voice_tone": "fragile_melancholic",
-      "theme": "cold_winter"
-    },
-    {
-      "id": "030",
-      "name": "Morozko",
-      "category": "mythical_creatures",
-      "story_full": "Grandfather Frost walks the winter woods, tapping his staff to freeze the rivers and snap the trees. He appears as an old man with a long white beard, testing travelers with cold. Answer his question 'Are you warm, maiden?' with honesty and courtesy, and he'll wrap you in furs and give you gold. Complain or lie, and he'll freeze you solid where you stand. He has no mercy for the rude, but those who respect winter's power may find unexpected kindness beneath his icy exterior.",
-      "visual_tags": ["frost wizard elderly", "winter demon white beard", "frozen forest spirit", "icy wizard staff", "grandfather frost portrait", "snow covered forest magic"],
-      "voice_tone": "cold_testing",
-      "theme": "cold_winter"
-    },
-    {
-      "id": "031",
-      "name": "Whistling Indoors",
-      "category": "superstitions",
-      "story_full": "Never whistle inside a Russian home, or you'll whistle away all your money. The sound calls to the wind spirits who'll blow your prosperity out the windows and carry it to the four corners of the earth. Grandmothers still scold children who forget, remembering when a single whistled note before a card game cost their family the harvest money. It's not just tradition—it's a warning written in generations of empty pockets and hungry winters.",
-      "visual_tags": ["russian home interior", "empty pockets poverty", "traditional kitchen scene", "domestic warning atmosphere", "household superstition mood", "coins scattered floor"],
-      "voice_tone": "cautionary_stern",
-      "theme": "warm_traditional"
-    },
-    {
-      "id": "032",
-      "name": "Spilled Salt",
-      "category": "superstitions",
-      "story_full": "Salt was once worth more than gold, and spilling it meant a fight was coming. The crystals scatter like words you can't take back, each grain a harsh word waiting to be spoken. When salt spills, throw a pinch over your left shoulder to blind the devil watching there, hoping to stoke anger into violence. The stain on the table reminds you that some mistakes invite conflict, and the only way to prevent it is immediate action before the curse takes hold.",
-      "visual_tags": ["spilled salt crystals", "table closeup scattered salt", "kitchen accident scene", "white crystals dark wood", "superstitious gesture hand", "domestic mishap moment"],
-      "voice_tone": "urgent_warning",
-      "theme": "warm_traditional"
-    },
-    {
-      "id": "033",
       "name": "Black Cat Crossing",
       "category": "superstitions",
-      "story_full": "A black cat crossing your path is the devil's familiar testing your resolve. Stop walking, turn around three times, and spit over your left shoulder, or the day's fortune turns against you. The cat sees into the spirit world, and when it crosses from left to right, it's pulling bad luck behind it like a shadow. Sailors would rather delay a voyage than let a black cat board their ship. Better to be late than to let those green eyes curse your journey.",
-      "visual_tags": ["black cat crossing path", "ominous cat silhouette", "dark cat green eyes", "street cat shadow", "superstitious cat encounter", "mysterious feline night"],
+      "story_full": "A black cat crossing your path is the devil's familiar testing your resolve. Stop walking, turn around three times, and spit over your left shoulder, or the day's fortune turns against you. The cat sees into the spirit world, pulling bad luck behind it like a shadow. Sailors would rather delay a voyage than let a black cat cross their path.",
+      "visual_tags": ["black cat crossing path", "ominous cat silhouette", "dark cat green eyes", "street cat shadow Russia", "superstitious cat encounter Russian village", "mysterious feline night Orthodox church"],
       "voice_tone": "ominous_whisper",
       "theme": "dark_mystical"
     },
     {
-      "id": "034",
-      "name": "Empty Vessels",
+      "id": "002",
+      "name": "Spilled Salt",
       "category": "superstitions",
-      "story_full": "Never place an empty bottle or bucket on the table, or you invite poverty to dine with you. Empty containers are hungry mouths waiting to be filled, and they'll devour your wealth if given the chance. This belief runs so deep that even in the poorest homes, you'll see bottles placed on the floor, never the table. Fill what you can, hide what you cannot, but never let emptiness take a seat at your family's heart. The void sees all and wants more.",
-      "visual_tags": ["empty bottles table", "bare table poverty", "vacant containers close-up", "kitchen table simple", "sparse setting domestic", "minimalist tabletop scene"],
-      "voice_tone": "solemn_advice",
+      "story_full": "Salt was once worth more than gold, and spilling it meant a fight was coming. The crystals scatter like words you can't take back, each grain a harsh word waiting to be spoken. Throw a pinch over your left shoulder to blind the devil watching there, hoping to stoke anger into violence. The stain reminds you that some mistakes invite conflict.",
+      "visual_tags": ["spilled salt crystals Russian kitchen", "table closeup scattered salt samovar", "kitchen accident scene traditional", "white crystals dark wood izba", "superstitious gesture hand Russian", "domestic mishap moment wooden house"],
+      "voice_tone": "urgent_warning",
       "theme": "warm_traditional"
     },
     {
-      "id": "035",
-      "name": "Broken Mirrors",
+      "id": "003",
+      "name": "Whistling Indoors",
       "category": "superstitions",
-      "story_full": "A mirror is a doorway to the soul, and breaking one shatters your fate into pieces. Seven years of misfortune for each broken glass, as your reflection was a part of you that's now scattered and sharp. The shards must be wrapped in black cloth and buried at a crossroads at midnight to bind the curse. Never look into a broken mirror, or you'll see your future as fragmented as the glass. Some doors should never be opened, and some reflections should never be disturbed.",
-      "visual_tags": ["shattered mirror fragments", "broken glass close-up", "cracked mirror reflection", "fractured glass pieces", "mirror shards dangerous", "broken reflection distorted"],
+      "story_full": "Never whistle inside a Russian home, or you'll whistle away all your money. The sound calls to wind spirits who blow your prosperity out the windows and carry it to the four corners of the earth. Grandmothers still scold children who forget, remembering when a single whistled note cost their family the harvest money. It's a warning written in generations of empty pockets.",
+      "visual_tags": ["russian home interior traditional izba", "empty pockets poverty Russia", "traditional kitchen scene wooden stove", "domestic warning atmosphere Orthodox", "household superstition mood village", "coins scattered floor birch"],
+      "voice_tone": "cautionary_stern",
+      "theme": "warm_traditional"
+    },
+    {
+      "id": "004",
+      "name": "Broken Mirror",
+      "category": "superstitions",
+      "story_full": "A mirror is a doorway to the soul, and breaking one shatters your fate into pieces. Seven years of misfortune for each broken glass, as your reflection was part of you that's now scattered and sharp. The shards must be wrapped in black cloth and buried at a crossroads at midnight to bind the curse. Never look into a broken mirror.",
+      "visual_tags": ["shattered mirror fragments Russia", "broken glass close-up traditional", "cracked mirror reflection Russian", "fractured glass pieces Orthodox", "mirror shards dangerous izba", "broken reflection distorted Russian village"],
       "voice_tone": "fearful_grave",
       "theme": "dark_mystical"
     },
     {
-      "id": "036",
+      "id": "005",
       "name": "Corner Seating",
       "category": "superstitions",
-      "story_full": "An unmarried person who sits at the corner of the table will wait seven years before they find a spouse. The corner is a place of division, splitting your romantic fortune in two. Young people are pulled away from corners at family gatherings, sometimes physically relocated to safer seats. It's not just superstition when you've watched your cousin sit at the corner and remain single year after year. Sometimes the old warnings hold weight, and sometimes that weight is measured in lonely winters.",
-      "visual_tags": ["table corner close-up", "family dinner gathering", "traditional table setting", "corner seat perspective", "dining table angle", "domestic table scene"],
+      "story_full": "An unmarried person who sits at the corner of the table will wait seven years before they find a spouse. The corner is a place of division, splitting your romantic fortune in two. Young people are pulled away from corners at family gatherings, sometimes physically relocated. It's not just superstition when you've watched your cousin sit at the corner and remain single year after year.",
+      "visual_tags": ["table corner close-up Russian traditional", "family dinner gathering izba Russia", "traditional table setting samovar", "corner seat perspective Russian wooden", "dining table angle Orthodox church", "domestic table scene birch forest"],
       "voice_tone": "concerned_warning",
       "theme": "warm_traditional"
     },
     {
-      "id": "037",
+      "id": "006",
+      "name": "Empty Vessels",
+      "category": "superstitions",
+      "story_full": "Never place an empty bottle or bucket on the table, or you invite poverty to dine with you. Empty containers are hungry mouths waiting to be filled, and they'll devour your wealth if given the chance. Even in the poorest homes, bottles are placed on the floor, never the table. Fill what you can, hide what you cannot, but never let emptiness take a seat.",
+      "visual_tags": ["empty bottles table Russia traditional", "bare table poverty Russian village", "vacant containers close-up wooden", "kitchen table simple izba", "sparse setting domestic Orthodox", "minimalist tabletop scene Russian samovar"],
+      "voice_tone": "solemn_advice",
+      "theme": "warm_traditional"
+    },
+    {
+      "id": "007",
       "name": "Returning Home",
       "category": "superstitions",
-      "story_full": "Once you've left your home, returning for something forgotten brings terrible luck. The threshold remembers your departure, and crossing it twice confuses your fate. If you must go back, look into a mirror before leaving again—it resets your journey and shows the spirits you're starting fresh. Soldiers especially fear this omen, knowing that a forgotten wallet might cost more than money. Better to manage without it than to disturb the path already chosen.",
-      "visual_tags": ["doorway threshold view", "russian home entrance", "mirror reflection entrance", "door opening homeward", "threshold crossing moment", "domestic doorway scene"],
+      "story_full": "Once you've left your home, returning for something forgotten brings terrible luck. The threshold remembers your departure, and crossing it twice confuses your fate. If you must go back, look into a mirror before leaving again—it resets your journey. Soldiers especially fear this omen, knowing that a forgotten wallet might cost more than money. Better to manage without it.",
+      "visual_tags": ["doorway threshold view Russian izba", "russian home entrance traditional wooden", "mirror reflection entrance Orthodox church", "door opening homeward village Russia", "threshold crossing moment birch forest", "domestic doorway scene Russian traditional"],
       "voice_tone": "anxious_urgent",
       "theme": "warm_traditional"
     },
     {
-      "id": "038",
+      "id": "008",
       "name": "Threshold Handshake",
       "category": "superstitions",
-      "story_full": "The threshold is a boundary between worlds, neither inside nor outside, a place where spirits gather. Shaking hands or passing objects across it invites conflict between you and the other person. Step fully inside or fully outside before greeting, or the house spirits will sow discord in whatever business you conduct. Deals made across thresholds always end badly. Friendships strain. Even lovers quarrel when they ignore this ancient rule. The threshold remembers every violation, keeping score until the debt is paid.",
-      "visual_tags": ["handshake doorway close-up", "threshold wood detail", "door frame transition", "hands meeting entrance", "boundary gesture moment", "doorway interaction scene"],
+      "story_full": "The threshold is neither inside nor outside—a boundary where spirits dwell. Never shake hands or pass objects across it, or discord follows. Step fully inside or outside first. Deals made across thresholds fail. Friendships fracture. The house spirits keep score, and the debt is paid in broken trust.",
+      "visual_tags": ["handshake doorway close-up Russian traditional", "threshold wood detail izba Russia", "door frame transition Orthodox village", "hands meeting entrance birch", "boundary gesture moment Russian wooden house", "doorway interaction scene traditional samovar"],
       "voice_tone": "firm_instructive",
       "theme": "warm_traditional"
     },
     {
-      "id": "039",
+      "id": "009",
       "name": "Bird at Window",
       "category": "superstitions",
-      "story_full": "When a bird taps at your window, death is sending a messenger. Birds fly between this world and the next, and when one tries to enter your home, a soul is preparing to leave. If the bird is black, death comes for an elder. If white, a child. If it returns three nights in a row, there's no preventing what's coming. Some cover their mirrors and stop all clocks when the bird appears, trying to confuse death's timing. But death always knows when its work is due.",
-      "visual_tags": ["bird tapping window", "ominous bird silhouette glass", "window bird shadow", "dark bird warning", "mysterious bird visitor", "death omen bird"],
+      "story_full": "When a bird taps at your window, death is sending a messenger. Birds fly between this world and the next, and when one tries to enter your home, a soul is preparing to leave. If the bird is black, death comes for an elder. If white, a child. If it returns three nights in a row, there's no preventing what's coming.",
+      "visual_tags": ["bird tapping window Russia traditional", "ominous bird silhouette glass Orthodox", "window bird shadow Russian village", "dark bird warning izba", "mysterious bird visitor birch forest", "death omen bird Russian wooden house"],
       "voice_tone": "grave_foreboding",
       "theme": "dark_mystical"
     },
     {
-      "id": "040",
-      "name": "Howling Dogs",
+      "id": "010",
+      "name": "Itchy Left Palm",
       "category": "superstitions",
-      "story_full": "A dog howling at night sees death approaching. Their eyes perceive what humans cannot—the shadow figures that come to collect souls. When a dog howls toward a specific house, someone there will die within three days. When it howls at the moon, death wanders the village seeking whom it may claim. Never punish a dog for this warning; they're sharing what their ancient senses detect. Instead, light a candle and pray the shadow passes by your door.",
-      "visual_tags": ["dog howling night", "hound silhouette moonlight", "canine warning pose", "dark dog portrait ominous", "night dog shadow", "watchful dog twilight"],
-      "voice_tone": "mournful_warning",
-      "theme": "dark_mystical"
-    },
-    {
-      "id": "041",
-      "name": "Itchy Hands",
-      "category": "superstitions",
-      "story_full": "When your left hand itches, money is coming to you. When your right hand itches, money will leave. The old ones say to scratch the itch against wood to seal the fortune, against metal to multiply it, but never against stone or it turns to loss. Some people kiss their itching left palm three times, calling the coins closer. Whether it works or not, the itch makes you think about money, and sometimes thinking about it is the first step to finding it.",
-      "visual_tags": ["hands close-up gesture", "palm reading atmosphere", "coins hands exchange", "traditional hand signs", "fortune telling hands", "money palm scene"],
+      "story_full": "When your left hand itches, money is coming to you. Scratch the itch against wood to seal the fortune, against metal to multiply it, but never against stone or it turns to loss. Some people kiss their itching left palm three times, calling the coins closer. Whether it works or not, the itch makes you think about money, and thinking about it is the first step to finding it.",
+      "visual_tags": ["hands close-up gesture Russia", "palm reading atmosphere Russian traditional", "coins hands exchange Orthodox village", "traditional hand signs birch", "fortune telling hands Russian izba", "money palm scene wooden house samovar"],
       "voice_tone": "excited_hopeful",
       "theme": "warm_traditional"
     },
     {
-      "id": "042",
-      "name": "Sit Before Journey",
+      "id": "011",
+      "name": "Itchy Right Palm",
       "category": "superstitions",
-      "story_full": "Before leaving on a journey, all travelers must sit in silence for a moment. It calms the house spirits, ensures nothing is forgotten, and allows fate to settle around your departure. Those who rush out the door anger the domovoi and invite accidents on the road. Even in modern times, Russians sit before trips, taking a breath that could save their lives. The pause between one place and another is sacred, a moment when the spirits adjust their protection to follow you into the unknown.",
-      "visual_tags": ["travelers sitting quietly", "journey preparation scene", "family gathered doorway", "contemplative departure moment", "russian travel tradition", "suitcase doorway pause"],
-      "voice_tone": "calm_respectful",
+      "story_full": "When your right hand itches, money will leave. The old ones say to scratch it against your pocket to keep the coins from escaping, or clench your fist tight and hold on. But sometimes money must flow out to flow back in. The right hand gives what the left hand receives, and both are necessary for fortune's wheel to turn.",
+      "visual_tags": ["right hand itching Russia traditional", "palm money leaving Russian village", "hand gesture warning Orthodox", "fortune palm reading izba", "money flowing away birch forest", "superstitious hand closeup wooden house"],
+      "voice_tone": "warning_resigned",
       "theme": "warm_traditional"
     },
     {
-      "id": "043",
-      "name": "Early Birthday Wishes",
-      "category": "superstitions",
-      "story_full": "Wish someone happy birthday even an hour early, and you curse them with bad luck. Time must be respected—celebrations held too soon steal joy from the actual day. The belief is so strong that even phone calls are timed to the minute, with callers waiting until midnight strikes. To celebrate before the moment is to tempt fate, suggesting the person might not survive to see their actual birthday. Patience protects, and those who wait honor both the person and the fragile nature of life itself.",
-      "visual_tags": ["birthday celebration scene", "cake candles moment", "clock midnight close-up", "celebration waiting mood", "festive anticipation atmosphere", "party timing scene"],
-      "voice_tone": "patient_careful",
-      "theme": "warm_traditional"
-    },
-    {
-      "id": "044",
+      "id": "012",
       "name": "Shoes on Table",
       "category": "superstitions",
-      "story_full": "Place shoes on a table, and you place death in the home. Shoes belong to the earth, to the outside world, to the realm of dirt and spirits. Elevating them to where you eat is an insult to the house and an invitation to the grave. The superstition comes from old times when the dead were measured for coffins on tables, their shoes placed beside them. The table remembers this association, and shoes upon it echo the presence of corpses. Keep them on the floor where they belong, or risk eternal rest coming too soon.",
-      "visual_tags": ["shoes table warning", "old boots table top", "death omen household", "footwear misplaced curse", "table shoes superstition", "ominous domestic scene"],
+      "story_full": "Place shoes on a table, and you place death in the home. Shoes belong to the earth, to the outside world, to the realm of dirt and spirits. Elevating them to where you eat is an insult to the house and an invitation to the grave. The superstition comes from old times when the dead were measured for coffins on tables, their shoes placed beside them.",
+      "visual_tags": ["shoes table warning Russia traditional", "old boots table top Russian izba", "death omen household Orthodox village", "footwear misplaced curse birch", "table shoes superstition wooden house", "ominous domestic scene Russian traditional"],
       "voice_tone": "horrified_stern",
       "theme": "dark_mystical"
     },
     {
-      "id": "045",
+      "id": "013",
       "name": "Gift Knives",
       "category": "superstitions",
-      "story_full": "A knife given as a gift cuts the relationship between giver and receiver. The sharp edge slices through friendship, family bonds, and love, leaving only coldness. To break the curse, the receiver must give a coin in return, even a kopek, transforming the gift into a purchase. Without payment, every knife carries the prophecy of its own nature—eventual cutting, eventual pain, eventual separation. The blade is both warning and weapon, reminding us that some gifts carry too many edges.",
-      "visual_tags": ["knife blade close-up", "gift exchange hands", "silver blade warning", "sharp edge detail", "cutting instrument danger", "knife friendship curse"],
+      "story_full": "A knife given as a gift cuts the relationship between giver and receiver. The sharp edge slices through friendship, family bonds, and love, leaving only coldness. To break the curse, the receiver must give a coin in return, even a kopek, transforming the gift into a purchase. Without payment, every knife carries the prophecy of its own nature—eventual cutting, eventual pain.",
+      "visual_tags": ["knife blade close-up Russia traditional", "gift exchange hands Russian Orthodox", "silver blade warning village izba", "sharp edge detail birch forest", "cutting instrument danger Russian wooden", "knife friendship curse traditional samovar"],
       "voice_tone": "sharp_warning",
       "theme": "dark_mystical"
     },
     {
-      "id": "046",
-      "name": "Maslenitsa",
-      "category": "rituals_traditions",
-      "story_full": "For seven days before Lent, Russia celebrates Maslenitsa, burning winter away with bonfires and blini. Each pancake represents the sun, golden and round, coaxing spring from the frozen earth. On the final day, a straw effigy of Lady Maslenitsa is paraded through town then burned, taking winter's cold with her. The ashes are scattered over fields to bless the coming crops. It's a time of feasting before fasting, of warmth before spring's uncertainty. Light the fire, stack the pancakes high, and bid winter a proper farewell.",
-      "visual_tags": ["traditional russian pancakes", "burning straw effigy", "winter festival bonfire", "festive celebration crowd", "golden blini stack", "spring welcoming ritual"],
-      "voice_tone": "festive_joyful",
-      "theme": "warm_traditional"
-    },
-    {
-      "id": "047",
-      "name": "Ivan Kupala",
-      "category": "rituals_traditions",
-      "story_full": "On the shortest night of the year, anything can happen. Ivan Kupala is a night of fire and water, when young people leap over flames to purify their souls and float flower crowns down rivers to divine their romantic futures. Deep in the forest blooms the fern flower, which opens only once a year at midnight, granting the finder the power to see hidden treasures. But the forest is also full of trickster spirits on this night, leading seekers astray. Most return empty-handed and wet. A few never return at all.",
-      "visual_tags": ["midsummer bonfire leap", "flower crown river", "forest night mystical", "fern forest floor", "summer solstice celebration", "magical forest night"],
-      "voice_tone": "mystical_excited",
-      "theme": "warm_traditional"
-    },
-    {
-      "id": "048",
-      "name": "New Year Tree",
-      "category": "rituals_traditions",
-      "story_full": "On New Year's Eve, Father Frost and his granddaughter Snegurochka visit homes, placing gifts beneath the tree for children who recite poems. The tree itself must stay up until Old New Year on January 14th, bridging the gap between calendars. At midnight, make a wish as the clock strikes twelve, write it on paper, burn it, drop the ashes in champagne, and drink it down before the final chime. It's chaos and magic combined, a moment when time stutters and wishes slip through the cracks into reality.",
-      "visual_tags": ["decorated christmas tree", "father frost costume", "midnight celebration champagne", "new year decorations", "festive family gathering", "winter holiday magic"],
-      "voice_tone": "magical_celebratory",
-      "theme": "cold_winter"
-    },
-    {
-      "id": "049",
-      "name": "Wedding Karavai",
-      "category": "rituals_traditions",
-      "story_full": "At every wedding stands the karavai, a towering round loaf decorated with dough birds and wheat. The bride and groom must each take a bite without using their hands—whoever gets the larger piece will rule the household. Then the bread is broken and distributed to all guests, sharing the couple's fortune. Baking it requires seven married women singing traditional songs, their happiness baked into the dough. Drop the karavai before the ceremony, and the marriage is cursed. Handle it with reverence, and sweetness follows.",
-      "visual_tags": ["traditional wedding bread", "ornate bread decoration", "russian wedding ceremony", "decorated karavai loaf", "festive wedding table", "ceremonial bread ritual"],
-      "voice_tone": "warm_ceremonial",
-      "theme": "warm_traditional"
-    },
-    {
-      "id": "050",
-      "name": "Epiphany Plunge",
-      "category": "rituals_traditions",
-      "story_full": "On Epiphany, January 19th, Russians cut holes in frozen rivers and plunge into water blessed by priests. Three dunks wash away all sins of the past year, emerging reborn and cleansed. The shock of ice water is said to cure illness and strengthen the soul. Old babushkas and young men alike brave the cold, wrapped in nothing but faith and a towel. Drink the blessed water, swim through the cross-shaped hole, and feel winter's grip transform from enemy to purifier.",
-      "visual_tags": ["ice hole frozen river", "winter baptism plunge", "orthodox cross ice", "frozen lake ceremony", "winter religious ritual", "ice swimming tradition"],
-      "voice_tone": "reverent_intense",
-      "theme": "cold_winter"
-    },
-    {
-      "id": "051",
-      "name": "Forgiveness Sunday",
-      "category": "rituals_traditions",
-      "story_full": "Before Lent begins, there is Forgiveness Sunday, when everyone must ask forgiveness from everyone they've wronged. Family, friends, coworkers, even strangers—you bow and say 'Forgive me,' and they reply 'God forgives, and I forgive.' Old grudges must be released, or Lent's sacrifices mean nothing. It's uncomfortable, humbling, and necessary. Some conversations heal decades of silence. Others open new wounds. But entering the sacred time with a clean conscience is worth every difficult word spoken and every pride swallowed.",
-      "visual_tags": ["orthodox church interior", "people embracing forgiveness", "humble bowing gesture", "religious gathering scene", "contemplative prayer moment", "spiritual reconciliation scene"],
-      "voice_tone": "humble_sincere",
-      "theme": "warm_traditional"
-    },
-    {
-      "id": "052",
-      "name": "Funeral Wake",
-      "category": "rituals_traditions",
-      "story_full": "After burial comes the wake, where mourners feast in honor of the dead. An empty chair holds the deceased's place, with a glass of vodka and slice of bread set before it. Stories are told, tears are shed, and laughter returns as people remember the life rather than mourn the death. The meal is repeated on the ninth and fortieth days, and again each year. The dead are never forgotten as long as their place remains at the table and their name is spoken with love.",
-      "visual_tags": ["funeral wake table", "empty chair memorial", "mourning gathering scene", "traditional wake setting", "remembrance meal candles", "somber family gathering"],
-      "voice_tone": "mournful_loving",
+      "id": "014",
+      "name": "Meeting Empty Bucket",
+      "category": "superstitions",
+      "story_full": "Meeting a person carrying an empty bucket means your day will be empty of success. The void they carry spreads to your endeavors, draining them of fortune. Turn around and wait, or spit three times to break the curse. Fishermen who see empty buckets return home immediately, knowing the nets will be bare. The empty seeks to fill itself with your luck.",
+      "visual_tags": ["empty bucket carrier Russia traditional", "person empty vessel Russian village", "ominous encounter street Orthodox", "void fortune warning izba", "empty container curse birch forest", "superstitious meeting Russian wooden house"],
+      "voice_tone": "dismayed_cautious",
       "theme": "dark_mystical"
     },
     {
-      "id": "053",
-      "name": "Easter Egg Battle",
-      "category": "rituals_traditions",
-      "story_full": "On Easter morning, after the midnight service, families crack their dyed eggs against each other's, declaring 'Christ is risen!' The one whose egg survives uncracked is blessed with good luck until next Easter. Each egg is a work of art, dyed with onion skins or painted with intricate patterns. The battle is friendly but competitive—children strategize which end of the egg is strongest, adults pretend not to care while hiding their best specimens. Victory is sweet, defeat is funny, and the shells are scattered in the garden to bless the soil.",
-      "visual_tags": ["decorated easter eggs", "colorful dyed eggs pattern", "easter egg tradition", "painted eggs close-up", "spring easter celebration", "orthodox easter scene"],
-      "voice_tone": "joyful_playful",
-      "theme": "spring_bright"
-    },
-    {
-      "id": "054",
-      "name": "Name Day",
-      "category": "rituals_traditions",
-      "story_full": "More important than birthdays are name days, celebrating the saint for whom you're named. Your saint watches over you specifically, and on their feast day, you honor them with church attendance and gathering friends. It's a second birthday that connects you to centuries of believers who shared your name. Some people celebrate both, others only their name day, but everyone knows which saint guards their soul. Light a candle, say a prayer, and feel the weight of tradition linking you to all who came before.",
-      "visual_tags": ["orthodox saint icon", "candle lighting ceremony", "religious celebration gathering", "traditional icon portrait", "feast day table", "saint veneration scene"],
-      "voice_tone": "reverent_celebratory",
-      "theme": "warm_traditional"
-    },
-    {
-      "id": "055",
-      "name": "Pancake Week Poetry",
-      "category": "rituals_traditions",
-      "story_full": "During Maslenitsa, children go door to door reciting poems in exchange for pancakes and coins. Each verse praises the house, the hosts, and the coming spring, turning begging into art. The tradition teaches performance, courage, and community—neighbors expect the visits and prepare extra blini. The best poets collect dozens of pancakes, the shy ones stammer through one verse and flee. Either way, the ritual connects young and old, fills bellies, and reminds everyone that spring is coming and winter's hunger will end.",
-      "visual_tags": ["children reciting doorway", "traditional russian village", "pancake week celebration", "door to door tradition", "festive children group", "village winter scene"],
-      "voice_tone": "cheerful_nostalgic",
-      "theme": "warm_traditional"
-    },
-    {
-      "id": "056",
-      "name": "The Evil Eye",
-      "category": "curses_omens",
-      "story_full": "Jealous eyes carry poison that attaches to your fortune. When someone looks at you or your children with envy, their gaze leaves a mark that causes illness, accidents, and failure. Babies are especially vulnerable, so never compliment them too much or admire them too openly—it invites the evil eye. To remove the curse, a grandmother spits three times over her left shoulder and whispers prayers while waving a knife over the victim. Salt water, fire, and eggs also break the spell. Better still, wear a safety pin on your clothes where no one can see—it absorbs the curse before it reaches you.",
-      "visual_tags": ["protective evil eye amulet", "jealous gaze close-up", "protective ritual hands", "traditional curse breaking", "superstitious protection scene", "mystical prevention ritual"],
-      "voice_tone": "protective_serious",
+      "id": "015",
+      "name": "Even Flowers for Graves",
+      "category": "superstitions",
+      "story_full": "Give an even number of flowers only to the dead. Living people receive odd numbers—one, three, five, seven. Even numbers belong to graves and funerals, a tribute to those who've passed beyond. Hand someone an even bouquet, and you've wished them death. The rule is absolute, observed by everyone from street vendors to presidents. Count carefully, or insult deeply.",
+      "visual_tags": ["flower bouquet Russia traditional", "grave flowers even number Orthodox", "funeral flowers Russian village", "death tribute bouquet izba", "flower counting superstition birch", "cemetery flowers traditional Russian wooden church"],
+      "voice_tone": "absolute_instructive",
       "theme": "dark_mystical"
-    },
-    {
-      "id": "057",
-      "name": "Prophetic Dreams",
-      "category": "curses_omens",
-      "story_full": "During the twelve days of Svyatki between Christmas and Epiphany, the veil between worlds thins and dreams tell the future. Girls place a mirror under their pillow to see their future husband's face. Boys write questions on paper, burn them, and read the answer in smoke. Sleep in a new shirt backward and inside-out, and you'll dream of your wedding day. But be careful what you ask—some futures are too dark to bear knowing. The spirits are honest during Svyatki, and honesty can be cruel.",
-      "visual_tags": ["mirror under pillow", "prophetic dream scene", "mystical sleep ritual", "fortune telling bedroom", "supernatural dream vision", "ritual sleep preparation"],
-      "voice_tone": "mysterious_entrancing",
-      "theme": "dark_mystical"
-    },
-    {
-      "id": "058",
-      "name": "Porcha Curse",
-      "category": "curses_omens",
-      "story_full": "Porcha is when someone deliberately curses you through ritual magic. They might bury your hair or photo at a crossroads, or sprinkle graveyard dirt across your threshold. The symptoms are unmistakable—sudden illness, livestock dying, business failing, relationships crumbling all at once. Only a powerful healer can remove porcha, using counter-rituals involving fire, holy water, and prayers said backward. Prevention is simpler: never let enemies have your hair, nail clippings, or photos. What's yours can be used against you by those who know the old dark ways.",
-      "visual_tags": ["dark ritual materials", "crossroads burial night", "curse breaking ceremony", "protective magic ritual", "dark witchcraft scene", "malevolent spell casting"],
-      "voice_tone": "dark_fearful",
-      "theme": "dark_mystical"
-    },
-    {
-      "id": "059",
-      "name": "Death Omens",
-      "category": "curses_omens",
-      "story_full": "Death announces itself to those who know the signs. A clock that stops means time has ended for someone. A picture falling from the wall indicates the departure of the person in it. Hearing your name called by someone who isn't there means death is learning your identity. Three knocks with no one at the door is the final warning. Russians don't ignore these omens—they prepare, settling debts and mending relationships. Sometimes knowing gives you time to say goodbye. Sometimes it just lets you fear what you cannot prevent.",
-      "visual_tags": ["stopped clock omen", "fallen picture frame", "empty doorway knocking", "ominous home interior", "death warning signs", "supernatural household occurrence"],
-      "voice_tone": "grave_inevitable",
-      "theme": "dark_mystical"
-    },
-    {
-      "id": "060",
-      "name": "Wax Fortune Telling",
-      "category": "curses_omens",
-      "story_full": "On New Year's Eve, melt wax and pour it into cold water. The shape it forms reveals your future. A ship means travel, a flower means love, a ring means marriage. But shadowy shapes and broken forms warn of hardship ahead. The most skilled readers see detailed scenes in the wax—battles, births, and betrayals frozen in an instant. Some people repeat the ritual until they get a shape they like, but the first pour is always the true one. The future doesn't change just because you don't like what you see.",
-      "visual_tags": ["melted wax water", "fortune telling ritual", "wax shape divination", "new year fortune scene", "mystical wax pouring", "fate reading ceremony"],
-      "voice_tone": "anticipatory_nervous",
-      "theme": "dark_mystical"
-    },
-    {
-      "id": "061",
-      "name": "Coffee Ground Prophecy",
-      "category": "curses_omens",
-      "story_full": "Finish your Turkish coffee, flip the cup onto the saucer, and let the grounds dry. The patterns reveal what's coming—a path means a journey, a circle means completion, scattered dots mean money. Birds indicate news, snakes indicate enemies. The reader must interpret not just shapes but their placement and relation to each other. It's an art passed from grandmothers to granddaughters, a moment of connection over coffee and fate. The grounds never lie, but their truth isn't always clear until it's already happened.",
-      "visual_tags": ["coffee grounds pattern", "turkish coffee cup", "fortune telling table", "mystical coffee reading", "divination ritual scene", "prophetic grounds close-up"],
-      "voice_tone": "intimate_knowing",
-      "theme": "warm_traditional"
-    },
-    {
-      "id": "062",
-      "name": "Crow Omens",
-      "category": "curses_omens",
-      "story_full": "Crows are messengers between this world and the next. One crow means sorrow, two means joy, three means a wedding, four means a birth. A crow cawing at your window is a relative's ghost trying to communicate. Feed the crows and they'll protect your home from evil spirits. Harm them and misfortune follows. They remember faces and hold grudges across generations. Russians respect crows not from superstition but from observation—these birds know things, watch things, and occasionally share what they've learned with those wise enough to listen.",
-      "visual_tags": ["crow silhouette ominous", "black bird watching", "crow flock flying", "raven close-up eye", "ominous bird perched", "crow messenger scene"],
-      "voice_tone": "observant_wary",
-      "theme": "dark_mystical"
-    },
-    {
-      "id": "063",
-      "name": "Blood Moon",
-      "category": "curses_omens",
-      "story_full": "When the moon turns red, the earth is drinking blood. Wars are coming, or famines, or plagues. The blood moon doesn't cause disaster—it announces what's already in motion, giving those who watch the sky time to prepare. During a blood moon, all magic is more powerful and all curses stick harder. Wise people stay indoors, cover their mirrors, and wait for the crimson to fade. Making major decisions under a blood moon invites catastrophe. Whatever you start in blood will end in blood.",
-      "visual_tags": ["red moon night sky", "blood moon eclipse", "crimson moon landscape", "ominous lunar event", "red moon silhouette", "apocalyptic moon scene"],
-      "voice_tone": "apocalyptic_warning",
-      "theme": "dark_mystical"
-    },
-    {
-      "id": "064",
-      "name": "Wedding Rain",
-      "category": "curses_omens",
-      "story_full": "Rain on your wedding day is the universe blessing your marriage with abundance. Each drop represents a year of prosperity, each thunderclap a strong child. Brides who fret over wet weather miss the message—the sky is washing away the past to make room for your future. The old ones say sun on your wedding means a bright beginning but uncertain continuation. Rain means struggle at first but lasting happiness. Given the choice, choose the rain. Choose the blessing that lasts beyond the photographs.",
-      "visual_tags": ["rainy wedding day", "bride rain wedding", "wet ceremony scene", "rain blessing moment", "romantic rain wedding", "stormy marriage celebration"],
-      "voice_tone": "blessing_optimistic",
-      "theme": "warm_traditional"
-    },
-    {
-      "id": "065",
-      "name": "Sneeze Confirmation",
-      "category": "curses_omens",
-      "story_full": "Sneeze while making a statement, and you've spoken truth that the universe confirms. A sneeze is your guardian spirit agreeing with your words, validating your decision. Ancient Russians wouldn't sign contracts or make oaths without someone sneezing as a sign. Even now, when someone sneezes during conversation, people note what was just said—it might be the most important thing spoken that day. But never sneeze during prayer, for that's the devil trying to interrupt your connection to God.",
-      "visual_tags": ["person sneezing close-up", "truth confirmation moment", "validation gesture scene", "sneeze ritual atmosphere", "confirmatory supernatural sign", "spiritual agreement scene"],
-      "voice_tone": "confirming_matter-of-fact",
-      "theme": "warm_traditional"
-    },
-    {
-      "id": "066",
-      "name": "Ilya Muromets",
-      "category": "folk_heroes",
-      "story_full": "For thirty-three years, Ilya lay paralyzed on a stove, unable to move. Then wandering pilgrims gave him a drink that surged with power, and he rose a warrior. He became the greatest of all bogatyrs, defending Kiev from enemies and monsters. He defeated Nightingale the Robber, whose whistle killed men. He fought alongside Dobrynya and Alyosha, the three heroes standing between Russia and destruction. When he died, he was buried as a monk, and centuries later his mummified body was discovered in the Kiev Caves—real bones of a legendary man.",
-      "visual_tags": ["mighty warrior portrait", "ancient russian armor", "heroic bogatyr warrior", "medieval knight russia", "legendary hero scene", "warrior on horseback epic"],
-      "voice_tone": "heroic_powerful",
-      "theme": "warm_traditional"
-    },
-    {
-      "id": "067",
-      "name": "Dobrynya Nikitich",
-      "category": "folk_heroes",
-      "story_full": "Dobrynya was born of nobility, educated and refined, but deadly with a sword. His mother warned him never to bathe in the Puchai River, where dragons lurk. He ignored her, and Zmey Gorynych snatched him up. But Dobrynya wrestled free, killing the dragon and rescuing prisoners from its cave. He served Prince Vladimir faithfully, combining strength with wisdom, proving that the best warriors think before they strike. His name means 'kind,' and he lived up to it—fierce to enemies, gentle to the weak.",
-      "visual_tags": ["noble warrior portrait", "dragon slayer hero", "medieval russian knight", "dragon battle scene", "heroic warrior stance", "legendary swordsman"],
-      "voice_tone": "noble_wise",
-      "theme": "warm_traditional"
-    },
-    {
-      "id": "068",
-      "name": "Alyosha Popovich",
-      "category": "folk_heroes",
-      "story_full": "Youngest of the three great bogatyrs, Alyosha won battles through wit rather than strength. He defeated the monster Tugarin Zmeyevich not in fair combat but by praying for rain to soak the beast's wings, then striking while it couldn't fly. He wooed his wife through clever words rather than heroic deeds. Some called him a trickster, others called him smart. In truth, he was both—proof that brains matter as much as muscle when defending your homeland from the darkness beyond the borders.",
-      "visual_tags": ["young clever hero", "smart warrior portrait", "cunning fighter scene", "intelligent bogatyr", "heroic youth russia", "strategic warrior pose"],
-      "voice_tone": "clever_playful",
-      "theme": "warm_traditional"
-    },
-    {
-      "id": "069",
-      "name": "Vasilisa the Wise",
-      "category": "folk_heroes",
-      "story_full": "Vasilisa's mother died young, leaving her a magic doll that gave advice in times of need. When her cruel stepfamily sent her to Baba Yaga's hut to fetch fire, the doll guided her through impossible tasks. She separated good seeds from bad, cleaned the hut, and answered the witch's questions with perfect humility. Baba Yaga let her live and gave her a skull full of fire that burned her wicked stepfamily to ash. Later, Vasilisa's beauty and her weaving skills won the heart of the Tsar. Beauty and brains together make an unstoppable woman.",
-      "visual_tags": ["beautiful maiden portrait", "brave young woman", "magical doll helper", "vasilisa folk tale", "russian maiden traditional", "heroine courage scene"],
-      "voice_tone": "brave_determined",
-      "theme": "warm_traditional"
-    },
-    {
-      "id": "070",
-      "name": "Sadko",
-      "category": "folk_heroes",
-      "story_full": "Sadko was a poor gusli player whose music charmed the Sea King himself. Dragged underwater to perform at a royal wedding, Sadko played so beautifully that the Sea King danced, causing storms that destroyed ships above. A saint appeared, warning Sadko to break his gusli strings and end the music before more sailors died. He obeyed, and the Sea King released him with enough treasure to become the richest merchant in Novgorod. His story reminds us that art has power, but power requires responsibility.",
-      "visual_tags": ["minstrel musician portrait", "underwater palace scene", "merchant musician historic", "gusli instrument player", "wealthy merchant russia", "musical hero scene"],
-      "voice_tone": "melodic_enchanting",
-      "theme": "warm_traditional"
-    },
-    {
-      "id": "071",
-      "name": "Marya Morevna",
-      "category": "folk_heroes",
-      "story_full": "Marya Morevna commanded armies and defeated kingdoms, a princess who needed no rescuing. She married Prince Ivan, warning him never to enter one particular room. He disobeyed and freed Koschei the Deathless, who stole Marya away. Ivan journeyed to the edge of the world to rescue her, but it was Marya's own magic and strength that helped them escape. She was both wife and warrior, lover and leader, proving that women in Russian tales are not prizes to be won but forces to be reckoned with.",
-      "visual_tags": ["warrior princess armor", "fierce woman commander", "russian princess warrior", "strong woman leader", "medieval woman fighter", "heroic princess scene"],
-      "voice_tone": "fierce_commanding",
-      "theme": "warm_traditional"
-    },
-    {
-      "id": "072",
-      "name": "Mikula Selyaninovich",
-      "category": "folk_heroes",
-      "story_full": "Mikula was just a farmer plowing his field when the bogatyrs rode by. They challenged him, and he lifted his plow with one hand—a plow so heavy that all the warriors together couldn't budge it. Mikula's strength came not from training but from honest work, from hands that touched the earth daily. He chose to remain a farmer rather than become a warrior, teaching that true power lies not in glory but in sustaining life. The earth itself gave him strength because he honored her with his labor.",
-      "visual_tags": ["strong farmer working", "peasant hero portrait", "plow field landscape", "rural strength scene", "honest laborer hero", "farmer warrior contrast"],
-      "voice_tone": "humble_powerful",
-      "theme": "warm_traditional"
-    },
-    {
-      "id": "073",
-      "name": "Finist the Bright Falcon",
-      "category": "folk_heroes",
-      "story_full": "Finist was a prince cursed into the form of a falcon, able to become human only at night. A merchant's daughter loved him despite his curse, but her jealous sisters placed sharp knives on her windowsill, wounding him when he flew to visit her. He disappeared, and she wandered the world searching for him, wearing out three pairs of iron shoes. Her devotion broke the curse, and they married. Love that survives transformation, distance, and time—that's the love worth having.",
-      "visual_tags": ["falcon bird transformation", "prince falcon curse", "romantic folk tale scene", "shape-shifter magical", "true love devotion", "cursed prince bird"],
-      "voice_tone": "romantic_devoted",
-      "theme": "warm_traditional"
-    },
-    {
-      "id": "074",
-      "name": "Nikita the Tanner",
-      "category": "folk_heroes",
-      "story_full": "When a dragon threatened Kiev, demanding the princess as tribute, the knights cowered in fear. But Nikita, a simple tanner of hides, stepped forward. His hands were so strong from working leather that he grabbed the dragon by the tongue and strangled it, saving the princess and the city. The prince offered him riches, but Nikita wanted only enough leather to craft a giant whip. He then captured the dragon's relatives and forced them to plow the earth, creating the great ravines of Ukraine. Sometimes the hero is the one you least expect.",
-      "visual_tags": ["strong tanner worker", "dragon strangling hero", "working man hero", "peasant defeats dragon", "humble hero victory", "unexpected warrior scene"],
-      "voice_tone": "triumphant_humble",
-      "theme": "warm_traditional"
-    },
-    {
-      "id": "075",
-      "name": "The Wise Tailor",
-      "category": "folk_heroes",
-      "story_full": "A poor tailor killed seven flies with one slap and boasted he'd killed seven with one blow. Word spread that he'd slain seven warriors, and the Tsar sent him on impossible quests expecting him to die. But through cleverness and luck, the tailor defeated giants and captured unicorns, eventually marrying the princess. His story teaches that sometimes confidence and wit matter more than strength. Fake it until you make it, and you might just end up making it. The world believes what you tell it, so tell it something grand.",
-      "visual_tags": ["clever tailor hero", "small man great deeds", "triumphant peasant hero", "wit over strength", "unexpected victor scene", "humble tailor victory"],
-      "voice_tone": "witty_triumphant",
-      "theme": "warm_traditional"
     }
   ]
 }
