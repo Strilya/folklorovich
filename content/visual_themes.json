@@ -1,0 +1,124 @@
+{
+  "themes": [
+    {
+      "id": "V001",
+      "name": "Golden Ring Churches",
+      "keywords": [
+        "Orthodox church Russia golden domes",
+        "Russian architecture cathedral colorful",
+        "Kremlin towers Russia historical",
+        "traditional Russian church wooden",
+        "Orthodox monastery Russia ancient"
+      ],
+      "mood": "majestic"
+    },
+    {
+      "id": "V002",
+      "name": "Birch Forest Seasons",
+      "keywords": [
+        "birch forest Russia autumn golden",
+        "Russian birch trees white bark",
+        "birch grove Russia misty morning",
+        "Russian forest birch leaves fall",
+        "birch woodland Russia peaceful"
+      ],
+      "mood": "peaceful"
+    },
+    {
+      "id": "V003",
+      "name": "Russian Winter Beauty",
+      "keywords": [
+        "snow village Russia wooden houses",
+        "Russian winter landscape frozen",
+        "snow-covered Russia countryside",
+        "winter Russia ice crystal",
+        "Russian traditional izba snow"
+      ],
+      "mood": "serene"
+    },
+    {
+      "id": "V004",
+      "name": "Lake Baikal",
+      "keywords": [
+        "Lake Baikal Russia crystal clear",
+        "Baikal ice formations winter",
+        "Russian lake Baikal turquoise",
+        "Baikal Siberia nature pristine",
+        "Lake Baikal Russia dramatic"
+      ],
+      "mood": "dramatic"
+    },
+    {
+      "id": "V005",
+      "name": "Russian Cultural Ornaments",
+      "keywords": [
+        "Khokhloma Russian folk art patterns",
+        "matryoshka dolls Russian traditional",
+        "Russian embroidery traditional colorful",
+        "Gzhel Russian pottery blue white",
+        "Russian folk art decorative ornate"
+      ],
+      "mood": "vibrant"
+    },
+    {
+      "id": "V006",
+      "name": "Northern Lights Russia",
+      "keywords": [
+        "aurora borealis Russia Arctic",
+        "northern lights Russian north",
+        "Russia Murmansk aurora sky",
+        "Siberia northern lights green",
+        "Russian Arctic night aurora"
+      ],
+      "mood": "mystical"
+    },
+    {
+      "id": "V007",
+      "name": "Kamchatka Volcanoes",
+      "keywords": [
+        "Kamchatka volcano Russia dramatic",
+        "Russian volcanoes active steam",
+        "Kamchatka Peninsula Russia wild",
+        "volcanic landscape Russia rugged",
+        "Kamchatka nature Russia untouched"
+      ],
+      "mood": "powerful"
+    },
+    {
+      "id": "V008",
+      "name": "Russian Wooden Architecture",
+      "keywords": [
+        "wooden house Russia traditional carved",
+        "Russian izba log cabin rustic",
+        "traditional Russian village wooden",
+        "carved wooden shutters Russia",
+        "Russian terem architecture ornate"
+      ],
+      "mood": "nostalgic"
+    },
+    {
+      "id": "V009",
+      "name": "Autumn in Russia",
+      "keywords": [
+        "Russian autumn forest golden leaves",
+        "fall colors Russia countryside",
+        "Russian maple leaves red orange",
+        "autumn Russia misty morning",
+        "Russian forest autumn vibrant"
+      ],
+      "mood": "warm"
+    },
+    {
+      "id": "V010",
+      "name": "Russian Rivers and Waterways",
+      "keywords": [
+        "Volga River Russia majestic wide",
+        "Russian river landscape serene",
+        "river Russia wooden bridge traditional",
+        "Russian waterway nature peaceful",
+        "river Russia reflection forest"
+      ],
+      "mood": "flowing"
+    }
+  ]
+}

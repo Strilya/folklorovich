@@ -11,8 +11,9 @@
       "name": "Black Cat Crossing",
       "category": "superstitions",
       "story_full": "A black cat crossing your path is the devil's familiar testing your resolve. Stop walking, turn around three times, and spit over your left shoulder, or the day's fortune turns against you. The cat sees into the spirit world, pulling bad luck behind it like a shadow. Sailors would rather delay a voyage than let a black cat cross their path.",
+      "story_russian": "Чёрная кошка, перебегающая дорогу — это слуга дьявола, проверяющий вашу волю. Остановитесь, повернитесь три раза и плюньте через левое плечо, иначе удача отвернётся от вас. Кошка видит мир духов и тащит за собой несчастье, как тень. Моряки скорее отложат плавание, чем позволят чёрной кошке пересечь их путь.",
       "visual_tags": ["black cat crossing path", "ominous cat silhouette", "dark cat green eyes", "street cat shadow Russia", "superstitious cat encounter Russian village", "mysterious feline night Orthodox church"],
-      "voice_tone": "ominous_whisper",
+      "voice_tone": "ominous",
       "theme": "dark_mystical"
     },
     {
@@ -20,8 +21,9 @@
       "name": "Spilled Salt",
       "category": "superstitions",
       "story_full": "Salt was once worth more than gold, and spilling it meant a fight was coming. The crystals scatter like words you can't take back, each grain a harsh word waiting to be spoken. Throw a pinch over your left shoulder to blind the devil watching there, hoping to stoke anger into violence. The stain reminds you that some mistakes invite conflict.",
+      "story_russian": "Соль когда-то стоила дороже золота, и просыпать её означало грядущую ссору. Кристаллы рассыпаются, как слова, которые не вернёшь обратно, каждая крупинка — резкое слово, ждущее, чтобы его произнесли. Бросьте щепотку через левое плечо, чтобы ослепить дьявола, который там наблюдает, надеясь разжечь гнев до насилия. Пятно напоминает, что некоторые ошибки приглашают конфликт.",
       "visual_tags": ["spilled salt crystals Russian kitchen", "table closeup scattered salt samovar", "kitchen accident scene traditional", "white crystals dark wood izba", "superstitious gesture hand Russian", "domestic mishap moment wooden house"],
-      "voice_tone": "urgent_warning",
+      "voice_tone": "cautionary",
       "theme": "warm_traditional"
     },
     {
@@ -29,8 +31,9 @@
       "name": "Whistling Indoors",
       "category": "superstitions",
       "story_full": "Never whistle inside a Russian home, or you'll whistle away all your money. The sound calls to wind spirits who blow your prosperity out the windows and carry it to the four corners of the earth. Grandmothers still scold children who forget, remembering when a single whistled note cost their family the harvest money. It's a warning written in generations of empty pockets.",
+      "story_russian": "Никогда не свистите в русском доме, иначе высвистите все свои деньги. Этот звук призывает духов ветра, которые выдувают ваше благополучие из окон и уносят на четыре стороны света. Бабушки до сих пор ругают детей, которые забывают, помня, как один свист стоил их семье денег за урожай. Это предупреждение написано поколениями пустых карманов.",
       "visual_tags": ["russian home interior traditional izba", "empty pockets poverty Russia", "traditional kitchen scene wooden stove", "domestic warning atmosphere Orthodox", "household superstition mood village", "coins scattered floor birch"],
-      "voice_tone": "cautionary_stern",
+      "voice_tone": "cautionary",
       "theme": "warm_traditional"
     },
     {
@@ -38,6 +41,7 @@
       "name": "Broken Mirror",
       "category": "superstitions",
       "story_full": "A mirror is a doorway to the soul, and breaking one shatters your fate into pieces. Seven years of misfortune for each broken glass, as your reflection was part of you that's now scattered and sharp. The shards must be wrapped in black cloth and buried at a crossroads at midnight to bind the curse. Never look into a broken mirror.",
+      "story_russian": "Зеркало — это дверь в душу, и разбив его, вы разбиваете свою судьбу на осколки. Семь лет несчастья за каждое разбитое стекло, ведь ваше отражение было частью вас, которая теперь рассыпана и остра. Осколки нужно завернуть в чёрную ткань и закопать на перекрёстке в полночь, чтобы связать проклятие. Никогда не смотрите в разбитое зеркало.",
       "visual_tags": ["shattered mirror fragments Russia", "broken glass close-up traditional", "cracked mirror reflection Russian", "fractured glass pieces Orthodox", "mirror shards dangerous izba", "broken reflection distorted Russian village"],
       "voice_tone": "fearful_grave",
       "theme": "dark_mystical"
@@ -47,8 +51,9 @@
       "name": "Corner Seating",
       "category": "superstitions",
       "story_full": "An unmarried person who sits at the corner of the table will wait seven years before they find a spouse. The corner is a place of division, splitting your romantic fortune in two. Young people are pulled away from corners at family gatherings, sometimes physically relocated. It's not just superstition when you've watched your cousin sit at the corner and remain single year after year.",
+      "story_russian": "Незамужний человек, который сидит на углу стола, будет ждать семь лет, прежде чем найдёт супруга. Угол — это место разделения, разбивающее вашу романтическую удачу надвое. Молодых людей отгоняют от углов на семейных собраниях, иногда физически пересаживают. Это не просто суеверие, когда вы наблюдали, как ваш двоюродный брат сидел на углу и оставался одиноким год за годом.",
       "visual_tags": ["table corner close-up Russian traditional", "family dinner gathering izba Russia", "traditional table setting samovar", "corner seat perspective Russian wooden", "dining table angle Orthodox church", "domestic table scene birch forest"],
-      "voice_tone": "concerned_warning",
+      "voice_tone": "cautionary",
       "theme": "warm_traditional"
     },
     {
@@ -56,8 +61,9 @@
       "name": "Empty Vessels",
       "category": "superstitions",
       "story_full": "Never place an empty bottle or bucket on the table, or you invite poverty to dine with you. Empty containers are hungry mouths waiting to be filled, and they'll devour your wealth if given the chance. Even in the poorest homes, bottles are placed on the floor, never the table. Fill what you can, hide what you cannot, but never let emptiness take a seat.",
+      "story_russian": "Никогда не ставьте пустую бутылку или ведро на стол, иначе пригласите бедность обедать с вами. Пустые сосуды — это голодные рты, ждущие, чтобы их наполнили, и они пожрут ваше богатство, если дать им шанс. Даже в самых бедных домах бутылки ставят на пол, никогда на стол. Наполняйте то, что можете, прячьте то, что не можете, но никогда не позволяйте пустоте занять место.",
       "visual_tags": ["empty bottles table Russia traditional", "bare table poverty Russian village", "vacant containers close-up wooden", "kitchen table simple izba", "sparse setting domestic Orthodox", "minimalist tabletop scene Russian samovar"],
-      "voice_tone": "solemn_advice",
+      "voice_tone": "cautionary",
       "theme": "warm_traditional"
     },
     {
@@ -65,8 +71,9 @@
       "name": "Returning Home",
       "category": "superstitions",
       "story_full": "Once you've left your home, returning for something forgotten brings terrible luck. The threshold remembers your departure, and crossing it twice confuses your fate. If you must go back, look into a mirror before leaving again—it resets your journey. Soldiers especially fear this omen, knowing that a forgotten wallet might cost more than money. Better to manage without it.",
+      "story_russian": "Если вы вышли из дома, возвращение за забытой вещью приносит ужасную неудачу. Порог помнит ваш уход, и пересечение его дважды сбивает вашу судьбу с толку. Если вы должны вернуться, посмотрите в зеркало перед уходом снова — это перезагружает ваш путь. Солдаты особенно боятся этой приметы, зная, что забытый кошелёк может стоить дороже денег. Лучше обойтись без этого.",
       "visual_tags": ["doorway threshold view Russian izba", "russian home entrance traditional wooden", "mirror reflection entrance Orthodox church", "door opening homeward village Russia", "threshold crossing moment birch forest", "domestic doorway scene Russian traditional"],
-      "voice_tone": "anxious_urgent",
+      "voice_tone": "cautionary",
       "theme": "warm_traditional"
     },
     {
@@ -74,8 +81,9 @@
       "name": "Threshold Handshake",
       "category": "superstitions",
       "story_full": "The threshold is neither inside nor outside—a boundary where spirits dwell. Never shake hands or pass objects across it, or discord follows. Step fully inside or outside first. Deals made across thresholds fail. Friendships fracture. The house spirits keep score, and the debt is paid in broken trust.",
+      "story_russian": "Порог — это ни внутри, ни снаружи, граница, где обитают духи. Никогда не пожимайте руки и не передавайте предметы через него, иначе последует раздор. Сначала войдите полностью внутрь или выйдите наружу. Сделки, заключённые через порог, проваливаются. Дружба разрушается. Домовые ведут счёт, и долг оплачивается разрушенным доверием.",
       "visual_tags": ["handshake doorway close-up Russian traditional", "threshold wood detail izba Russia", "door frame transition Orthodox village", "hands meeting entrance birch", "boundary gesture moment Russian wooden house", "doorway interaction scene traditional samovar"],
-      "voice_tone": "firm_instructive",
+      "voice_tone": "cautionary",
       "theme": "warm_traditional"
     },
     {
@@ -83,8 +91,9 @@
       "name": "Bird at Window",
       "category": "superstitions",
       "story_full": "When a bird taps at your window, death is sending a messenger. Birds fly between this world and the next, and when one tries to enter your home, a soul is preparing to leave. If the bird is black, death comes for an elder. If white, a child. If it returns three nights in a row, there's no preventing what's coming.",
+      "story_russian": "Когда птица стучится в ваше окно, смерть посылает вестника. Птицы летают между этим миром и следующим, и когда одна пытается войти в ваш дом, душа готовится уйти. Если птица чёрная, смерть придёт за старцем. Если белая — за ребёнком. Если она возвращается три ночи подряд, то нельзя предотвратить то, что грядёт.",
       "visual_tags": ["bird tapping window Russia traditional", "ominous bird silhouette glass Orthodox", "window bird shadow Russian village", "dark bird warning izba", "mysterious bird visitor birch forest", "death omen bird Russian wooden house"],
-      "voice_tone": "grave_foreboding",
+      "voice_tone": "ominous",
       "theme": "dark_mystical"
     },
     {
@@ -92,8 +101,9 @@
       "name": "Itchy Left Palm",
       "category": "superstitions",
       "story_full": "When your left hand itches, money is coming to you. Scratch the itch against wood to seal the fortune, against metal to multiply it, but never against stone or it turns to loss. Some people kiss their itching left palm three times, calling the coins closer. Whether it works or not, the itch makes you think about money, and thinking about it is the first step to finding it.",
+      "story_russian": "Когда левая рука чешется, деньги идут к вам. Почешите зуд о дерево, чтобы запечатать удачу, о металл, чтобы приумножить её, но никогда о камень, иначе это превратится в потерю. Некоторые целуют свою чешущуюся левую ладонь три раза, призывая монеты ближе. Работает это или нет, зуд заставляет вас думать о деньгах, а размышление об этом — первый шаг к их обретению.",
       "visual_tags": ["hands close-up gesture Russia", "palm reading atmosphere Russian traditional", "coins hands exchange Orthodox village", "traditional hand signs birch", "fortune telling hands Russian izba", "money palm scene wooden house samovar"],
-      "voice_tone": "excited_hopeful",
+      "voice_tone": "warm",
       "theme": "warm_traditional"
     },
     {
@@ -101,8 +111,9 @@
       "name": "Itchy Right Palm",
       "category": "superstitions",
       "story_full": "When your right hand itches, money will leave. The old ones say to scratch it against your pocket to keep the coins from escaping, or clench your fist tight and hold on. But sometimes money must flow out to flow back in. The right hand gives what the left hand receives, and both are necessary for fortune's wheel to turn.",
+      "story_russian": "Когда правая рука чешется, деньги уйдут. Старики говорят, почешите её о карман, чтобы монеты не сбежали, или крепко сожмите кулак и держите. Но иногда деньги должны утечь, чтобы вернуться обратно. Правая рука даёт то, что левая получает, и обе необходимы, чтобы колесо фортуны вращалось.",
       "visual_tags": ["right hand itching Russia traditional", "palm money leaving Russian village", "hand gesture warning Orthodox", "fortune palm reading izba", "money flowing away birch forest", "superstitious hand closeup wooden house"],
-      "voice_tone": "warning_resigned",
+      "voice_tone": "cautionary",
       "theme": "warm_traditional"
     },
     {
@@ -110,8 +121,9 @@
       "name": "Shoes on Table",
       "category": "superstitions",
       "story_full": "Place shoes on a table, and you place death in the home. Shoes belong to the earth, to the outside world, to the realm of dirt and spirits. Elevating them to where you eat is an insult to the house and an invitation to the grave. The superstition comes from old times when the dead were measured for coffins on tables, their shoes placed beside them.",
+      "story_russian": "Поставьте обувь на стол, и вы поместите смерть в дом. Обувь принадлежит земле, внешнему миру, царству грязи и духов. Поднимать её туда, где вы едите — это оскорбление дому и приглашение смерти. Суеверие пришло из старых времён, когда мёртвых измеряли для гробов на столах, их обувь клали рядом.",
       "visual_tags": ["shoes table warning Russia traditional", "old boots table top Russian izba", "death omen household Orthodox village", "footwear misplaced curse birch", "table shoes superstition wooden house", "ominous domestic scene Russian traditional"],
-      "voice_tone": "horrified_stern",
+      "voice_tone": "ominous",
       "theme": "dark_mystical"
     },
     {
@@ -119,8 +131,9 @@
       "name": "Gift Knives",
       "category": "superstitions",
       "story_full": "A knife given as a gift cuts the relationship between giver and receiver. The sharp edge slices through friendship, family bonds, and love, leaving only coldness. To break the curse, the receiver must give a coin in return, even a kopek, transforming the gift into a purchase. Without payment, every knife carries the prophecy of its own nature—eventual cutting, eventual pain.",
+      "story_russian": "Нож, подаренный в подарок, разрезает отношения между дарителем и получателем. Острое лезвие разрывает дружбу, семейные узы и любовь, оставляя лишь холод. Чтобы разорвать проклятие, получатель должен дать монету взамен, хотя бы копейку, превращая подарок в покупку. Без оплаты каждый нож несёт пророчество своей природы — неизбежное разрезание, неизбежную боль.",
       "visual_tags": ["knife blade close-up Russia traditional", "gift exchange hands Russian Orthodox", "silver blade warning village izba", "sharp edge detail birch forest", "cutting instrument danger Russian wooden", "knife friendship curse traditional samovar"],
-      "voice_tone": "sharp_warning",
+      "voice_tone": "ominous",
       "theme": "dark_mystical"
     },
     {
@@ -128,8 +141,9 @@
       "name": "Meeting Empty Bucket",
       "category": "superstitions",
       "story_full": "Meeting a person carrying an empty bucket means your day will be empty of success. The void they carry spreads to your endeavors, draining them of fortune. Turn around and wait, or spit three times to break the curse. Fishermen who see empty buckets return home immediately, knowing the nets will be bare. The empty seeks to fill itself with your luck.",
+      "story_russian": "Встретить человека с пустым ведром означает, что ваш день будет пуст от успеха. Пустота, которую они несут, распространяется на ваши начинания, высасывая из них удачу. Развернитесь и подождите, или плюньте три раза, чтобы разрушить проклятие. Рыбаки, увидевшие пустые вёдра, немедленно возвращаются домой, зная, что сети будут пусты. Пустое стремится наполниться вашей удачей.",
       "visual_tags": ["empty bucket carrier Russia traditional", "person empty vessel Russian village", "ominous encounter street Orthodox", "void fortune warning izba", "empty container curse birch forest", "superstitious meeting Russian wooden house"],
-      "voice_tone": "dismayed_cautious",
+      "voice_tone": "ominous",
       "theme": "dark_mystical"
     },
     {
@@ -137,8 +151,9 @@
       "name": "Even Flowers for Graves",
       "category": "superstitions",
       "story_full": "Give an even number of flowers only to the dead. Living people receive odd numbers—one, three, five, seven. Even numbers belong to graves and funerals, a tribute to those who've passed beyond. Hand someone an even bouquet, and you've wished them death. The rule is absolute, observed by everyone from street vendors to presidents. Count carefully, or insult deeply.",
+      "story_russian": "Дарите чётное количество цветов только мёртвым. Живым людям дарят нечётные числа — один, три, пять, семь. Чётные числа принадлежат могилам и похоронам, дань тем, кто ушёл за грань. Вручите кому-то чётный букет, и вы пожелали им смерти. Правило абсолютно, его соблюдают все, от уличных торговцев до президентов. Считайте внимательно, иначе глубоко оскорбите.",
       "visual_tags": ["flower bouquet Russia traditional", "grave flowers even number Orthodox", "funeral flowers Russian village", "death tribute bouquet izba", "flower counting superstition birch", "cemetery flowers traditional Russian wooden church"],
-      "voice_tone": "absolute_instructive",
+      "voice_tone": "cautionary",
       "theme": "dark_mystical"
     }
   ]
