@@ -301,6 +301,34 @@ def main():
     for img_path in images:
         print(f"  - {img_path}")
 
+def fetch_images_russian(keywords: str, num_images: int = 2) -> List[Path]:
+    """
+    Fetch Russian cultural images based on keywords.
+    
+    Args:
+        keywords: Search keywords (already enhanced with Russian culture terms)
+        num_images: Number of images to fetch
+        
+    Returns:
+        List of paths to downloaded images
+    """
+    output_dir = Path("output/images")
+    output_dir.mkdir(parents=True, exist_ok=True)
+    
+    # Initialize fetcher
+    access_key = os.getenv("UNSPLASH_ACCESS_KEY")
+    fetcher = UnsplashImageFetcher(access_key)
+    
+    # Enhance keywords with Russian cultural context
+    enhanced_query = enhance_keywords_with_russian_culture(keywords.split())
+    
+    # Fetch images
+    return fetcher.fetch_images_for_tags(
+        tags=[enhanced_query],
+        output_dir=output_dir,
+        count=num_images
+    )
+
 
 if __name__ == '__main__':
     main()

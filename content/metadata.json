@@ -1,10 +1,21 @@
 {
   "project_info": {
     "name": "Folklorovich",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "created_date": "2025-12-05",
     "total_folklore_entries": 15,
     "target_entries": 15
+  },
+  "reel_alternation": {
+    "last_reel_type": "superstition",
+    "visual_reel_count": 1,
+    "superstition_reel_count": 1,
+    "used_superstition_ids": [
+      "010"
+    ],
+    "used_visual_theme_ids": [
+      "V008"
+    ]
   },
   "content_rotation": {
     "current_cycle": 1,
@@ -35,9 +46,23 @@
     "total_videos_generated": 1,
     "successful_generations": 1,
     "failed_generations": 0,
-    "last_success_date": "2025-12-05T19:46:17.806701",
-    "last_failure_date": null,
-    "last_error_message": null
+    "last_success_date": "2025-12-06T19:01:36.120634",
+    "last_failure_date": "2025-12-06T18:22:47.397469",
+    "last_error_message": "FFmpeg failed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers\n  built with Apple clang version 17.0.0 (clang-1700.4.4.1)\n  configuration: --prefix=/opt/homebrew/Cellar/ffmpeg/8.0.1 --enable-shared --enable-pthreads --enable-version3 --cc=clang --host-cflags= --host-ldflags= --enable-ffplay --enable-gnutls --enable-gpl --enable-libaom --enable-libaribb24 --enable-libbluray --enable-libdav1d --enable-libharfbuzz --enable-libjxl --enable-libmp3lame --enable-libopus --enable-librav1e --enable-librist --enable-librubberband --enable-libsnappy --enable-libsrt --enable-libssh --enable-libsvtav1 --enable-libtesseract --enable-libtheora --enable-libvidstab --enable-libvmaf --enable-libvorbis --enable-libvpx --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxml2 --enable-libxvid --enable-lzma --enable-libfontconfig --enable-libfreetype --enable-frei0r --enable-libass --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-libspeex --enable-libsoxr --enable-libzmq --enable-libzimg --disable-libjack --disable-indev=jack --enable-videotoolbox --enable-audiotoolbox --enable-neon\n  libavutil      60.  8.100 / 60.  8.100\n  libavcodec     62. 11.100 / 62. 11.100\n  libavformat    62.  3.100 / 62.  3.100\n  libavdevice    62.  1.100 / 62.  1.100\n  libavfilter    11.  4.100 / 11.  4.100\n  libswscale      9.  1.100 /  9.  1.100\n  libswresample   6.  1.100 /  6.  1.100\nInput #0, image2, from 'output/images/unsplash_y-oipf2X6vk.jpg':\n  Duration: 00:00:00.04, start: 0.000000, bitrate: 93520 kb/s\n  Stream #0:0: Video: mjpeg (Progressive), yuvj420p(pc, bt470bg/unknown/unknown), 1080x1620 [SAR 72:72 DAR 2:3], 25 fps, 25 tbr, 25 tbn\nInput #1, image2, from 'output/images/unsplash_aDU5FdL4B7Y.jpg':\n  Duration: 00:00:00.04, start: 0.000000, bitrate: 65996 kb/s\n  Stream #1:0: Video: mjpeg (Progressive), yuvj420p(pc, bt470bg/unknown/unknown), 1080x1620 [SAR 72:72 DAR 2:3], 25 fps, 25 tbr, 25 tbn\nInput #2, image2, from 'output/images/unsplash_aDU5FdL4B7Y.jpg':\n  Duration: 00:00:00.04, start: 0.000000, bitrate: 65996 kb/s\n  Stream #2:0: Video: mjpeg (Progressive), yuvj420p(pc, bt470bg/unknown/unknown), 1080x1620 [SAR 72:72 DAR 2:3], 25 fps, 25 tbr, 25 tbn\nInput #3, image2, from 'output/images/unsplash_WVKZBWJqP4Y.jpg':\n  Duration: 00:00:00.04, start: 0.000000, bitrate: 105188 kb/s\n  Stream #3:0: Video: mjpeg (Progressive), yuvj420p(pc, bt470bg/unknown/unknown), 1080x1620 [SAR 72:72 DAR 2:3], 25 fps, 25 tbr, 25 tbn\nInput #4, image2, from 'output/images/unsplash_89RFrtjHvXs.jpg':\n  Duration: 00:00:00.04, start: 0.000000, bitrate: 84751 kb/s\n  Stream #4:0: Video: mjpeg (Progressive), yuvj420p(pc, bt470bg/unknown/unknown), 1080x1440 [SAR 72:72 DAR 3:4], 25 fps, 25 tbr, 25 tbn\nInput #5, image2, from 'output/images/unsplash_BHUxI9aqEMM.jpg':\n  Duration: 00:00:00.04, start: 0.000000, bitrate: 82178 kb/s\n  Stream #5:0: Video: mjpeg (Progressive), yuvj420p(pc, bt470bg/unknown/unknown), 1080x1623 [SAR 72:72 DAR 360:541], 25 fps, 25 tbr, 25 tbn\nInput #6, image2, from 'output/images/unsplash_BHUxI9aqEMM.jpg':\n  Duration: 00:00:00.04, start: 0.000000, bitrate: 82178 kb/s\n  Stream #6:0: Video: mjpeg (Progressive), yuvj420p(pc, bt470bg/unknown/unknown), 1080x1623 [SAR 72:72 DAR 360:541], 25 fps, 25 tbr, 25 tbn\nInput #7, image2, from 'output/images/unsplash_y-oipf2X6vk.jpg':\n  Duration: 00:00:00.04, start: 0.000000, bitrate: 93520 kb/s\n  Stream #7:0: Video: mjpeg (Progressive), yuvj420p(pc, bt470bg/unknown/unknown), 1080x1620 [SAR 72:72 DAR 2:3], 25 fps, 25 tbr, 25 tbn\nInput #8, image2, from 'output/images/unsplash_aDU5FdL4B7Y.jpg':\n  Duration: 00:00:00.04, start: 0.000000, bitrate: 65996 kb/s\n  Stream #8:0: Video: mjpeg (Progressive), yuvj420p(pc, bt470bg/unknown/unknown), 1080x1620 [SAR 72:72 DAR 2:3], 25 fps, 25 tbr, 25 tbn\nInput #9, image2, from 'output/images/unsplash_aDU5FdL4B7Y.jpg':\n  Duration: 00:00:00.04, start: 0.000000, bitrate: 65996 kb/s\n  Stream #9:0: Video: mjpeg (Progressive), yuvj420p(pc, bt470bg/unknown/unknown), 1080x1620 [SAR 72:72 DAR 2:3], 25 fps, 25 tbr, 25 tbn\n[in#10 @ 0x145810570] Error opening input: No such file or directory\nError opening input file assets/music/majestic_placeholder.mp3.\nError opening input files: No such file or directory\n",
+    "generation_log": [
+      {
+        "date": "2025-12-06T18:59:31.972265",
+        "type": "visual",
+        "video_path": "/Users/ilyastr/Desktop/folklorovich/output/videos/2025-12-06_V008_visual.mp4",
+        "status": "success"
+      },
+      {
+        "date": "2025-12-06T19:01:36.120640",
+        "type": "superstition",
+        "video_path": "/Users/ilyastr/Desktop/folklorovich/output/videos/2025-12-06_010_superstition.mp4",
+        "status": "success"
+      }
+    ]
   },
   "statistics": {
     "by_category": {
@@ -60,13 +85,18 @@
     "edge_tts": {
       "total_requests": 0,
       "last_request_date": null
+    },
+    "google_tts": {
+      "total_requests": 0,
+      "last_request_date": null
     }
   },
-  "last_update": "2025-12-05T19:46:17.806709",
+  "last_update": "2025-12-06T19:01:36.120639",
   "notes": [
-    "This file tracks content generation metadata and statistics",
-    "cycle_order is shuffled at the start of each cycle to ensure variety",
-    "used_ids_this_cycle resets when all 15 entries have been used",
+    "Phase 8: Dual reel types with strict alternation",
+    "Reel types alternate: visual → superstition → visual → superstition",
+    "Visual reels: 15s, no narration, loud music, Russian beauty themes",
+    "Superstition reels: 25-32s, Russian narration, dual subtitles, quiet music",
     "Update this file after each successful generation"
   ]
 }

@@ -1,16 +1,19 @@
 #!/usr/bin/env python3
 """
 Folklorovich - TTS Voice Generator
-Generates Russian narration audio using Edge TTS (free, unlimited).
+Generates Russian narration audio using Google Cloud TTS (premium quality)
+with Edge TTS as fallback (free, unlimited).
 
 Features:
+- Google Cloud TTS Wavenet voices (premium Russian quality)
+- Edge TTS fallback (free, unlimited)
 - Multiple Russian voice profiles
-- Speed adjustment to match target duration
+- Natural speech rate
 - High-quality audio output (MP3)
 - Duration validation
 
 Author: Folklorovich Project
-Date: 2025-12-05
+Date: 2025-12-06
 """
 
 import os
@@ -20,17 +23,39 @@ from pathlib import Path
 from typing import Optional
 import subprocess
 
+# Try to import Google Cloud TTS (preferred)
+try:
+    from google.cloud import texttospeech
+    GOOGLE_TTS_AVAILABLE = True
+except ImportError:
+    GOOGLE_TTS_AVAILABLE = False
+    logging.warning("google-cloud-texttospeech not installed. Using Edge TTS fallback.")
+
+# Import Edge TTS as fallback
 try:
     import edge_tts
+    EDGE_TTS_AVAILABLE = True
 except ImportError:
+    EDGE_TTS_AVAILABLE = False
     logging.error("edge-tts not installed. Run: pip install edge-tts")
-    raise
 
 # Configure logging
 logger = logging.getLogger('VoiceGenerator')
 
-# Voice profiles mapping
-VOICE_PROFILES = {
+# Google Cloud TTS Voice profiles (premium quality)
+GOOGLE_VOICE_PROFILES = {
+    'mysterious': 'ru-RU-Wavenet-B',      # Male, deep
+    'warm': 'ru-RU-Wavenet-E',            # Female, warm
+    'cautionary': 'ru-RU-Wavenet-D',      # Male, serious
+    'ominous': 'ru-RU-Wavenet-B',         # Male, dark
+    'wise_elder': 'ru-RU-Wavenet-A',      # Male, older
+    'neutral': 'ru-RU-Wavenet-C',         # Female, neutral
+    'fearful_grave': 'ru-RU-Wavenet-B',   # Male, deep (for grave warnings)
+    'hopeful_bright': 'ru-RU-Wavenet-E',  # Female, warm (for positive superstitions)
+}
+
+# Edge TTS Voice profiles (fallback)
+EDGE_VOICE_PROFILES = {
     'warm_grandfather': {
         'voice': 'ru-RU-DmitryNeural',
         'rate': '+0%',
@@ -39,34 +64,168 @@ VOICE_PROFILES = {
     },
     'mysterious_elder': {
         'voice': 'ru-RU-SvetlanaNeural',
-        'rate': '-10%',
+        'rate': '+0%',
         'pitch': '-10Hz',
         'description': 'Slow, enigmatic female voice'
     },
     'energetic_youth': {
         'voice': 'ru-RU-DariyaNeural',
-        'rate': '+10%',
+        'rate': '+0%',
         'pitch': '+5Hz',
         'description': 'Upbeat, modern female voice'
     },
     'solemn_narrator': {
         'voice': 'ru-RU-DmitryNeural',
-        'rate': '-5%',
+        'rate': '+0%',
         'pitch': '-15Hz',
         'description': 'Formal, serious male voice'
+    },
+    # Map folklore voice tones to Edge TTS
+    'mysterious': {
+        'voice': 'ru-RU-DmitryNeural',
+        'rate': '+0%',
+        'pitch': '-10Hz',
+        'description': 'Mysterious male voice'
+    },
+    'warm': {
+        'voice': 'ru-RU-SvetlanaNeural',
+        'rate': '+0%',
+        'pitch': '+0Hz',
+        'description': 'Warm female voice'
+    },
+    'cautionary': {
+        'voice': 'ru-RU-DmitryNeural',
+        'rate': '+0%',
+        'pitch': '-5Hz',
+        'description': 'Cautionary male voice'
+    },
+    'ominous': {
+        'voice': 'ru-RU-DmitryNeural',
+        'rate': '+0%',
+        'pitch': '-15Hz',
+        'description': 'Ominous deep voice'
+    },
+    'wise_elder': {
+        'voice': 'ru-RU-DmitryNeural',
+        'rate': '+0%',
+        'pitch': '-5Hz',
+        'description': 'Wise elder voice'
+    },
+    'neutral': {
+        'voice': 'ru-RU-SvetlanaNeural',
+        'rate': '+0%',
+        'pitch': '+0Hz',
+        'description': 'Neutral female voice'
+    },
+    'fearful_grave': {
+        'voice': 'ru-RU-DmitryNeural',
+        'rate': '+0%',
+        'pitch': '-15Hz',
+        'description': 'Fearful grave warning voice'
+    },
+    'hopeful_bright': {
+        'voice': 'ru-RU-SvetlanaNeural',
+        'rate': '+0%',
+        'pitch': '+5Hz',
+        'description': 'Hopeful bright voice'
     }
 }
 
 DEFAULT_VOICE_PROFILE = 'warm_grandfather'
 
 
+def generate_voice_google(text: str, output_path: str, voice_tone: str = "neutral") -> dict:
+    """
+    Generate Russian TTS using Google Cloud (better quality than Edge TTS)
+
+    Args:
+        text: Russian text to synthesize
+        output_path: Path to save MP3 file
+        voice_tone: Voice tone (mysterious, warm, cautionary, etc.)
+
+    Returns:
+        Dict with path, duration, and voice name
+    """
+    if not GOOGLE_TTS_AVAILABLE:
+        raise ImportError("Google Cloud TTS not available. Install: pip install google-cloud-texttospeech")
+
+    # Check for API key
+    api_key = os.getenv("GOOGLE_CLOUD_API_KEY")
+    if not api_key:
+        raise ValueError("GOOGLE_CLOUD_API_KEY environment variable not set")
+
+    # Initialize client with API key
+    client = texttospeech.TextToSpeechClient(
+        client_options={"api_key": api_key}
+    )
+
+    # Get voice name for this tone
+    voice_name = GOOGLE_VOICE_PROFILES.get(voice_tone, "ru-RU-Wavenet-C")
+
+    # Configure voice
+    voice = texttospeech.VoiceSelectionParams(
+        language_code="ru-RU",
+        name=voice_name
+    )
+
+    # Configure audio (natural rate, no manipulation)
+    audio_config = texttospeech.AudioConfig(
+        audio_encoding=texttospeech.AudioEncoding.MP3,
+        speaking_rate=1.0,  # Natural pace
+        pitch=0.0
+    )
+
+    # Synthesis input
+    synthesis_input = texttospeech.SynthesisInput(text=text)
+
+    # Generate speech
+    logger.info(f"Generating Google Cloud TTS with voice: {voice_name}")
+    response = client.synthesize_speech(
+        input=synthesis_input,
+        voice=voice,
+        audio_config=audio_config
+    )
+
+    # Ensure output directory exists
+    Path(output_path).parent.mkdir(parents=True, exist_ok=True)
+
+    # Save audio file
+    with open(output_path, "wb") as out:
+        out.write(response.audio_content)
+
+    logger.info(f"✓ Generated audio: {Path(output_path).name} "
+                f"({Path(output_path).stat().st_size // 1024} KB)")
+
+    # Calculate actual duration (use ffprobe)
+    duration = get_audio_duration_ffprobe(output_path)
+
+    return {
+        "path": output_path,
+        "duration": duration,
+        "voice": voice_name
+    }
+
+
+def get_audio_duration_ffprobe(audio_path: str) -> float:
+    """Get audio file duration using ffprobe"""
+    cmd = [
+        "ffprobe", "-v", "error",
+        "-show_entries", "format=duration",
+        "-of", "default=noprint_wrappers=1:nokey=1",
+        audio_path
+    ]
+    result = subprocess.run(cmd, capture_output=True, text=True, check=True)
+    duration = float(result.stdout.strip())
+    return duration
+
+
 class TTSGenerator:
-    """Generates TTS audio using Microsoft Edge TTS."""
+    """Generates TTS audio using Microsoft Edge TTS (fallback)."""
 
     def __init__(self):
         """Initialize TTS generator."""
-        self.voice_profiles = VOICE_PROFILES
-        logger.info("TTS generator initialized")
+        self.voice_profiles = EDGE_VOICE_PROFILES
+        logger.info("TTS generator initialized (Edge TTS fallback)")
 
     def get_voice_config(self, voice_tone: str) -> dict:
         """

@@ -1,22 +1,19 @@
 #!/usr/bin/env python3
 """
-Folklorovich - Daily Content Generator
-Main orchestrator script that runs the entire content generation pipeline.
+Folklorovich - Daily Content Generator (Phase 8: Dual Reel Types)
+Master orchestrator script with strict alternation between visual and superstition reels.
 
 Usage:
     python scripts/generate_daily_content.py
 
-This script:
-1. Loads environment variables and configuration
-2. Selects the next folklore entry from the database
-3. Fetches images from Unsplash
-4. Creates a 4K image collage
-5. Generates Russian TTS narration
-6. Renders final video with FFmpeg
-7. Updates metadata tracking
+This script generates TWO distinct reel types:
+- TYPE A: Visual-Only Reels (15s, no narration, loud music, Russian beauty)
+- TYPE B: Superstition Reels (25-32s, Russian narration, dual subtitles, quiet music)
+
+Pattern: A → B → A → B (strict alternation)
 
 Author: Folklorovich Project
-Date: 2025-12-05
+Date: 2025-12-06
 """
 
 import os
@@ -24,11 +21,10 @@ import sys
 import json
 import logging
 import random
-from datetime import datetime, timedelta
+from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
 
-# Add project root to path for imports
+# Add project root to path
 PROJECT_ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
@@ -36,11 +32,12 @@ sys.path.insert(0, str(PROJECT_ROOT))
 from dotenv import load_dotenv
 load_dotenv(PROJECT_ROOT / '.env')
 
-# Import other pipeline scripts
-from scripts.fetch_images import fetch_images_for_folklore
-from scripts.create_collage import create_collage
-from scripts.generate_voice import generate_tts_audio
-from scripts.render_video import render_video
+# Import pipeline modules
+from scripts.fetch_images import fetch_images_russian
+from scripts.generate_voice import generate_voice_google
+from scripts.generate_subtitles import generate_dual_subtitles
+from scripts.render_video import create_slideshow_video
+from scripts.music_manager import get_random_music
 
 # Configure logging
 logging.basicConfig(
@@ -54,319 +51,336 @@ logging.basicConfig(
 logger = logging.getLogger('DailyGenerator')
 
 
-class ContentGenerator:
-    """Main content generation orchestrator."""
-
-    def __init__(self):
-        """Initialize the content generator."""
-        self.project_root = PROJECT_ROOT
-        self.content_dir = self.project_root / 'content'
-        self.output_dir = self.project_root / 'output'
-
-        # Load configuration
-        self.folklore_db = self._load_json(self.content_dir / 'folklore_database.json')
-        self.metadata = self._load_json(self.content_dir / 'metadata.json')
-
-        # Ensure output directories exist
-        (self.output_dir / 'images').mkdir(parents=True, exist_ok=True)
-        (self.output_dir / 'audio').mkdir(parents=True, exist_ok=True)
-        (self.output_dir / 'videos').mkdir(parents=True, exist_ok=True)
-
-        logger.info("Content generator initialized")
-
-    def _load_json(self, filepath: Path) -> Dict:
-        """Load JSON file with error handling."""
-        try:
-            with open(filepath, 'r', encoding='utf-8') as f:
-                return json.load(f)
-        except FileNotFoundError:
-            logger.error(f"File not found: {filepath}")
-            raise
-        except json.JSONDecodeError as e:
-            logger.error(f"Invalid JSON in {filepath}: {e}")
-            raise
-
-    def _save_json(self, filepath: Path, data: Dict):
-        """Save JSON file with pretty formatting."""
-        with open(filepath, 'w', encoding='utf-8') as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
-        logger.info(f"Saved JSON to {filepath}")
-
-    def select_next_folklore(self) -> Optional[Dict]:
-        """
-        Select the next folklore entry using intelligent rotation.
-
-        Algorithm:
-        1. Check if all entries have been used in current cycle
-        2. If yes, start new cycle with shuffled order
-        3. Select next unused entry
-        4. Mark as used in metadata
-
-        Returns:
-            Folklore entry dict or None if database is empty
-        """
-        folklore_list = self.folklore_db.get('folklore', [])
-        if not folklore_list:
-            logger.error("Folklore database is empty!")
-            return None
-
-        # Get current cycle state
-        used_ids = set(self.metadata['content_rotation']['used_ids_this_cycle'])
-        all_ids = {entry['id'] for entry in folklore_list}
-
-        # Check if cycle is complete
-        if used_ids >= all_ids:
-            logger.info("Cycle complete! Starting new cycle with shuffled order")
-            self._start_new_cycle(all_ids)
-            used_ids = set()
-
-        # Get cycle order (or create if doesn't exist)
-        cycle_order = self.metadata['content_rotation'].get('cycle_order', [])
-        if not cycle_order:
-            cycle_order = list(all_ids)
-            random.shuffle(cycle_order)
-            self.metadata['content_rotation']['cycle_order'] = cycle_order
-
-        # Find next unused entry
-        for folklore_id in cycle_order:
-            if folklore_id not in used_ids:
-                # Find the full entry
-                entry = next((e for e in folklore_list if e['id'] == folklore_id), None)
-                if entry:
-                    logger.info(f"Selected folklore: {entry['name']} (ID: {folklore_id})")
-                    return entry
-
-        logger.error("Could not select next folklore entry")
-        return None
-
-    def _start_new_cycle(self, all_ids: set):
-        """Start a new content rotation cycle."""
-        # Increment cycle number
-        self.metadata['content_rotation']['current_cycle'] += 1
-
-        # Create new shuffled order
-        new_order = list(all_ids)
-        random.shuffle(new_order)
-
-        # Reset tracking
-        self.metadata['content_rotation']['cycle_order'] = new_order
-        self.metadata['content_rotation']['used_ids_this_cycle'] = []
-
-        logger.info(f"Started cycle #{self.metadata['content_rotation']['current_cycle']}")
-
-    def mark_folklore_used(self, folklore_id: str):
-        """Mark a folklore entry as used in the current cycle."""
-        used_ids = self.metadata['content_rotation']['used_ids_this_cycle']
-        if folklore_id not in used_ids:
-            used_ids.append(folklore_id)
-
-        self.metadata['content_rotation']['last_used_id'] = folklore_id
-        self.metadata['content_rotation']['last_generated_date'] = datetime.now().isoformat()
-
-        logger.info(f"Marked folklore {folklore_id} as used")
-
-    def generate_content(self, folklore_entry: Dict) -> Optional[Path]:
-        """
-        Generate complete video content for a folklore entry.
-
-        Pipeline:
-        1. Fetch images from Unsplash
-        2. Create collage
-        3. Generate TTS audio
-        4. Render video with FFmpeg
-
-        Args:
-            folklore_entry: Folklore database entry
-
-        Returns:
-            Path to generated video or None if failed
-        """
-        start_time = datetime.now()
-        folklore_id = folklore_entry['id']
-        folklore_name = folklore_entry['name']
-
-        try:
-            # Create dated output directory
-            date_str = datetime.now().strftime('%Y-%m-%d')
-            output_subdir = self.output_dir / 'images' / f"{date_str}_{folklore_id}"
-            output_subdir.mkdir(parents=True, exist_ok=True)
-
-            logger.info(f"Starting generation for {folklore_name} (ID: {folklore_id})")
-
-            # Step 1: Fetch images
-            logger.info("Step 1/4: Fetching images from Unsplash...")
-            image_paths = fetch_images_for_folklore(
-                visual_tags=folklore_entry['visual_tags'],
-                output_dir=output_subdir,
-                count=6  # Fetch 6 images for variety
-            )
-
-            if not image_paths:
-                logger.error("Failed to fetch images")
-                return None
-
-            logger.info(f"Fetched {len(image_paths)} images")
-
-            # Step 2: Create collage
-            logger.info("Step 2/4: Creating image collage...")
-            collage_path = self.output_dir / 'images' / f"{date_str}_{folklore_id}_collage.png"
-
-            success = create_collage(
-                image_paths=image_paths,
-                output_path=collage_path,
-                title=folklore_entry['name'],
-                subtitle=folklore_entry.get('moral', ''),
-                layout_name=None  # Will select random layout
-            )
-
-            if not success:
-                logger.error("Failed to create collage")
-                return None
-
-            logger.info(f"Created collage: {collage_path}")
-
-            # Step 3: Generate TTS audio
-            logger.info("Step 3/4: Generating TTS audio...")
-            audio_path = self.output_dir / 'audio' / f"{date_str}_{folklore_id}.mp3"
-
-            audio_success = generate_tts_audio(
-                text=folklore_entry['story_full'],
-                output_path=audio_path,
-                voice_tone=folklore_entry['voice_tone'],
-                target_duration=folklore_entry.get('duration_target', 30)
-            )
-
-            if not audio_success:
-                logger.error("Failed to generate audio")
-                return None
-
-            logger.info(f"Generated audio: {audio_path}")
-
-            # Step 4: Render video
-            logger.info("Step 4/4: Rendering final video...")
-            video_filename = f"{date_str}_{folklore_name.replace(' ', '_')}.mp4"
-            video_path = self.output_dir / 'videos' / video_filename
-
-            render_success = render_video(
-                image_path=collage_path,
-                audio_path=audio_path,
-                output_path=video_path
-            )
-
-            if not render_success:
-                logger.error("Failed to render video")
-                return None
-
-            # Success! Update statistics
-            generation_time = (datetime.now() - start_time).total_seconds()
-            self._update_statistics(folklore_entry, generation_time, success=True)
-
-            logger.info(f"✓ Video generated successfully: {video_path}")
-            logger.info(f"Total generation time: {generation_time:.2f} seconds")
-
-            return video_path
-
-        except Exception as e:
-            logger.error(f"Generation failed with exception: {e}", exc_info=True)
-            self._update_statistics(folklore_entry, 0, success=False, error=str(e))
-            return None
-
-    def _update_statistics(self, folklore_entry: Dict, generation_time: float,
-                          success: bool, error: Optional[str] = None):
-        """Update metadata statistics after generation attempt."""
-        stats = self.metadata['generation_history']
-
-        stats['total_videos_generated'] += 1
-
-        if success:
-            stats['successful_generations'] += 1
-            stats['last_success_date'] = datetime.now().isoformat()
-
-            # Update category statistics
-            category = folklore_entry.get('category', 'unknown')
-            cat_stats = self.metadata['statistics']['by_category']
-            cat_stats[category] = cat_stats.get(category, 0) + 1
-
-            # Update voice tone statistics
-            voice = folklore_entry.get('voice_tone', 'unknown')
-            voice_stats = self.metadata['statistics']['by_voice_tone']
-            voice_stats[voice] = voice_stats.get(voice, 0) + 1
-
-            # Update average generation time
-            avg_time = self.metadata['statistics'].get('average_generation_time_seconds')
-            if avg_time is None:
-                self.metadata['statistics']['average_generation_time_seconds'] = generation_time
-            else:
-                # Running average
-                total = stats['successful_generations']
-                self.metadata['statistics']['average_generation_time_seconds'] = \
-                    ((avg_time * (total - 1)) + generation_time) / total
-        else:
-            stats['failed_generations'] += 1
-            stats['last_failure_date'] = datetime.now().isoformat()
-            stats['last_error_message'] = error
-
-        self.metadata['last_update'] = datetime.now().isoformat()
-
-    def run(self) -> bool:
-        """
-        Run the daily content generation pipeline.
-
-        Returns:
-            True if successful, False otherwise
-        """
-        logger.info("=" * 60)
-        logger.info("Folklorovich Daily Content Generation Started")
-        logger.info("=" * 60)
-
-        try:
-            # Select next folklore entry
-            folklore_entry = self.select_next_folklore()
-            if not folklore_entry:
-                logger.error("Could not select folklore entry")
-                return False
-
-            # Generate content
-            video_path = self.generate_content(folklore_entry)
-
-            if video_path and video_path.exists():
-                # Mark as used
-                self.mark_folklore_used(folklore_entry['id'])
-
-                # Save updated metadata
-                self._save_json(self.content_dir / 'metadata.json', self.metadata)
-
-                logger.info("=" * 60)
-                logger.info("Generation Complete!")
-                logger.info(f"Video: {video_path}")
-                logger.info(f"Folklore: {folklore_entry['name']} ({folklore_entry['id']})")
-                logger.info("=" * 60)
-
-                return True
-            else:
-                logger.error("Generation failed")
-                # Still save metadata to track failures
-                self._save_json(self.content_dir / 'metadata.json', self.metadata)
-                return False
-
-        except Exception as e:
-            logger.error(f"Critical error in generation pipeline: {e}", exc_info=True)
-            return False
-
-
 def main():
-    """Main entry point."""
+    """Generate daily Folklorovich reel with strict alternation"""
+
+    logger.info("=" * 60)
+    logger.info("FOLKLOROVICH DAILY CONTENT GENERATOR - PHASE 8")
+    logger.info("=" * 60)
+
+    # Load metadata
+    metadata_path = Path(PROJECT_ROOT / "content/metadata.json")
+    metadata = json.loads(metadata_path.read_text())
+
+    # Determine next reel type (STRICT ALTERNATION)
+    last_type = metadata.get("reel_alternation", {}).get("last_reel_type")
+
+    if last_type == "visual":
+        next_type = "superstition"
+    elif last_type == "superstition":
+        next_type = "visual"
+    else:
+        # First run - start with visual
+        next_type = "visual"
+
+    logger.info(f"Last reel type: {last_type or 'None (first run)'}")
+    logger.info(f"Next reel type: {next_type.upper()}")
+    logger.info("")
+
     try:
-        generator = ContentGenerator()
-        success = generator.run()
-        sys.exit(0 if success else 1)
-    except KeyboardInterrupt:
-        logger.info("Generation cancelled by user")
-        sys.exit(130)
+        if next_type == "visual":
+            video_path = generate_visual_reel(metadata)
+        else:
+            video_path = generate_superstition_reel(metadata)
+
+        # Update metadata
+        if "reel_alternation" not in metadata:
+            metadata["reel_alternation"] = {
+                "last_reel_type": None,
+                "visual_reel_count": 0,
+                "superstition_reel_count": 0,
+                "used_superstition_ids": [],
+                "used_visual_theme_ids": []
+            }
+
+        metadata["reel_alternation"]["last_reel_type"] = next_type
+
+        if next_type == "visual":
+            metadata["reel_alternation"]["visual_reel_count"] = \
+                metadata["reel_alternation"].get("visual_reel_count", 0) + 1
+        else:
+            metadata["reel_alternation"]["superstition_reel_count"] = \
+                metadata["reel_alternation"].get("superstition_reel_count", 0) + 1
+
+        # Update generation history
+        if "generation_history" not in metadata:
+            metadata["generation_history"] = {}
+
+        metadata["generation_history"]["last_success_date"] = datetime.now().isoformat()
+        metadata["last_update"] = datetime.now().isoformat()
+
+        # Add to generation log
+        if "generation_log" not in metadata["generation_history"]:
+            metadata["generation_history"]["generation_log"] = []
+
+        metadata["generation_history"]["generation_log"].append({
+            "date": datetime.now().isoformat(),
+            "type": next_type,
+            "video_path": str(video_path),
+            "status": "success"
+        })
+
+        # Keep only last 20 entries in log
+        metadata["generation_history"]["generation_log"] = \
+            metadata["generation_history"]["generation_log"][-20:]
+
+        metadata_path.write_text(json.dumps(metadata, indent=2, ensure_ascii=False))
+
+        logger.info("")
+        logger.info("=" * 60)
+        logger.info(f"✅ {next_type.upper()} REEL GENERATED SUCCESSFULLY!")
+        logger.info(f"📹 Video: {video_path}")
+        logger.info(f"📊 Stats: {metadata['reel_alternation']['visual_reel_count']} visual, "
+                   f"{metadata['reel_alternation']['superstition_reel_count']} superstition")
+        logger.info("=" * 60)
+
     except Exception as e:
-        logger.error(f"Fatal error: {e}", exc_info=True)
+        logger.error(f"❌ Generation failed: {e}", exc_info=True)
+
+        # Update failure metadata
+        if "generation_history" not in metadata:
+            metadata["generation_history"] = {}
+
+        metadata["generation_history"]["last_failure_date"] = datetime.now().isoformat()
+        metadata["generation_history"]["last_error_message"] = str(e)
+        metadata_path.write_text(json.dumps(metadata, indent=2, ensure_ascii=False))
+
         sys.exit(1)
 
 
-if __name__ == '__main__':
+def generate_visual_reel(metadata: dict) -> Path:
+    """
+    TYPE A: Visual-Only Reel (15s, no narration)
+
+    Features:
+    - 15 seconds total
+    - 10 images with fast crossfades
+    - Loud atmospheric music
+    - Only watermark overlay
+    - Russian cultural/nature beauty
+    """
+
+    logger.info("┌─────────────────────────────────────────┐")
+    logger.info("│   GENERATING VISUAL REEL (TYPE A)      │")
+    logger.info("└─────────────────────────────────────────┘")
+    logger.info("")
+
+    # Load visual themes
+    themes_path = Path(PROJECT_ROOT / "content/visual_themes.json")
+    themes_data = json.loads(themes_path.read_text())
+    themes = themes_data["themes"]
+
+    # Get used theme IDs
+    used_theme_ids = metadata.get("reel_alternation", {}).get("used_visual_theme_ids", [])
+
+    # Select unused theme (or reset if all used)
+    available_themes = [t for t in themes if t["id"] not in used_theme_ids]
+    if not available_themes:
+        logger.info("All themes used, resetting cycle")
+        available_themes = themes
+        used_theme_ids = []
+
+    theme = random.choice(available_themes)
+    logger.info(f"🎨 Theme: {theme['name']} ({theme['id']})")
+    logger.info(f"   Mood: {theme['mood']}")
+    logger.info("")
+
+    # Fetch 10 images (2 per keyword)
+    logger.info("📥 Fetching images from Pixabay...")
+    images = []
+    for i, keyword_set in enumerate(theme["keywords"]):
+        logger.info(f"   Keyword {i+1}/5: {keyword_set}")
+        try:
+            img_paths = fetch_images_russian(keyword_set, num_images=2)
+            images.extend(img_paths)
+        except Exception as e:
+            logger.warning(f"   Failed to fetch images for '{keyword_set}': {e}")
+
+    if len(images) < 10:
+        logger.warning(f"Only got {len(images)} images, will repeat some")
+
+    images = images[:10] if len(images) >= 10 else images
+    logger.info(f"   Total images: {len(images)}")
+    logger.info("")
+
+    # Fetch cinematic music (random selection)
+    logger.info("🎵 Selecting cinematic music...")
+    music_path = get_random_music("visual")
+    logger.info(f"   Music: {Path(music_path).name}")
+    logger.info("")
+
+    # Render video
+    output_dir = Path(PROJECT_ROOT / "output/videos")
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    video_filename = f"{datetime.now().date()}_{theme['id']}_visual.mp4"
+    output_path = output_dir / video_filename
+
+    logger.info("🎬 Rendering slideshow video...")
+    logger.info(f"   Output: {output_path}")
+    logger.info("")
+
+    create_slideshow_video(
+        image_paths=images,
+        output_path=str(output_path),
+        reel_type="visual",
+        music_path=music_path
+    )
+
+    # Mark theme as used
+    used_theme_ids.append(theme["id"])
+    metadata["reel_alternation"]["used_visual_theme_ids"] = used_theme_ids
+
+    logger.info("✅ Visual reel complete!")
+    logger.info("")
+
+    return output_path
+
+
+def generate_superstition_reel(metadata: dict) -> Path:
+    """
+    TYPE B: Superstition Reel (25-32s, narration + dual subs)
+
+    Features:
+    - 25-32 seconds (matches audio)
+    - 10-13 images with smooth crossfades
+    - Russian narration (Google Cloud TTS)
+    - Dual subtitles (Russian + English)
+    - Quiet background music (15% volume)
+    - Watermark overlay
+    """
+
+    logger.info("┌─────────────────────────────────────────┐")
+    logger.info("│  GENERATING SUPERSTITION REEL (TYPE B) │")
+    logger.info("└─────────────────────────────────────────┘")
+    logger.info("")
+
+    # Load folklore database
+    folklore_path = Path(PROJECT_ROOT / "content/folklore_database.json")
+    folklore_db = json.loads(folklore_path.read_text())
+
+    # Get used superstition IDs
+    used_ids = metadata.get("reel_alternation", {}).get("used_superstition_ids", [])
+
+    # Select unused superstition
+    available = [f for f in folklore_db["folklore"] if f["id"] not in used_ids]
+
+    if not available:
+        logger.info("All superstitions used, resetting cycle")
+        available = folklore_db["folklore"]
+        used_ids = []
+
+    folklore = random.choice(available)
+    logger.info(f"📖 Superstition: {folklore['name']} (ID: {folklore['id']})")
+    logger.info(f"   Voice tone: {folklore['voice_tone']}")
+    logger.info("")
+
+    # Generate Russian TTS
+    logger.info("🎙️  Generating Russian narration (Google Cloud TTS)...")
+    audio_dir = Path(PROJECT_ROOT / "output/audio")
+    audio_dir.mkdir(parents=True, exist_ok=True)
+
+    audio_filename = f"{datetime.now().date()}_{folklore['id']}.mp3"
+    audio_path = audio_dir / audio_filename
+
+    russian_text = folklore.get("story_russian", folklore["story_full"])
+
+    try:
+        voice_data = generate_voice_google(
+            text=russian_text,
+            output_path=str(audio_path),
+            voice_tone=folklore["voice_tone"]
+        )
+        logger.info(f"   Duration: {voice_data['duration']:.1f}s")
+        logger.info(f"   Voice: {voice_data['voice']}")
+    except Exception as e:
+        logger.error(f"Google Cloud TTS failed, falling back to Edge TTS: {e}")
+        # Fallback to Edge TTS if Google fails
+        from scripts.generate_voice import generate_tts_audio
+        generate_tts_audio(
+            text=russian_text,
+            output_path=audio_path,
+            voice_tone=folklore["voice_tone"]
+        )
+        from scripts.generate_voice import get_audio_duration_ffprobe
+        voice_data = {
+            "path": str(audio_path),
+            "duration": get_audio_duration_ffprobe(str(audio_path)),
+            "voice": "Edge TTS fallback"
+        }
+
+    logger.info("")
+
+    # Fetch images (Russian cultural)
+    logger.info("📥 Fetching images from Pixabay...")
+    images = []
+    num_needed = int(voice_data["duration"] / 2.5) + 1
+
+    for i, keyword in enumerate(folklore["visual_tags"][:6]):  # Use first 6 keywords
+        logger.info(f"   Keyword {i+1}: {keyword}")
+        try:
+            img_paths = fetch_images_russian(keyword, num_images=2)
+            images.extend(img_paths)
+        except Exception as e:
+            logger.warning(f"   Failed: {e}")
+
+    images = images[:num_needed] if len(images) >= num_needed else images
+    logger.info(f"   Total images: {len(images)} (need {num_needed})")
+    logger.info("")
+
+    # Generate dual subtitles
+    logger.info("📝 Generating dual subtitles...")
+    subtitle_dir = Path(PROJECT_ROOT / "output/subtitles")
+    subtitle_dir.mkdir(parents=True, exist_ok=True)
+
+    srt_russian, srt_english = generate_dual_subtitles(
+        russian_text=russian_text,
+        english_text=folklore["story_full"],
+        audio_duration=voice_data["duration"],
+        output_dir=str(subtitle_dir),
+        video_id=folklore["id"]
+    )
+    logger.info(f"   Russian: {srt_russian}")
+    logger.info(f"   English: {srt_english}")
+    logger.info("")
+
+    # Fetch Russian folk music (random selection, quiet background)
+    logger.info("🎵 Selecting Russian folk music...")
+    music_path = get_random_music("superstition")
+    logger.info(f"   Music: {Path(music_path).name}")
+    logger.info("")
+
+    # Render video
+    output_dir = Path(PROJECT_ROOT / "output/videos")
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    video_filename = f"{datetime.now().date()}_{folklore['id']}_superstition.mp4"
+    output_path = output_dir / video_filename
+
+    logger.info("🎬 Rendering slideshow video with dual subtitles...")
+    logger.info(f"   Output: {output_path}")
+    logger.info("")
+
+    create_slideshow_video(
+        image_paths=images,
+        output_path=str(output_path),
+        reel_type="superstition",
+        audio_path=str(audio_path),
+        music_path=music_path,
+        title=folklore["name"],
+        subtitles_russian=srt_russian,
+        subtitles_english=srt_english
+    )
+
+    # Mark as used
+    used_ids.append(folklore["id"])
+    metadata["reel_alternation"]["used_superstition_ids"] = used_ids
+
+    logger.info("✅ Superstition reel complete!")
+    logger.info("")
+
+    return output_path
+
+
+if __name__ == "__main__":
     main()

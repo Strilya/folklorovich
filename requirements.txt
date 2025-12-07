@@ -10,7 +10,8 @@ requests>=2.31.0         # Unsplash API calls
 urllib3>=2.0.0           # HTTP client
 
 # Text-to-Speech
-edge-tts>=6.1.0          # Free Microsoft Edge TTS service
+edge-tts>=6.1.0          # Free Microsoft Edge TTS service (fallback)
+google-cloud-texttospeech>=2.14.0  # Premium Russian TTS (primary)
 
 # Video Processing
 opencv-python>=4.8.0     # Video frame manipulation (cv2)
