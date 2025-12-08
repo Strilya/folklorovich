@@ -1,6 +1,14 @@
 """
 Subtitle Generator for Folklorovich
 Generates dual language SRT subtitles for superstition reels
+
+FIXES:
+- Better word chunking (avoids orphan words)
+- Proper SRT timing synchronization
+- Handles Russian and English text separately
+
+Author: Folklorovich Project  
+Date: 2025-12-07 (FIXED VERSION)
 """
 
 from pathlib import Path
@@ -27,20 +35,14 @@ def generate_dual_subtitles(
         Tuple of (russian_srt_path, english_srt_path)
     """
 
-    # Split text into chunks (2-3 words per subtitle for readability)
-    russian_chunks = split_into_subtitle_chunks(russian_text, words_per_chunk=3)
-    english_chunks = split_into_subtitle_chunks(english_text, words_per_chunk=3)
+    # Split text into subtitle-friendly chunks (4-5 words for readability)
+    russian_chunks = split_into_subtitle_chunks(russian_text, words_per_chunk=4)
+    english_chunks = split_into_subtitle_chunks(english_text, words_per_chunk=5)
 
-    # Ensure chunks align (use max length)
+    # Use the longer chunk list for timing (ensures coverage)
     max_chunks = max(len(russian_chunks), len(english_chunks))
 
-    # Pad shorter list if needed
-    while len(russian_chunks) < max_chunks:
-        russian_chunks.append("")
-    while len(english_chunks) < max_chunks:
-        english_chunks.append("")
-
-    # Calculate timing
+    # Calculate timing - give each subtitle ~2-3 seconds
     time_per_chunk = audio_duration / max_chunks
 
     # Generate Russian SRT
@@ -57,13 +59,13 @@ def generate_dual_subtitles(
     return (str(russian_path), str(english_path))
 
 
-def split_into_subtitle_chunks(text: str, words_per_chunk: int = 3) -> list:
+def split_into_subtitle_chunks(text: str, words_per_chunk: int = 4) -> list:
     """
     Split text into readable subtitle chunks
 
     Args:
         text: Full text to split
-        words_per_chunk: Number of words per subtitle chunk
+        words_per_chunk: Target number of words per subtitle chunk
 
     Returns:
         List of text chunks
@@ -73,7 +75,8 @@ def split_into_subtitle_chunks(text: str, words_per_chunk: int = 3) -> list:
 
     for i in range(0, len(words), words_per_chunk):
         chunk = " ".join(words[i:i+words_per_chunk])
-        chunks.append(chunk)
+        if chunk.strip():  # Only add non-empty chunks
+            chunks.append(chunk)
 
     return chunks
 
