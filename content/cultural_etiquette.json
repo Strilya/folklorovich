@@ -1,0 +1,50 @@
+{
+  "metadata": {"total_entries": 5},
+  "etiquette": [
+    {
+      "id": "etiq_001",
+      "name": "Even Number Flowers",
+      "category": "gifts",
+      "story_english": "In Russia, the number of flowers in a bouquet carries deep meaning. An even number of flowers is reserved exclusively for funerals and gravesites. Bringing someone an even number of flowers to their home or celebration is considered a terrible omen, suggesting death or misfortune. Always count your roses carefully - three, five, seven, or nine blooms bring joy, but two, four, or six bring sorrow.",
+      "story_russian": "В России количество цветов в букете несёт глубокий смысл. Чётное количество цветов предназначено исключительно для похорон и могил. Принести кому-то чётное количество цветов домой или на праздник считается страшным предзнаменованием.",
+      "visual_tags": ["roses closeup", "bouquet flowers", "hands holding roses"],
+      "voice_tone": "informative"
+    },
+    {
+      "id": "etiq_002",
+      "name": "Empty Toast",
+      "category": "dining",
+      "story_english": "Clinking glasses with an empty glass in Russia is deeply unlucky, almost insulting to fate itself. The tradition comes from military times, when toasting with water instead of vodka meant you wished someone dead. Even at formal dinners, if your glass is empty during a toast, you simply raise it without clinking.",
+      "story_russian": "Чоканье бокалами с пустым стаканом в России глубоко неудачно, почти оскорбительно для самой судьбы. Традиция происходит из военных времён, когда тост водой вместо водки означал, что вы желаете кому-то смерти.",
+      "visual_tags": ["wine glass", "champagne glasses", "vodka shots"],
+      "voice_tone": "informative"
+    },
+    {
+      "id": "etiq_003",
+      "name": "Yellow Flowers",
+      "category": "gifts",
+      "story_english": "Yellow flowers in Russia carry a dark message - they symbolize separation, betrayal, or the end of a relationship. While beautiful, giving yellow roses or tulips tells someone you expect the friendship or romance to end. The superstition runs so deep that many Russians will visibly react with concern when handed yellow blooms.",
+      "story_russian": "Жёлтые цветы в России несут тёмное послание - они символизируют разлуку, измену или конец отношений. Хотя красивые, дарение жёлтых роз или тюльпанов говорит кому-то, что вы ожидаете конца дружбы или романтики.",
+      "visual_tags": ["yellow roses", "yellow flowers", "yellow tulips"],
+      "voice_tone": "ominous"
+    },
+    {
+      "id": "etiq_004",
+      "name": "Refusing Tea",
+      "category": "hospitality",
+      "story_english": "In Russia, refusing tea when offered is a serious social offense. Tea represents warmth, connection, and the host's desire to care for you. Saying no suggests you don't trust their hospitality or consider yourself above their offering. Russian hosts will ask multiple times, and it's customary to accept at least one cup.",
+      "story_russian": "В России отказ от чая серьёзный социальный проступок. Чай представляет тепло, связь и желание хозяина позаботиться о вас. Отказ предполагает недоверие к гостеприимству.",
+      "visual_tags": ["tea cup", "hot tea steaming", "teapot pouring"],
+      "voice_tone": "warm"
+    },
+    {
+      "id": "etiq_005",
+      "name": "Empty Bottles",
+      "category": "dining",
+      "story_english": "Empty bottles must never remain on a Russian dining table. The moment a bottle is finished, it's immediately placed on the floor. This tradition has practical roots - during hard times, leaving empties reminded everyone of scarcity. Modern Russians religiously follow this rule at every meal.",
+      "story_russian": "Пустые бутылки никогда не должны оставаться на столе. Когда бутылка опустошена, её ставят на пол. Традиция имеет практические корни - оставление пустых напоминало о дефиците.",
+      "visual_tags": ["empty bottle", "wine bottles", "glass bottles"],
+      "voice_tone": "informative"
+    }
+  ]
+}
