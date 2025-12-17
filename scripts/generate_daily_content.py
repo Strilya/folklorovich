@@ -1,223 +1,92 @@
 #!/usr/bin/env python3
-"""
-Folklorovich - Daily Content Generator (FIXED)
-ENGLISH narration, proper durations, multi-source images
-"""
-
-import os
 import sys
 import json
-import logging
 import random
-from datetime import datetime
+import logging
 from pathlib import Path
+from datetime import datetime
 
 PROJECT_ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from dotenv import load_dotenv
-load_dotenv(PROJECT_ROOT / '.env')
-
-from scripts.fetch_images import fetch_images_russian
+from scripts.fetch_videos import fetch_russian_videos
 from scripts.generate_voice import generate_voice_google
 from scripts.generate_subtitles import generate_dual_subtitles
 from scripts.render_video import create_slideshow_video
-from scripts.music_manager import get_random_music
 
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger('DailyGenerator')
+logging.basicConfig(level=logging.INFO, format='%(levelname)s - %(message)s')
+logger = logging.getLogger('Main')
 
 
-def main():
-    logger.info("="*60)
-    logger.info("FOLKLOROVICH DAILY GENERATOR - FIXED VERSION")
-    logger.info("="*60)
+def generate_etiquette():
+    logger.info("="*50)
+    logger.info("GENERATING ETIQUETTE VIDEO")
+    logger.info("="*50)
     
-    metadata_path = PROJECT_ROOT / "content/metadata.json"
-    metadata = json.loads(metadata_path.read_text())
+    # Load data
+    etiq_file = PROJECT_ROOT / "content/cultural_etiquette.json"
+    with open(etiq_file) as f:
+        rules = json.load(f)['etiquette']
     
-    # Determine reel type
-    last_type = metadata.get("reel_alternation", {}).get("last_reel_type")
-    next_type = "superstition" if last_type == "visual" else "visual"
+    rule = random.choice(rules)
+    logger.info(f"Topic: {rule['name']}")
     
-    logger.info(f"Next reel: {next_type.upper()}")
+    # Fetch videos
+    keywords = " ".join(rule['visual_tags'])
+    logger.info(f"Keywords: {keywords}")
+    videos = fetch_russian_videos(keywords, num_videos=8)
     
-    try:
-        if next_type == "visual":
-            video_path = generate_visual_reel(metadata)
-        else:
-            video_path = generate_superstition_reel(metadata)
-        
-        # Update metadata
-        if "reel_alternation" not in metadata:
-            metadata["reel_alternation"] = {
-                "last_reel_type": None,
-                "visual_reel_count": 0,
-                "superstition_reel_count": 0,
-                "used_superstition_ids": [],
-                "used_visual_theme_ids": []
-            }
-        
-        metadata["reel_alternation"]["last_reel_type"] = next_type
-        
-        if next_type == "visual":
-            metadata["reel_alternation"]["visual_reel_count"] = metadata["reel_alternation"].get("visual_reel_count", 0) + 1
-        else:
-            metadata["reel_alternation"]["superstition_reel_count"] = metadata["reel_alternation"].get("superstition_reel_count", 0) + 1
-        
-        metadata_path.write_text(json.dumps(metadata, indent=2))
-        
-        logger.info(f"✅ {next_type.upper()} REEL COMPLETE: {video_path}")
-        
-    except Exception as e:
-        logger.error(f"❌ FAILED: {e}", exc_info=True)
-        sys.exit(1)
-
-
-def generate_visual_reel(metadata: dict) -> Path:
-    """TYPE A: 15s visual reel"""
+    if len(videos) < 5:
+        logger.error("Not enough videos!")
+        return None
     
-    logger.info("GENERATING VISUAL REEL")
+    logger.info(f"Videos: {len(videos)}")
     
-    themes_path = PROJECT_ROOT / "content/visual_themes.json"
-    themes_data = json.loads(themes_path.read_text())
-    themes = themes_data["themes"]
-    
-    used_theme_ids = metadata.get("reel_alternation", {}).get("used_visual_theme_ids", [])
-    available_themes = [t for t in themes if t["id"] not in used_theme_ids]
-    
-    if not available_themes:
-        available_themes = themes
-        used_theme_ids = []
-    
-    theme = random.choice(available_themes)
-    logger.info(f"Theme: {theme['name']}")
-    
-    # Fetch images
-    images = []
-    for keyword_set in theme["keywords"]:
-        try:
-            img_paths = fetch_images_russian(keyword_set, num_images=2)
-            images.extend(img_paths)
-        except Exception as e:
-            logger.warning(f"Image fetch failed: {e}")
-    
-    logger.info(f"Got {len(images)} images")
-    
-    # Music
-    music_path = get_random_music("visual")
-    
-    # Render
-    output_dir = PROJECT_ROOT / "output/videos"
-    output_dir.mkdir(parents=True, exist_ok=True)
-    
-    video_filename = f"{datetime.now().date()}_{theme['id']}_visual.mp4"
-    output_path = output_dir / video_filename
-    
-    create_slideshow_video(
-        image_paths=images,
-        output_path=str(output_path),
-        reel_type="visual",
-        music_path=music_path
-    )
-    
-    used_theme_ids.append(theme["id"])
-    metadata["reel_alternation"]["used_visual_theme_ids"] = used_theme_ids
-    
-    return output_path
-
-
-def generate_superstition_reel(metadata: dict) -> Path:
-    """TYPE B: Superstition with RUSSIAN narration + DUAL subtitles"""
-    
-    logger.info("GENERATING SUPERSTITION REEL")
-    
-    folklore_path = PROJECT_ROOT / "content/folklore_database.json"
-    folklore_db = json.loads(folklore_path.read_text())
-    
-    used_ids = metadata.get("reel_alternation", {}).get("used_superstition_ids", [])
-    available = [f for f in folklore_db["folklore"] if f["id"] not in used_ids]
-    
-    if not available:
-        available = folklore_db["folklore"]
-        used_ids = []
-    
-    folklore = random.choice(available)
-    logger.info(f"Superstition: {folklore['name']}")
-    
-    # Generate ENGLISH TTS (not Russian)
+    # Generate audio
     audio_dir = PROJECT_ROOT / "output/audio"
     audio_dir.mkdir(parents=True, exist_ok=True)
+    audio_path = audio_dir / f"{rule['id']}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.mp3"
     
-    audio_filename = f"{datetime.now().date()}_{folklore['id']}.mp3"
-    audio_path = audio_dir / audio_filename
+    voice_data = generate_voice_google(rule['story_english'], str(audio_path), rule['voice_tone'])
     
-    # Use ENGLISH text for narration
-    english_text = folklore.get("story_full", folklore.get("story_english", ""))
-    russian_text = folklore.get("story_russian", "")
-    
-    # Use ENGLISH TTS
-    voice_data = generate_voice_google(
-        text=english_text,
-        output_path=str(audio_path),
-        voice_tone=folklore["voice_tone"]
+    # Generate subtitles
+    sub_dir = PROJECT_ROOT / "output/subtitles"
+    ru_srt, en_srt = generate_dual_subtitles(
+        rule['story_russian'],
+        rule['story_english'],
+        voice_data['duration'],
+        str(sub_dir),
+        rule['id']
     )
-    
-    logger.info(f"Audio duration: {voice_data['duration']:.1f}s")
-    
-    # Fetch images
-    images = []
-    num_needed = int(voice_data["duration"] / 2.5) + 1
-    
-    for keyword in folklore["visual_tags"][:6]:
-        try:
-            img_paths = fetch_images_russian(keyword, num_images=2)
-            images.extend(img_paths)
-        except Exception as e:
-            logger.warning(f"Image fetch failed: {e}")
-    
-    logger.info(f"Got {len(images)} images (need {num_needed})")
-    
-    # Generate DUAL subtitles (Russian + English)
-    subtitle_dir = PROJECT_ROOT / "output/subtitles"
-    subtitle_dir.mkdir(parents=True, exist_ok=True)
-    
-    srt_russian, srt_english = generate_dual_subtitles(
-        russian_text=russian_text if russian_text else "Русский текст",
-        english_text=english_text,
-        audio_duration=voice_data["duration"],
-        output_dir=str(subtitle_dir),
-        video_id=folklore["id"]
-    )
-    
-    logger.info(f"Subtitles: RU={srt_russian}, EN={srt_english}")
     
     # Music
-    music_path = get_random_music("superstition")
+    music_dir = PROJECT_ROOT / "assets/music/cinematic"
+    music_path = str(random.choice(list(music_dir.glob("*.mp3"))))
     
     # Render
-    output_dir = PROJECT_ROOT / "output/videos"
-    video_filename = f"{datetime.now().date()}_{folklore['id']}_superstition.mp4"
-    output_path = output_dir / video_filename
+    out_dir = PROJECT_ROOT / "output/videos"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    output = out_dir / f"{rule['id']}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.mp4"
     
     create_slideshow_video(
-        image_paths=images,
-        output_path=str(output_path),
-        reel_type="superstition",
+        image_paths=[str(v) for v in videos],
+        output_path=str(output),
+        reel_type="etiquette",
         audio_path=str(audio_path),
         music_path=music_path,
-        subtitles_russian=srt_russian,
-        subtitles_english=srt_english
+        subtitles_russian=str(ru_srt),
+        subtitles_english=str(en_srt)
     )
     
-    used_ids.append(folklore["id"])
-    metadata["reel_alternation"]["used_superstition_ids"] = used_ids
-    
-    return output_path
+    logger.info("="*50)
+    logger.info(f"DONE: {output.name}")
+    logger.info("="*50)
+    return str(output)
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        generate_etiquette()
+    except Exception as e:
+        logger.error(f"FAILED: {e}", exc_info=True)
+        sys.exit(1)
